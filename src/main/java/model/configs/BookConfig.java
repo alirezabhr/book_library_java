@@ -55,7 +55,7 @@ public class BookConfig extends BaseConfig{
         }
     }
     public boolean checkSizes(int... fieldsSize) {
-        if (fieldsSize.length != 4) {
+        if (fieldsSize.length != 3) {
             return false;
         }
 

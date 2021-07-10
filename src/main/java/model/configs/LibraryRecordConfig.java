@@ -22,4 +22,20 @@ public class LibraryRecordConfig extends BaseConfig{
             throw new Exception("Invalid Library Record Config");
         }
     }
+    public boolean checkSizes(int... fieldsSize) {
+        if (fieldsSize.length != 0) {
+            return false;
+        }
+
+        final int sizeofInt = Integer.BYTES;
+        int recordSize = sizeofInt*4;
+
+        if (this.recordMode.equals("Fix")) {
+            if (recordSize > this.recordSize) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 }
