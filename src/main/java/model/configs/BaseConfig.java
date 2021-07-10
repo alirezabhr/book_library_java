@@ -24,6 +24,7 @@ public abstract class BaseConfig {
 
     // abstract methods
 //    public abstract boolean isFixFixValid();  //todo check if we need this method
+    public abstract boolean checkSizes(int... fieldsSize);
     protected abstract void setFields(final String field, final String value) throws Exception;
 
     // normal methods
