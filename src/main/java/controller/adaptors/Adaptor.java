@@ -1,8 +1,9 @@
 package controller.adaptors;
 
+import controller.file_stream.AppendableObjectInputStream;
+import controller.file_stream.AppendableObjectOutputStream;
+
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 
 public abstract class Adaptor {
 //    protected Config adpConf;
@@ -11,15 +12,26 @@ public abstract class Adaptor {
     public void setFileName(String fileName) {
         this.fileName = fileName;
     }
-    public void writeIntField(ObjectOutputStream oos, int value) throws IOException {
+
+    public void writeIntField(AppendableObjectOutputStream oos, int value) throws IOException {
         oos.writeInt(value);
     }
-    public int readIntField(ObjectInputStream ois) throws IOException {
+    public int readIntField(AppendableObjectInputStream ois) throws IOException {
         return ois.readInt();
     }
     public void editIntField() {
 
     }
+    public void writeLongField(AppendableObjectOutputStream oos, long value) throws IOException {
+        oos.writeLong(value);
+    }
+    public long readLongField(AppendableObjectInputStream ois) throws IOException {
+        return ois.readLong();
+    }
+    public void editLongField() {
+
+    }
+
     public abstract void writeRecord();
     public abstract int readRecord();
 }
