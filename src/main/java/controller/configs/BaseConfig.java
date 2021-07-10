@@ -1,4 +1,4 @@
-package model.configs;
+package controller.configs;
 
 import java.io.File;
 import java.io.FileNotFoundException;

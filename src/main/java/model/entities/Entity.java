@@ -1,7 +1,7 @@
 package model.entities;
 
 import controller.adaptors.Adaptor;
-import model.configs.BaseConfig;
+import controller.configs.BaseConfig;
 
 import java.util.ArrayList;
 

@@ -2,9 +2,7 @@ package model.entities;
 
 import controller.adaptors.Adaptor;
 import model.CustomDate;
-import model.configs.BaseConfig;
-import model.configs.BookConfig;
-import model.configs.LibraryRecordConfig;
+import controller.configs.LibraryRecordConfig;
 
 import java.util.ArrayList;
 

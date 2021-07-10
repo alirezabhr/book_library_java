@@ -1,4 +1,4 @@
-package model.configs;
+package controller.configs;
 
 public class LibraryRecordConfig extends BaseConfig{
 

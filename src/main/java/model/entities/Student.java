@@ -2,7 +2,7 @@ package model.entities;
 
 import controller.adaptors.Adaptor;
 import controller.file_stream.AppendableObjectOutputStream;
-import model.configs.StudentConfig;
+import controller.configs.StudentConfig;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
