@@ -1,5 +1,8 @@
 package model.entities;
 
+import controller.adaptors.Adaptor;
+import model.configs.BookConfig;
+
 import java.util.ArrayList;
 
 public class Book extends Entity{
@@ -10,27 +13,35 @@ public class Book extends Entity{
     private String publisher;
     private final String constFileName = "Book";
 
-    public Book() {
+    // constructors
+    public Book(Adaptor adaptor, BookConfig config) {
+        this.adaptor = adaptor;
+        this.baseConfig = config;
         this.entityFileName = constFileName;
-//        this.adaptor.setFileName(constFileName+".txt");
+        this.adaptor.setFileName(constFileName+".txt");
     }
+    public Book(Adaptor adaptor, BookConfig config, long isbn, String name, String author, String publisher) {
+        this.adaptor = adaptor;
+        this.baseConfig = config;
+        this.entityFileName = constFileName;
+        this.adaptor.setFileName(constFileName+".txt");
 
-    public Book(long isbn, String name, String author, String publisher) {
         this.isbn = isbn;
         this.onLoan = 0;
         this.name = name;
         this.author = author;
         this.publisher = publisher;
-
-        this.entityFileName = constFileName;
-//        this.adaptor.setFileName(constFileName+".txt");
     }
 
+    // methods
+    public boolean checkConfigValidation() {
+        return false;
+    }
     public void create() {}
-    public ArrayList<Integer> find(int option) {
+    public ArrayList<Integer> find(final int option) {
         return new ArrayList<Integer>();
     }
-    public void get(int index) {}
-    public void edit(int option, int index) {}
-    public void delete(int index) {}
+    public void get(final int index) {}
+    public void edit(final int option, final int index) {}
+    public void delete(final int index) {}
 }

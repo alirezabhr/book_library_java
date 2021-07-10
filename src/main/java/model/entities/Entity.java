@@ -1,12 +1,18 @@
 package model.entities;
 
+import controller.adaptors.Adaptor;
+import model.configs.BaseConfig;
+
 import java.util.ArrayList;
 
 public abstract class Entity {
+    protected Adaptor adaptor;
+    protected BaseConfig baseConfig;
     protected int uniqueId;
     protected String entityFileName;
     protected ArrayList<String> fieldsName;
 
+    // getters
     public String getEntityFileName() {
         return entityFileName;
     }
@@ -16,12 +22,16 @@ public abstract class Entity {
     public ArrayList<String> getFieldsName() {
         return fieldsName;
     }
-//    int objectCount();
+
+    // abstract methods
 //    public abstract void printAllObjects(); //check if it can implement in Entity
-//    virtual bool checkConfigValidation(Config &config) = 0;
-    public abstract void create();
-    public abstract ArrayList<Integer> find(int option);
-    public abstract void get(int index);
-    public abstract void edit(int option, int index);
-    public abstract void delete(int index);
+    public abstract void create() throws Exception;
+    public abstract boolean checkConfigValidation();
+    public abstract ArrayList<Integer> find(final int option);
+    public abstract void get(final int index);
+    public abstract void edit(final int option, final int index);
+    public abstract void delete(final int index);
+
+    // methods
+    //    int objectCount();
 }
