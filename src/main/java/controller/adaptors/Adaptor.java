@@ -14,8 +14,8 @@ public abstract class Adaptor {
     }
 
     // abstract methods
-    public abstract void writeRecord(AppendableObjectOutputStream oos, int value, int lastId) throws IOException;
-    public abstract int readRecord();
+    public abstract void writeRecord(AppendableObjectOutputStream oos, int lastId) throws IOException;
+    public abstract int readRecord(AppendableObjectInputStream ois) throws IOException;
     public abstract void writeStringField(AppendableObjectOutputStream oos, String value) throws IOException;
     public abstract String readStringField(AppendableObjectInputStream ois) throws IOException, ClassNotFoundException;
 
