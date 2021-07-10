@@ -54,4 +54,29 @@ public class BookConfig extends BaseConfig{
             throw new Exception("Invalid Book Config");
         }
     }
+    public boolean checkSizes(int... fieldsSize) {
+        if (fieldsSize.length != 4) {
+            return false;
+        }
+
+        final int sizeofOnLoanId = Integer.BYTES;
+        final int sizeofIsbn = Long.BYTES;
+        int nameSize = fieldsSize[0];
+        int authorSize = fieldsSize[1];
+        int publisherSize = fieldsSize[2];
+        int recordSize = sizeofIsbn + sizeofOnLoanId + nameSize + authorSize + publisherSize;
+
+        if (this.stringMode.equals("Fix")) {
+            if (nameSize > this.nameSize || authorSize > this.authorSize || publisherSize > this.publisherSize) {
+                return false;
+            }
+        }
+        if (this.recordMode.equals("Fix")) {
+            if (recordSize > this.recordSize) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 }
