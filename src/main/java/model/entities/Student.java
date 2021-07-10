@@ -53,7 +53,7 @@ public class Student extends Entity{
             FileOutputStream fos = new FileOutputStream(this.entityFileName, true);
             AppendableObjectOutputStream oos = new AppendableObjectOutputStream(fos);
 
-            adaptor.writeRecord(oos, recordSize, lastId);
+            adaptor.writeRecord(oos, lastId);
             adaptor.writeIntField(oos, studentId);
             adaptor.writeStringField(oos, this.name);
             adaptor.writeStringField(oos, this.lastName);

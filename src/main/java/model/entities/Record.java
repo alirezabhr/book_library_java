@@ -17,13 +17,13 @@ public class Record extends Entity{
     public Record(Adaptor adaptor, LibraryRecordConfig config) {
         this.adaptor = adaptor;
         this.baseConfig = config;
-        this.entityFileName = constFileName;
+        this.entityFileName = this.constBaseFilePath + constFileName + ".txt";
         this.adaptor.setFileName(constFileName+".txt");
     }
     public Record(Adaptor adaptor, LibraryRecordConfig config, int studentId, int bookId, CustomDate intLoanedDate, CustomDate intReturnDate) {
         this.adaptor = adaptor;
         this.baseConfig = config;
-        this.entityFileName = constFileName;
+        this.entityFileName = this.constBaseFilePath + constFileName + ".txt";
         this.adaptor.setFileName(constFileName+".txt");
 
         this.studentId = studentId;
@@ -33,14 +33,13 @@ public class Record extends Entity{
     }
 
     // methods
-    public boolean checkConfigValidation() {
-        return false;
-    }
     public void create() {}
     public ArrayList<Integer> find(final int option) {
         return new ArrayList<Integer>();
     }
-    public void get(final int index) {}
+    public void get(final int index) throws IndexOutOfBoundsException {
+
+    }
     public void edit(final int option, final int index) {}
     public void delete(final int index) {}
 }
