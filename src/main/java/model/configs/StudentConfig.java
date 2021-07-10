@@ -4,6 +4,17 @@ public class StudentConfig extends BaseConfig{
     private int nameSize = 0;
     private int lastNameSize = 0;
 
+    // constructor
+    public StudentConfig(String fileName) {
+        this.configFileName = fileName;
+        try {
+            this.createConfig();
+        } catch (Exception exception) {
+            System.out.println("Exception: Student Config");
+            exception.printStackTrace();
+        }
+    }
+
     // getters
     public int getNameSize() {
         return nameSize;

@@ -5,6 +5,17 @@ public class BookConfig extends BaseConfig{
     private int authorSize = 0;
     private int publisherSize = 0;
 
+    // constructor
+    public BookConfig(String fileName) {
+        this.configFileName = fileName;
+        try {
+            this.createConfig();
+        } catch (Exception exception) {
+            System.out.println("Exception: Book Config");
+            exception.printStackTrace();
+        }
+    }
+
     // getters
     public int getNameSize() {
         return nameSize;

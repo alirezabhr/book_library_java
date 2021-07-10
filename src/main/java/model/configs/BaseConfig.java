@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public abstract class BaseConfig {
+    protected String configFileName;
     protected String recordMode;
     protected String stringMode;
     protected int recordSize = 0;
@@ -26,8 +27,8 @@ public abstract class BaseConfig {
     protected abstract void setFields(final String field, final String value) throws Exception;
 
     // normal methods
-    protected void createConfig(String fileName) throws Exception {
-        ArrayList<String> fileData = readConfigFile(fileName);
+    protected void createConfig() throws Exception {
+        ArrayList<String> fileData = readConfigFile(this.configFileName);
         for (String data : fileData) {
             String[] tokens = tokenize(data);
             String key = tokens[0];
@@ -46,7 +47,7 @@ public abstract class BaseConfig {
                 break;
             case "STRING_MODE":
                 if (isModeKeyValid(field) && isModeValueValid(value)) {
-                    this.recordMode = value;
+                    this.stringMode = value;
                 } else {
                     throw new Exception("string mode key or value is not valid");
                 }
@@ -70,6 +71,9 @@ public abstract class BaseConfig {
             Scanner fileReader = new Scanner(file);
             while (fileReader.hasNextLine()) {
                 String data = fileReader.nextLine();
+                if (data.isEmpty() || data.charAt(0) == '#') {
+                    continue;
+                }
                 fileData.add(data);
             }
             fileReader.close();
