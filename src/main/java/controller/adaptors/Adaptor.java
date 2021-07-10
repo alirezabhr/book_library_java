@@ -13,6 +13,13 @@ public abstract class Adaptor {
         this.fileName = fileName;
     }
 
+    // abstract methods
+    public abstract void writeRecord(AppendableObjectOutputStream oos, int value, int lastId) throws IOException;
+    public abstract int readRecord();
+    public abstract void writeStringField(AppendableObjectOutputStream oos, String value) throws IOException;
+    public abstract String readStringField(AppendableObjectInputStream ois) throws IOException, ClassNotFoundException;
+
+    // normal methods
     public void writeIntField(AppendableObjectOutputStream oos, int value) throws IOException {
         oos.writeInt(value);
     }
@@ -31,7 +38,4 @@ public abstract class Adaptor {
     public void editLongField() {
 
     }
-
-    public abstract void writeRecord();
-    public abstract int readRecord();
 }
