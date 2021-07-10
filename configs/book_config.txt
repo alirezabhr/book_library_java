@@ -1,0 +1,13 @@
+#book record mode (Dyn/Fix)
+RECORD_MODE = Dyn
+
+#book string mode (Dyn/Fix)
+STRING_MODE = Dyn
+
+#book record size (positive number)
+RECORD_SIZE = 102
+
+#book fields size (positive number)
+BOOK_NAME_SIZE = 20
+BOOK_AUTHOR_SIZE = 30
+BOOK_PUBLISHER_SIZE = 25

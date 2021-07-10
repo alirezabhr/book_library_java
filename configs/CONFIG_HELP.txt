@@ -1,0 +1,6 @@
+#If you want to add any object, you should add modes, record size and fields size for that object
+#You should add size exactly like this example
+#Example: "KEY = VALUE"
+#Don't forget to add your key in Config class in config.h and config.cpp
+#You can add comments with '#'
+

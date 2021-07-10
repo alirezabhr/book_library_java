@@ -1,0 +1,8 @@
+#library record record mode (Dyn/Fix)
+RECORD_MODE = Fix
+
+#library record string mode (Dyn/Fix)
+STRING_MODE = Fix
+
+#library record record size (positive number)
+RECORD_SIZE = 28

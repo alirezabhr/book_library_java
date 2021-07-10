@@ -1,0 +1,13 @@
+
+#student record mode (Dyn/Fix)
+RECORD_MODE = Fix
+
+#student string mode (Dyn/Fix)
+STRING_MODE = Dyn
+
+#student record size (positive number)
+RECORD_SIZE = 60
+
+#student fields size (positive number)
+STUDENT_NAME_SIZE = 15
+STUDENT_LAST_NAME_SIZE = 21
