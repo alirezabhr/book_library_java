@@ -18,6 +18,7 @@ public class Book extends Entity{
     public Book(BookConfig config) {
         this.baseConfig = config;
         this.entityFilePathAndName = this.constBaseFilePath + constObjectName + ".txt";
+        this.fields = this.setAllFields();
         this.fieldsType = this.setFieldsType();
     }
     public Book(BookConfig config, long isbn, String name, String author, String publisher) {
@@ -30,6 +31,8 @@ public class Book extends Entity{
         this.name = name;
         this.author = author;
         this.publisher = publisher;
+
+        this.fields = this.setAllFields();
     }
 
     // methods
@@ -40,6 +43,15 @@ public class Book extends Entity{
         arr.add(String.class);
         arr.add(String.class);
         arr.add(String.class);
+        return arr;
+    }
+    protected ArrayList<Object> setAllFields() {
+        ArrayList<Object> arr = new ArrayList<>();
+        arr.add(isbn);
+        arr.add(onLoan);
+        arr.add(name);
+        arr.add(author);
+        arr.add(publisher);
         return arr;
     }
 }

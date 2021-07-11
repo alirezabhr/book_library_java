@@ -21,6 +21,7 @@ public class Student extends Entity{
     public Student(StudentConfig config) {
         this.baseConfig = config;
         this.entityFilePathAndName = this.constBaseFilePath + constObjectName + ".txt";
+        this.fields = this.setAllFields();
         this.fieldsType = this.setFieldsType();
     }
     public Student(StudentConfig config, int studentId, String name, String lastName) {
@@ -31,6 +32,8 @@ public class Student extends Entity{
         this.studentId = studentId;
         this.name = name;
         this.lastName = lastName;
+
+        this.fields = this.setAllFields();
     }
 
     // methods
@@ -39,6 +42,13 @@ public class Student extends Entity{
         arr.add(Integer.class);
         arr.add(String.class);
         arr.add(String.class);
+        return arr;
+    }
+    protected ArrayList<Object> setAllFields() {
+        ArrayList<Object> arr = new ArrayList<>();
+        arr.add(studentId);
+        arr.add(name);
+        arr.add(lastName);
         return arr;
     }
 }

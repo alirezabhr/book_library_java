@@ -18,6 +18,7 @@ public class Record extends Entity{
     public Record(LibraryRecordConfig config) {
         this.baseConfig = config;
         this.entityFilePathAndName = this.constBaseFilePath + constObjectName + ".txt";
+        this.fields = this.setAllFields();
         this.fieldsType = this.setFieldsType();
     }
     public Record(LibraryRecordConfig config, int studentId, int bookId, CustomDate intLoanedDate, CustomDate intReturnDate) {
@@ -29,6 +30,8 @@ public class Record extends Entity{
         this.bookId = bookId;
         this.intLoanedDate = intLoanedDate.toInt();
         this.intReturnDate = intReturnDate.toInt();
+
+        this.fields = this.setAllFields();
     }
 
     // methods
@@ -38,6 +41,14 @@ public class Record extends Entity{
         arr.add(Integer.class);
         arr.add(Integer.class);
         arr.add(Integer.class);
+        return arr;
+    }
+    protected ArrayList<Object> setAllFields() {
+        ArrayList<Object> arr = new ArrayList<>();
+        arr.add(studentId);
+        arr.add(bookId);
+        arr.add(intLoanedDate);
+        arr.add(intReturnDate);
         return arr;
     }
 }

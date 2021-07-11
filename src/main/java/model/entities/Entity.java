@@ -4,6 +4,7 @@ import controller.adaptors.Adaptor;
 import controller.configs.BaseConfig;
 import controller.file_stream.AppendableObjectOutputStream;
 
+import javax.management.ObjectName;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -16,6 +17,7 @@ public abstract class Entity {
     protected String entityFilePathAndName;
     protected ArrayList<String> fieldsName;
     protected ArrayList<Type> fieldsType;
+    protected ArrayList<Object> fields;
 
     // getters
     public String getEntityFilePathAndName() {
@@ -33,11 +35,14 @@ public abstract class Entity {
     public ArrayList<Type> getFieldsType() {
         return fieldsType;
     }
-
+    public ArrayList<Object> getAllFields() {
+        return fields;
+    }
 
     // abstract methods
 //    public abstract void printAllObjects(); //check if it can implement in Entity
     protected abstract ArrayList<Type> setFieldsType();
+    protected abstract ArrayList<Object> setAllFields();
 
     // methods
     int objectCount() {
