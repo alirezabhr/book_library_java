@@ -1,9 +1,5 @@
 package views.entities_view;
 
-import controller.adaptors.Adaptor;
-import controller.adaptors.FixRecDynStr;
-import controller.binders.StudentBinder;
-import controller.configs.StudentConfig;
 import javafx.geometry.Insets;
 import javafx.scene.Cursor;
 import javafx.scene.control.*;
@@ -12,8 +8,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import model.entities.Entity;
+
 import model.entities.Student;
+import controller.binders.StudentBinder;
 
 import java.util.ArrayList;
 
@@ -93,7 +90,7 @@ public class StudentView {
     }
 
     private static TableView getTable() {
-        TableView table = getStudentEmptyTable();
+        TableView table = createEmptyTable();
         ArrayList<Student> students = StudentBinder.getAllStudents();
 
         for (Student student:students) {
@@ -103,7 +100,7 @@ public class StudentView {
         return table;
     }
 
-    private static TableView getStudentEmptyTable() {
+    private static TableView createEmptyTable() {
         TableView table = new TableView();
 
         TableColumn<Student, Integer> column0 = new TableColumn<>("Id");
