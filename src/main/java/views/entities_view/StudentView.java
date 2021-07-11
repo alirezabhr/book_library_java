@@ -90,13 +90,22 @@ public class StudentView {
     private static HBox getTopRow() {
         Label formNameLabel = new Label("Student Form");
 
+        Image createIcon = new Image("file:./images/add.png");
+        Image editIcon = new Image("file:./images/edit.png");
+        Image deleteIcon = new Image("file:./images/delete.png");
+
         Button createBtn = new Button("Create");
+        createBtn.setGraphic(new ImageView(createIcon));
         createBtn.setCursor(Cursor.HAND);
         createBtn.setMinWidth(60);
+
         Button editBtn = new Button("Edit");
+        editBtn.setGraphic(new ImageView(editIcon));
         editBtn.setCursor(Cursor.HAND);
         editBtn.setMinWidth(60);
+
         Button deleteBtn = new Button("Delete");
+        deleteBtn.setGraphic(new ImageView(deleteIcon));
         deleteBtn.setCursor(Cursor.HAND);
         deleteBtn.setMinWidth(60);
 
