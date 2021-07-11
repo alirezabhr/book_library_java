@@ -1,5 +1,7 @@
 package controller.configs;
 
+import java.util.ArrayList;
+
 public class LibraryRecordConfig extends BaseConfig{
 
     // constructor
@@ -22,8 +24,8 @@ public class LibraryRecordConfig extends BaseConfig{
             throw new Exception("Invalid Library Record Config");
         }
     }
-    public boolean isValidRecord(int... fieldsSize) {
-        if (fieldsSize.length != 0) {
+    public boolean isValidRecord(ArrayList<Object> objects) {
+        if (objects.size() != 4) {
             return false;
         }
 
@@ -38,8 +40,8 @@ public class LibraryRecordConfig extends BaseConfig{
 
         return true;
     }
-    public boolean isValidFields(int... fieldsSize) {
-        if (fieldsSize.length != 0) {
+    public boolean isValidFields(ArrayList<Object> objects) {
+        if (objects.size() != 4) {
             return false;
         }
 

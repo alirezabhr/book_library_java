@@ -1,5 +1,7 @@
 package controller.configs;
 
+import java.util.ArrayList;
+
 public class StudentConfig extends BaseConfig{
     private int nameSize = 0;
     private int lastNameSize = 0;
@@ -44,14 +46,14 @@ public class StudentConfig extends BaseConfig{
             throw new Exception("Invalid Student Config");
         }
     }
-    public boolean isValidRecord(int... fieldsSize) {
-        if (fieldsSize.length != 2) {
+    public boolean isValidRecord(ArrayList<Object> objects) {
+        if (objects.size() != 3) {
             return false;
         }
 
         final int sizeofStudentId = Integer.BYTES;
-        int nameSize = fieldsSize[0];
-        int lastNameSize = fieldsSize[1];
+        int nameSize = ((String)objects.get(1)).length();
+        int lastNameSize = ((String)objects.get(2)).length();
         int recordSize = sizeofStudentId + nameSize + lastNameSize;
 
         if (this.recordMode.equals("Fix")) {
@@ -62,13 +64,13 @@ public class StudentConfig extends BaseConfig{
 
         return true;
     }
-    public boolean isValidFields(int... fieldsSize) {
-        if (fieldsSize.length != 2) {
+    public boolean isValidFields(ArrayList<Object> objects) {
+        if (objects.size() != 3) {
             return false;
         }
 
-        int nameSize = fieldsSize[0];
-        int lastNameSize = fieldsSize[1];
+        int nameSize = ((String)objects.get(1)).length();
+        int lastNameSize = ((String)objects.get(2)).length();
 
         if (this.stringMode.equals("Fix")) {
             if (nameSize > this.nameSize || lastNameSize > this.lastNameSize) {

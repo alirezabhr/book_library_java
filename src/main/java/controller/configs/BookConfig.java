@@ -1,5 +1,7 @@
 package controller.configs;
 
+import java.util.ArrayList;
+
 public class BookConfig extends BaseConfig{
     private int nameSize = 0;
     private int authorSize = 0;
@@ -54,16 +56,16 @@ public class BookConfig extends BaseConfig{
             throw new Exception("Invalid Book Config");
         }
     }
-    public boolean isValidRecord(int... fieldsSize) {
-        if (fieldsSize.length != 3) {
+    public boolean isValidRecord(ArrayList<Object> objects) {
+        if (objects.size() != 5) {
             return false;
         }
 
         final int sizeofOnLoanId = Integer.BYTES;
         final int sizeofIsbn = Long.BYTES;
-        int nameSize = fieldsSize[0];
-        int authorSize = fieldsSize[1];
-        int publisherSize = fieldsSize[2];
+        int nameSize = ((String)objects.get(2)).length();
+        int authorSize = ((String)objects.get(3)).length();
+        int publisherSize = ((String)objects.get(4)).length();
         int recordSize = sizeofIsbn + sizeofOnLoanId + nameSize + authorSize + publisherSize;
 
         if (this.recordMode.equals("Fix")) {
@@ -74,14 +76,14 @@ public class BookConfig extends BaseConfig{
 
         return true;
     }
-    public boolean isValidFields(int... fieldsSize) {
-        if (fieldsSize.length != 3) {
+    public boolean isValidFields(ArrayList<Object> objects) {
+        if (objects.size() != 5) {
             return false;
         }
 
-        int nameSize = fieldsSize[0];
-        int authorSize = fieldsSize[1];
-        int publisherSize = fieldsSize[2];
+        int nameSize = ((String)objects.get(2)).length();
+        int authorSize = ((String)objects.get(3)).length();
+        int publisherSize = ((String)objects.get(4)).length();
 
         if (this.stringMode.equals("Fix")) {
             if (nameSize > this.nameSize || authorSize > this.authorSize || publisherSize > this.publisherSize) {
