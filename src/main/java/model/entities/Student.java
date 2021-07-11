@@ -68,4 +68,10 @@ public class Student extends Entity{
                 ", lastName='" + lastName + '\'' +
                 '}';
     }
+    @Override
+    public Object clone() {
+        Student student = new Student(this.adaptor, (StudentConfig) this.baseConfig, this.studentId, this.name, this.lastName);
+        student.uniqueId = this.uniqueId;
+        return student;
+    }
 }

@@ -2,6 +2,7 @@ package model.entities;
 
 import controller.adaptors.Adaptor;
 import controller.configs.BookConfig;
+import controller.configs.StudentConfig;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -62,5 +63,24 @@ public class Book extends Entity{
         this.name = (String) fieldsValue.get(2);
         this.author = (String) fieldsValue.get(3);
         this.publisher = (String) fieldsValue.get(4);
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "uniqueId=" + uniqueId +
+                ", isbn=" + isbn +
+                ", name='" + name + '\'' +
+                ", author='" + author + '\'' +
+                ", publisher='" + publisher + '\'' +
+                ", onLoan=" + onLoan +
+                '}';
+    }
+    @Override
+    public Object clone() {
+        Book book = new Book(this.adaptor, (BookConfig) this.baseConfig, this.isbn, this.name, this.author, this.publisher);
+        book.uniqueId = this.uniqueId;
+        book.onLoan = this.onLoan;
+        return book;
     }
 }

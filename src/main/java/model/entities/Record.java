@@ -1,6 +1,7 @@
 package model.entities;
 
 import controller.adaptors.Adaptor;
+import controller.configs.BookConfig;
 import model.CustomDate;
 import controller.configs.LibraryRecordConfig;
 
@@ -58,5 +59,24 @@ public class Record extends Entity{
         this.bookId = (Integer) fieldsValue.get(1);
         this.intLoanedDate = (Integer) fieldsValue.get(2);
         this.intReturnDate = (Integer) fieldsValue.get(3);
+    }
+
+    @Override
+    public String toString() {
+        return "Record{" +
+                "uniqueId=" + uniqueId +
+                ", studentId=" + studentId +
+                ", bookId=" + bookId +
+                ", intLoanedDate=" + intLoanedDate +
+                ", intReturnDate=" + intReturnDate +
+                '}';
+    }
+    @Override
+    public Object clone() {
+        CustomDate loanDate = CustomDate.intToDate(this.intLoanedDate);
+        CustomDate returnDate = CustomDate.intToDate(this.intReturnDate);
+        Record record = new Record(this.adaptor, (LibraryRecordConfig) this.baseConfig, this.studentId, this.bookId, loanDate, returnDate);
+        record.uniqueId = this.uniqueId;
+        return record;
     }
 }
