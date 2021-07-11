@@ -55,20 +55,6 @@ public abstract class Entity {
         for (Entity entity : entities) {
             System.out.println(entity);
         }
-//        try {
-//            FileInputStream fis = new FileInputStream(this.getEntityFilePathAndName());
-//            AppendableObjectInputStream ois = new AppendableObjectInputStream(fis);
-//
-//            int objectCount = this.objectCount();
-//
-//            for (int i = 0; i < objectCount; i++) {
-//                Entity entity = this.adaptor.readRecord(this, ois);
-//                System.out.println(entity);
-//            }
-//            ois.close();
-//        } catch (Exception e) {
-//            System.out.println("Exception in print all objects");
-//        }
     }
     public ArrayList<Entity> getAllObjects() {
         ArrayList<Entity> arr = new ArrayList<>();
