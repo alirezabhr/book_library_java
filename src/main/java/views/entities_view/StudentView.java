@@ -2,6 +2,7 @@ package views.entities_view;
 
 import controller.adaptors.Adaptor;
 import controller.adaptors.FixRecDynStr;
+import controller.binders.StudentBinder;
 import controller.configs.StudentConfig;
 import javafx.geometry.Insets;
 import javafx.scene.Cursor;
@@ -92,18 +93,10 @@ public class StudentView {
     }
 
     private static TableView getTable() {
-        Adaptor adaptor = new FixRecDynStr();
-        StudentConfig config = new StudentConfig("./configs/student_config.txt");
-        Student tmpStudent = new Student(adaptor, config);
-        ArrayList<Entity> entities = tmpStudent.getAllObjects();
-        ArrayList<Student> arr = new ArrayList<>();
-        for (Entity e : entities) {
-            arr.add((Student) e);
-        }
-
         TableView table = getStudentEmptyTable();
+        ArrayList<Student> students = StudentBinder.getAllStudents();
 
-        for (Student student:arr) {
+        for (Student student:students) {
             table.getItems().add(student);
         }
 
