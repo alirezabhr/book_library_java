@@ -44,12 +44,34 @@ public abstract class Entity {
     }
 
     // abstract methods
+    public abstract Object clone();
     public abstract void setEntityFieldsValue(ArrayList<Object> fieldsValue);
     protected abstract ArrayList<Object> setAllFields();
     protected abstract ArrayList<Type> setFieldsType();
 
     // methods
-    public void printAllObjects() { //check if it can implement in Entity
+    public void printAllObjects() {
+        ArrayList<Entity> entities = this.getAllObjects();
+        for (Entity entity : entities) {
+            System.out.println(entity);
+        }
+//        try {
+//            FileInputStream fis = new FileInputStream(this.getEntityFilePathAndName());
+//            AppendableObjectInputStream ois = new AppendableObjectInputStream(fis);
+//
+//            int objectCount = this.objectCount();
+//
+//            for (int i = 0; i < objectCount; i++) {
+//                Entity entity = this.adaptor.readRecord(this, ois);
+//                System.out.println(entity);
+//            }
+//            ois.close();
+//        } catch (Exception e) {
+//            System.out.println("Exception in print all objects");
+//        }
+    }
+    public ArrayList<Entity> getAllObjects() {
+        ArrayList<Entity> arr = new ArrayList<>();
         try {
             FileInputStream fis = new FileInputStream(this.getEntityFilePathAndName());
             AppendableObjectInputStream ois = new AppendableObjectInputStream(fis);
@@ -58,12 +80,14 @@ public abstract class Entity {
 
             for (int i = 0; i < objectCount; i++) {
                 Entity entity = this.adaptor.readRecord(this, ois);
-                System.out.println(entity);
+                arr.add((Entity) entity.clone());
             }
             ois.close();
         } catch (Exception e) {
             System.out.println("Exception in print all objects");
         }
+
+        return arr;
     }
     int objectCount() {
         int count = 0;

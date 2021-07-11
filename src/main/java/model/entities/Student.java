@@ -38,6 +38,17 @@ public class Student extends Entity{
         this.fields = this.setAllFields();
     }
 
+    // getters
+    public int getStudentId() {
+        return studentId;
+    }
+    public String getName() {
+        return name;
+    }
+    public String getLastName() {
+        return lastName;
+    }
+
     // methods
     protected ArrayList<Type> setFieldsType() {
         ArrayList<Type> arr = new ArrayList<>();

@@ -38,6 +38,23 @@ public class Book extends Entity{
         this.fields = this.setAllFields();
     }
 
+    // getters
+    public long getIsbn() {
+        return isbn;
+    }
+    public int getOnLoan() {
+        return onLoan;
+    }
+    public String getName() {
+        return name;
+    }
+    public String getAuthor() {
+        return author;
+    }
+    public String getPublisher() {
+        return publisher;
+    }
+
     // methods
     protected ArrayList<Type> setFieldsType() {
         ArrayList<Type> arr = new ArrayList<>();

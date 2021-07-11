@@ -37,6 +37,20 @@ public class Record extends Entity{
         this.fields = this.setAllFields();
     }
 
+    // getters
+    public int getStudentId() {
+        return studentId;
+    }
+    public int getBookId() {
+        return bookId;
+    }
+    public int getIntLoanedDate() {
+        return intLoanedDate;
+    }
+    public int getIntReturnDate() {
+        return intReturnDate;
+    }
+
     // methods
     protected ArrayList<Type> setFieldsType() {
         ArrayList<Type> arr = new ArrayList<>();
