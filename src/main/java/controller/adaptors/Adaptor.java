@@ -43,9 +43,7 @@ public abstract class Adaptor {
         }
         oos.close();
     }
-    public Entity readRecord(Entity entity) throws IOException, ClassNotFoundException {
-        FileInputStream fis = new FileInputStream(entity.getEntityFilePathAndName());
-        AppendableObjectInputStream ois = new AppendableObjectInputStream(fis);
+    public Entity readRecord(Entity entity, AppendableObjectInputStream ois) throws IOException, ClassNotFoundException {
         int uniqueId = this.readIntField(ois);
         entity.setUniqueId(uniqueId);
         ArrayList<Object> fieldObjects = new ArrayList<>();
@@ -61,7 +59,6 @@ public abstract class Adaptor {
                 System.out.println("Wrong Field Type");
             }
         }
-        ois.close();
 
         entity.setEntityFieldsValue(fieldObjects);
         return entity;
