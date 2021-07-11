@@ -2,14 +2,15 @@ package controller.adaptors;
 
 import controller.file_stream.AppendableObjectInputStream;
 import controller.file_stream.AppendableObjectOutputStream;
+import model.entities.Entity;
 
 import java.io.IOException;
 
 public abstract class FixRecordAdaptor extends Adaptor{
-    public void writeRecord(AppendableObjectOutputStream oos, int lastId) throws IOException {
-        oos.write(lastId+1);
+    public void writeRecord(Entity entity) throws IOException {
+
     }
-    public int readRecord(AppendableObjectInputStream ois) throws IOException {
-        return ois.readInt();
+    public Entity readRecord(Entity entity) throws IOException {
+        return null;
     }
 }

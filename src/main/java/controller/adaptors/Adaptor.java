@@ -2,20 +2,15 @@ package controller.adaptors;
 
 import controller.file_stream.AppendableObjectInputStream;
 import controller.file_stream.AppendableObjectOutputStream;
+import model.entities.Entity;
 
 import java.io.IOException;
 
 public abstract class Adaptor {
-//    protected Config adpConf;
-    protected String fileName;
-
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
-    }
 
     // abstract methods
-    public abstract void writeRecord(AppendableObjectOutputStream oos, int lastId) throws IOException;
-    public abstract int readRecord(AppendableObjectInputStream ois) throws IOException;
+    public abstract void writeRecord(Entity entity) throws IOException;
+    public abstract Entity readRecord(Entity entity) throws IOException, ClassNotFoundException;
     public abstract void writeStringField(AppendableObjectOutputStream oos, String value) throws IOException;
     public abstract String readStringField(AppendableObjectInputStream ois) throws IOException, ClassNotFoundException;
 
