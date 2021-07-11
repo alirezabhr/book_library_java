@@ -39,10 +39,16 @@ public abstract class Entity {
         return fields;
     }
 
+    // setters
+    public void setUniqueId(int uniqueId) {
+        this.uniqueId = uniqueId;
+    }
+
     // abstract methods
-//    public abstract void printAllObjects(); //check if it can implement in Entity
+    //    public abstract void printAllObjects(); //check if it can implement in Entity
     protected abstract ArrayList<Type> setFieldsType();
     protected abstract ArrayList<Object> setAllFields();
+    public abstract void setEntityFieldsValue(ArrayList<Object> fieldsValue);
 
     // methods
     int objectCount() {

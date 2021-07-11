@@ -51,4 +51,9 @@ public class Student extends Entity{
         arr.add(lastName);
         return arr;
     }
+    public void setEntityFieldsValue(ArrayList<Object> fieldsValue) {
+        this.studentId = (Integer) fieldsValue.get(0);
+        this.name = (String) fieldsValue.get(1);
+        this.lastName = (String) fieldsValue.get(2);
+    }
 }

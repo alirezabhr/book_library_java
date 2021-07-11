@@ -51,4 +51,10 @@ public class Record extends Entity{
         arr.add(intReturnDate);
         return arr;
     }
+    public void setEntityFieldsValue(ArrayList<Object> fieldsValue) {
+        this.studentId = (Integer) fieldsValue.get(0);
+        this.bookId = (Integer) fieldsValue.get(1);
+        this.intLoanedDate = (Integer) fieldsValue.get(2);
+        this.intReturnDate = (Integer) fieldsValue.get(3);
+    }
 }

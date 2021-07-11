@@ -54,4 +54,11 @@ public class Book extends Entity{
         arr.add(publisher);
         return arr;
     }
+    public void setEntityFieldsValue(ArrayList<Object> fieldsValue) {
+        this.isbn = (Long) fieldsValue.get(0);
+        this.onLoan = (Integer) fieldsValue.get(1);
+        this.name = (String) fieldsValue.get(2);
+        this.author = (String) fieldsValue.get(3);
+        this.publisher = (String) fieldsValue.get(4);
+    }
 }
