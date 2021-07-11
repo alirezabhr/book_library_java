@@ -2,6 +2,7 @@ package model.entities;
 
 import controller.adaptors.Adaptor;
 import controller.configs.BaseConfig;
+import controller.configs.StudentConfig;
 import controller.file_stream.AppendableObjectInputStream;
 import controller.file_stream.AppendableObjectOutputStream;
 
@@ -51,7 +52,6 @@ public abstract class Entity {
     public abstract void setEntityFieldsValue(ArrayList<Object> fieldsValue);
     protected abstract ArrayList<Object> setAllFields();
     protected abstract ArrayList<Type> setFieldsType();
-    protected abstract void cloneObject(Entity entity);
 
     // methods
     public void printAllObjects() { //check if it can implement in Entity
@@ -91,7 +91,7 @@ public abstract class Entity {
     public ArrayList<Integer> find(final int option) {return new ArrayList<>();}
     public void get(final int index) throws Exception {
         int objectsCount = this.objectCount();
-        if (index > objectsCount || index < 0) {
+        if (index > objectsCount || index <= 0) {
             throw new Exception("Exception Get Method In Entity:Index Out Of Range");
         }
 
@@ -103,12 +103,38 @@ public abstract class Entity {
             for (int i = 0; i < index; i++) {
                 entity = this.adaptor.readRecord(this, ois);
             }
-            this.cloneObject(entity);
+            this.setEntityFieldsValue(entity.setAllFields());
             ois.close();
         } catch (Exception e) {
             System.out.println("Exception in get object");
         }
     }
     public void edit(final int option, final int index) {}
-    public void delete(final int index) {}
+    public void delete(final int index) throws Exception {
+        int objCount = this.objectCount();
+        if (index > objCount || index <= 0) {
+            throw new Exception("Exception Delete Method In Entity:Index Out Of Range");
+        }
+
+        ArrayList<Entity> arr1 = new ArrayList<>();
+        ArrayList<Entity> arr2 = new ArrayList<>();
+
+        for (int i = 1; i < index; i++) {
+            this.get(i);
+            arr1.add((Entity) this.clone());
+        }
+        for (int i = index+1; i <= objCount; i++) {
+            this.get(i);
+            arr2.add((Entity) this.clone());
+        }
+
+        adaptor.createEmptyFile(this.entityFilePathAndName);
+
+        for (Entity entity : arr1) {
+            entity.create();
+        }
+        for (Entity entity : arr2) {
+            entity.create();
+        }
+    }
 }
