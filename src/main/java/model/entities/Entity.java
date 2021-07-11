@@ -2,14 +2,9 @@ package model.entities;
 
 import controller.adaptors.Adaptor;
 import controller.configs.BaseConfig;
-import controller.configs.StudentConfig;
 import controller.file_stream.AppendableObjectInputStream;
-import controller.file_stream.AppendableObjectOutputStream;
 
-import javax.management.ObjectName;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
