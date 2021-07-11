@@ -1,5 +1,8 @@
 package views.entities_view;
 
+import controller.adaptors.Adaptor;
+import controller.adaptors.FixRecDynStr;
+import controller.configs.StudentConfig;
 import javafx.geometry.Insets;
 import javafx.scene.Cursor;
 import javafx.scene.control.*;
@@ -8,40 +11,12 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import model.entities.Entity;
+import model.entities.Student;
 
 import java.util.ArrayList;
 
 public class StudentView {
-
-    private static class Person {
-        private Integer id;
-        private String firstName = null;
-        private String lastName = null;
-        private Integer stdId;
-
-        private Person(int id, String firstName, String lastName, Integer stdId) {
-            this.id = id;
-            this.firstName = firstName;
-            this.lastName = lastName;
-            this.stdId = stdId;
-        }
-
-        private Integer getUniqueId() {
-            return id;
-        }
-
-        private String getFirstName() {
-            return firstName;
-        }
-
-        private String getLastName() {
-            return lastName;
-        }
-
-        private Integer getStdId() {
-            return stdId;
-        }
-    }
 
     public static Tab getTab() {
         VBox studentForm = getForm();
@@ -117,40 +92,41 @@ public class StudentView {
     }
 
     private static TableView getTable() {
-        ArrayList<Person> arr = new ArrayList<>();
-        arr.add(new Person(1, "alireza", "bahrol", 9832089));
-        arr.add(new Person(2, "hossein", "serati", 9832079));
-        arr.add(new Person(3, "mamad", "mamadi", 9722053));
-        arr.add(new Person(4, "reza", "rezaei", 8721365));
-        arr.add(new Person(5, "shapour", "akbari", 6846546));
-        arr.add(new Person(6, "abbas", "ebrahimi", 7541366));
+        Adaptor adaptor = new FixRecDynStr();
+        StudentConfig config = new StudentConfig("./configs/student_config.txt");
+        Student tmpStudent = new Student(adaptor, config);
+        ArrayList<Entity> entities = tmpStudent.getAllObjects();
+        ArrayList<Student> arr = new ArrayList<>();
+        for (Entity e : entities) {
+            arr.add((Student) e);
+        }
 
-        TableView table = getPersonTable();
+        TableView table = getStudentEmptyTable();
 
-        for (Person person:arr) {
-            table.getItems().add(person);
+        for (Student student:arr) {
+            table.getItems().add(student);
         }
 
         return table;
     }
 
-    private static TableView getPersonTable() {
+    private static TableView getStudentEmptyTable() {
         TableView table = new TableView();
 
-        TableColumn<Person, Integer> column0 = new TableColumn<>("Id");
+        TableColumn<Student, Integer> column0 = new TableColumn<>("Id");
         column0.setCellValueFactory(new PropertyValueFactory<>("uniqueId"));
         column0.setPrefWidth(30);
 
-        TableColumn<Person, String> column1 = new TableColumn<>("First Name");
-        column1.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        TableColumn<Student, String> column1 = new TableColumn<>("First Name");
+        column1.setCellValueFactory(new PropertyValueFactory<>("name"));
         column1.setPrefWidth(100);
 
-        TableColumn<Person, String> column2 = new TableColumn<>("Last Name");
+        TableColumn<Student, String> column2 = new TableColumn<>("Last Name");
         column2.setCellValueFactory(new PropertyValueFactory<>("lastName"));
         column2.setPrefWidth(100);
 
-        TableColumn<Person, Integer> column3 = new TableColumn<>("Student Id");
-        column3.setCellValueFactory(new PropertyValueFactory<>("stdId"));
+        TableColumn<Student, Integer> column3 = new TableColumn<>("Student Id");
+        column3.setCellValueFactory(new PropertyValueFactory<>("studentId"));
         column3.setPrefWidth(100);
 
         table.getColumns().add(column0);
