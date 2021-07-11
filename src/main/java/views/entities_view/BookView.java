@@ -1,6 +1,6 @@
 package views.entities_view;
 
-import controller.binders.StudentBinder;
+import controller.binders.BookBinder;
 import javafx.geometry.Insets;
 import javafx.scene.Cursor;
 import javafx.scene.control.*;
@@ -10,7 +10,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import model.entities.Book;
-import model.entities.Student;
 
 import java.util.ArrayList;
 
@@ -102,7 +101,7 @@ public class BookView {
 
     private static TableView getTable() {
         TableView table = createEmptyTable();
-        ArrayList<Book> books = BookBinder.getAllStudents();
+        ArrayList<Book> books = BookBinder.getAllBooks();
 
         for (Book book:books) {
             table.getItems().add(book);
@@ -114,26 +113,36 @@ public class BookView {
     private static TableView createEmptyTable() {
         TableView table = new TableView();
 
-        TableColumn<Student, Integer> column0 = new TableColumn<>("Id");
+        TableColumn<Book, Integer> column0 = new TableColumn<>("Id");
         column0.setCellValueFactory(new PropertyValueFactory<>("uniqueId"));
         column0.setPrefWidth(30);
 
-        TableColumn<Student, String> column1 = new TableColumn<>("First Name");
+        TableColumn<Book, String> column1 = new TableColumn<>("Book Name");
         column1.setCellValueFactory(new PropertyValueFactory<>("name"));
         column1.setPrefWidth(100);
 
-        TableColumn<Student, String> column2 = new TableColumn<>("Last Name");
-        column2.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+        TableColumn<Book, String> column2 = new TableColumn<>("Author");
+        column2.setCellValueFactory(new PropertyValueFactory<>("author"));
         column2.setPrefWidth(100);
 
-        TableColumn<Student, Integer> column3 = new TableColumn<>("Student Id");
-        column3.setCellValueFactory(new PropertyValueFactory<>("studentId"));
+        TableColumn<Book, Integer> column3 = new TableColumn<>("Publisher");
+        column3.setCellValueFactory(new PropertyValueFactory<>("publisher"));
         column3.setPrefWidth(100);
+
+        TableColumn<Book, Long> column4 = new TableColumn<>("ISBN");
+        column0.setCellValueFactory(new PropertyValueFactory<>("isbn"));
+        column0.setPrefWidth(100);
+
+        TableColumn<Book, Integer> column5 = new TableColumn<>("On Loan");
+        column0.setCellValueFactory(new PropertyValueFactory<>("onLoan"));
+        column0.setPrefWidth(100);
 
         table.getColumns().add(column0);
         table.getColumns().add(column1);
         table.getColumns().add(column2);
         table.getColumns().add(column3);
+        table.getColumns().add(column4);
+        table.getColumns().add(column5);
 
         table.setPrefHeight(1000);
         return table;
