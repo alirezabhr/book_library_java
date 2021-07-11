@@ -15,13 +15,15 @@ public class Book extends Entity{
     private final String constObjectName = "Book";
 
     // constructors
-    public Book(BookConfig config) {
+    public Book(Adaptor adaptor, BookConfig config) {
+        this.adaptor = adaptor;
         this.baseConfig = config;
         this.entityFilePathAndName = this.constBaseFilePath + constObjectName + ".txt";
         this.fields = this.setAllFields();
         this.fieldsType = this.setFieldsType();
     }
-    public Book(BookConfig config, long isbn, String name, String author, String publisher) {
+    public Book(Adaptor adaptor, BookConfig config, long isbn, String name, String author, String publisher) {
+        this.adaptor = adaptor;
         this.baseConfig = config;
         this.entityFilePathAndName = this.constBaseFilePath + constObjectName + ".txt";
         this.fieldsType = this.setFieldsType();

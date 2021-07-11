@@ -18,13 +18,15 @@ public class Student extends Entity{
     private final String constObjectName = "Student";
 
     // constructors
-    public Student(StudentConfig config) {
+    public Student(Adaptor adaptor, StudentConfig config) {
+        this.adaptor = adaptor;
         this.baseConfig = config;
         this.entityFilePathAndName = this.constBaseFilePath + constObjectName + ".txt";
         this.fields = this.setAllFields();
         this.fieldsType = this.setFieldsType();
     }
-    public Student(StudentConfig config, int studentId, String name, String lastName) {
+    public Student(Adaptor adaptor, StudentConfig config, int studentId, String name, String lastName) {
+        this.adaptor = adaptor;
         this.baseConfig = config;
         this.entityFilePathAndName = this.constBaseFilePath + constObjectName + ".txt";
         this.fieldsType = this.setFieldsType();
@@ -55,5 +57,15 @@ public class Student extends Entity{
         this.studentId = (Integer) fieldsValue.get(0);
         this.name = (String) fieldsValue.get(1);
         this.lastName = (String) fieldsValue.get(2);
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "uniqueId=" + uniqueId +
+                ", studentId=" + studentId +
+                ", name='" + name + '\'' +
+                ", lastName='" + lastName + '\'' +
+                '}';
     }
 }

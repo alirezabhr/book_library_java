@@ -15,13 +15,15 @@ public class Record extends Entity{
     private final String constObjectName = "Record";
 
     // constructors
-    public Record(LibraryRecordConfig config) {
+    public Record(Adaptor adaptor, LibraryRecordConfig config) {
+        this.adaptor = adaptor;
         this.baseConfig = config;
         this.entityFilePathAndName = this.constBaseFilePath + constObjectName + ".txt";
         this.fields = this.setAllFields();
         this.fieldsType = this.setFieldsType();
     }
-    public Record(LibraryRecordConfig config, int studentId, int bookId, CustomDate intLoanedDate, CustomDate intReturnDate) {
+    public Record(Adaptor adaptor, LibraryRecordConfig config, int studentId, int bookId, CustomDate intLoanedDate, CustomDate intReturnDate) {
+        this.adaptor = adaptor;
         this.baseConfig = config;
         this.entityFilePathAndName = this.constBaseFilePath + constObjectName + ".txt";
         this.fieldsType = this.setFieldsType();
