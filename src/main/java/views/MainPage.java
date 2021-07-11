@@ -11,9 +11,9 @@ public class MainPage {
     public static Scene getMainScene() {
         TabPane tabPane = new TabPane();
 
-        Tab studentTab = StudentView.getTab();
-        Tab bookTab = BookView.getTab();
-        Tab recordTab = RecordView.getTab();
+        Tab studentTab = new StudentView().getTab("Student");
+        Tab bookTab = new BookView().getTab("Book");
+        Tab recordTab = new RecordView().getTab("Record");
 
         tabPane.getTabs().add(studentTab);
         tabPane.getTabs().add(bookTab);

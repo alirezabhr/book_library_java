@@ -8,27 +8,14 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import model.entities.Book;
 
 import java.util.ArrayList;
 
-public class BookView {
+public class BookView extends EntityView{
 
-    public static Tab getTab() {
-        VBox bookForm = getForm();
-        return new Tab("Books", bookForm);
-    }
-
-    private static VBox getForm() {
-        HBox topRow = getTopRow();
-        HBox searchRow = getSearchRow();
-        TableView table = getTable();
-
-        return new VBox(topRow, searchRow, table);
-    }
-
-    private static HBox getSearchRow() {
+    @Override
+    protected HBox getSearchRow() {
         TextField nameSearchField = new TextField("name...");
         nameSearchField.setPrefWidth(95);
         nameSearchField.setOnMouseClicked(event->{
@@ -70,36 +57,8 @@ public class BookView {
         return searchRow;
     }
 
-    private static HBox getTopRow() {
-        Label formNameLabel = new Label("Book Form");
-
-        Image createIcon = new Image("file:./images/add.png");
-        Image editIcon = new Image("file:./images/edit.png");
-        Image deleteIcon = new Image("file:./images/delete.png");
-
-        Button createBtn = new Button("Create");
-        createBtn.setGraphic(new ImageView(createIcon));
-        createBtn.setCursor(Cursor.HAND);
-        createBtn.setMinWidth(60);
-
-        Button editBtn = new Button("Edit");
-        editBtn.setGraphic(new ImageView(editIcon));
-        editBtn.setCursor(Cursor.HAND);
-        editBtn.setMinWidth(60);
-
-        Button deleteBtn = new Button("Delete");
-        deleteBtn.setGraphic(new ImageView(deleteIcon));
-        deleteBtn.setCursor(Cursor.HAND);
-        deleteBtn.setMinWidth(60);
-
-        HBox topRow = new HBox(formNameLabel, createBtn, editBtn, deleteBtn);
-        topRow.setPadding(new Insets(10));
-        topRow.setSpacing(20);
-
-        return topRow;
-    }
-
-    private static TableView getTable() {
+    @Override
+    protected TableView getTable() {
         TableView table = createEmptyTable();
         ArrayList<Book> books = BookBinder.getAllBooks();
 
@@ -110,7 +69,8 @@ public class BookView {
         return table;
     }
 
-    private static TableView createEmptyTable() {
+    @Override
+    protected TableView createEmptyTable() {
         TableView table = new TableView();
 
         TableColumn<Book, Integer> column0 = new TableColumn<>("Id");
