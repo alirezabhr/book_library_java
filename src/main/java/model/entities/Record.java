@@ -4,6 +4,7 @@ import controller.adaptors.Adaptor;
 import model.CustomDate;
 import controller.configs.LibraryRecordConfig;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class Record extends Entity{
@@ -11,20 +12,18 @@ public class Record extends Entity{
     private int bookId;
     private int intLoanedDate;
     private int intReturnDate;
-    private final String constFileName = "Record";
+    private final String constObjectName = "Record";
 
     // constructors
-    public Record(Adaptor adaptor, LibraryRecordConfig config) {
-        this.adaptor = adaptor;
+    public Record(LibraryRecordConfig config) {
         this.baseConfig = config;
-        this.entityFileName = this.constBaseFilePath + constFileName + ".txt";
-        this.adaptor.setFileName(constFileName+".txt");
+        this.entityFilePathAndName = this.constBaseFilePath + constObjectName + ".txt";
+        this.fieldsType = this.setFieldsType();
     }
-    public Record(Adaptor adaptor, LibraryRecordConfig config, int studentId, int bookId, CustomDate intLoanedDate, CustomDate intReturnDate) {
-        this.adaptor = adaptor;
+    public Record(LibraryRecordConfig config, int studentId, int bookId, CustomDate intLoanedDate, CustomDate intReturnDate) {
         this.baseConfig = config;
-        this.entityFileName = this.constBaseFilePath + constFileName + ".txt";
-        this.adaptor.setFileName(constFileName+".txt");
+        this.entityFilePathAndName = this.constBaseFilePath + constObjectName + ".txt";
+        this.fieldsType = this.setFieldsType();
 
         this.studentId = studentId;
         this.bookId = bookId;
@@ -33,13 +32,12 @@ public class Record extends Entity{
     }
 
     // methods
-    public void create() {}
-    public ArrayList<Integer> find(final int option) {
-        return new ArrayList<Integer>();
+    protected ArrayList<Type> setFieldsType() {
+        ArrayList<Type> arr = new ArrayList<>();
+        arr.add(Integer.class);
+        arr.add(Integer.class);
+        arr.add(Integer.class);
+        arr.add(Integer.class);
+        return arr;
     }
-    public void get(final int index) throws IndexOutOfBoundsException {
-
-    }
-    public void edit(final int option, final int index) {}
-    public void delete(final int index) {}
 }

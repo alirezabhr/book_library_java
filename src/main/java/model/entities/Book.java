@@ -3,6 +3,7 @@ package model.entities;
 import controller.adaptors.Adaptor;
 import controller.configs.BookConfig;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class Book extends Entity{
@@ -11,20 +12,18 @@ public class Book extends Entity{
     private String name;
     private String author;
     private String publisher;
-    private final String constFileName = "Book";
+    private final String constObjectName = "Book";
 
     // constructors
-    public Book(Adaptor adaptor, BookConfig config) {
-        this.adaptor = adaptor;
+    public Book(BookConfig config) {
         this.baseConfig = config;
-        this.entityFileName = this.constBaseFilePath + constFileName + ".txt";
-        this.adaptor.setFileName(constFileName+".txt");
+        this.entityFilePathAndName = this.constBaseFilePath + constObjectName + ".txt";
+        this.fieldsType = this.setFieldsType();
     }
-    public Book(Adaptor adaptor, BookConfig config, long isbn, String name, String author, String publisher) {
-        this.adaptor = adaptor;
+    public Book(BookConfig config, long isbn, String name, String author, String publisher) {
         this.baseConfig = config;
-        this.entityFileName = this.constBaseFilePath + constFileName + ".txt";
-        this.adaptor.setFileName(constFileName+".txt");
+        this.entityFilePathAndName = this.constBaseFilePath + constObjectName + ".txt";
+        this.fieldsType = this.setFieldsType();
 
         this.isbn = isbn;
         this.onLoan = 0;
@@ -34,11 +33,13 @@ public class Book extends Entity{
     }
 
     // methods
-    public void create() {}
-    public ArrayList<Integer> find(final int option) {
-        return new ArrayList<Integer>();
+    protected ArrayList<Type> setFieldsType() {
+        ArrayList<Type> arr = new ArrayList<>();
+        arr.add(Long.class);
+        arr.add(Integer.class);
+        arr.add(String.class);
+        arr.add(String.class);
+        arr.add(String.class);
+        return arr;
     }
-    public void get(final int index) throws IndexOutOfBoundsException {}
-    public void edit(final int option, final int index) {}
-    public void delete(final int index) {}
 }

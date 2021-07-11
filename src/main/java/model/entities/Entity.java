@@ -6,19 +6,20 @@ import controller.file_stream.AppendableObjectOutputStream;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public abstract class Entity {
-    protected Adaptor adaptor;
     protected BaseConfig baseConfig;
     protected int uniqueId;
     protected final String constBaseFilePath = "./database/";
-    protected String entityFileName;
+    protected String entityFilePathAndName;
     protected ArrayList<String> fieldsName;
+    protected ArrayList<Type> fieldsType;
 
     // getters
-    public String getEntityFileName() {
-        return entityFileName;
+    public String getEntityFilePathAndName() {
+        return entityFilePathAndName;
     }
     public int getUniqueId() {
         return uniqueId;
@@ -26,14 +27,17 @@ public abstract class Entity {
     public ArrayList<String> getFieldsName() {
         return fieldsName;
     }
+    public BaseConfig getBaseConfig() {
+        return baseConfig;
+    }
+    public ArrayList<Type> getFieldsType() {
+        return fieldsType;
+    }
+
 
     // abstract methods
 //    public abstract void printAllObjects(); //check if it can implement in Entity
-    public abstract void create() throws Exception;
-    public abstract ArrayList<Integer> find(final int option);
-    public abstract void get(final int index) throws IndexOutOfBoundsException;
-    public abstract void edit(final int option, final int index);
-    public abstract void delete(final int index);
+    protected abstract ArrayList<Type> setFieldsType();
 
     // methods
     int objectCount() {
@@ -46,4 +50,9 @@ public abstract class Entity {
             return count-1;
         }
     }
+    public void create() throws Exception {}
+    public ArrayList<Integer> find(final int option) {return new ArrayList<>();}
+    public void get(final int index) throws IndexOutOfBoundsException {}
+    public void edit(final int option, final int index) {}
+    public void delete(final int index) {}
 }
