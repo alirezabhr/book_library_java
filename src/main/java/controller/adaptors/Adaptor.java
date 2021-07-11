@@ -5,6 +5,7 @@ import controller.file_stream.AppendableObjectOutputStream;
 import model.entities.Entity;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -20,6 +21,11 @@ public abstract class Adaptor {
     public abstract String readStringField(AppendableObjectInputStream ois) throws IOException, ClassNotFoundException;
 
     // normal methods
+    public void createEmptyFile(String filePathName) throws IOException {
+        FileOutputStream fos = new FileOutputStream(filePathName);
+        AppendableObjectOutputStream oos = new AppendableObjectOutputStream(fos);
+        oos.close();
+    }
     public void writeRecord(Entity entity) throws Exception {
         if (!this.isValidObject(entity)) {
             throw new Exception("Exception in write Record.\nNot A Valid Object");
