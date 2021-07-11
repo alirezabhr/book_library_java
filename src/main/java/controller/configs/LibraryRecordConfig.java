@@ -22,7 +22,7 @@ public class LibraryRecordConfig extends BaseConfig{
             throw new Exception("Invalid Library Record Config");
         }
     }
-    public boolean checkSizes(int... fieldsSize) {
+    public boolean isValidRecord(int... fieldsSize) {
         if (fieldsSize.length != 0) {
             return false;
         }
@@ -34,6 +34,13 @@ public class LibraryRecordConfig extends BaseConfig{
             if (recordSize > this.recordSize) {
                 return false;
             }
+        }
+
+        return true;
+    }
+    public boolean isValidFields(int... fieldsSize) {
+        if (fieldsSize.length != 0) {
+            return false;
         }
 
         return true;

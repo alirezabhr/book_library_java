@@ -44,7 +44,7 @@ public class StudentConfig extends BaseConfig{
             throw new Exception("Invalid Student Config");
         }
     }
-    public boolean checkSizes(int... fieldsSize) {
+    public boolean isValidRecord(int... fieldsSize) {
         if (fieldsSize.length != 2) {
             return false;
         }
@@ -54,13 +54,24 @@ public class StudentConfig extends BaseConfig{
         int lastNameSize = fieldsSize[1];
         int recordSize = sizeofStudentId + nameSize + lastNameSize;
 
-        if (this.stringMode.equals("Fix")) {
-            if (nameSize > this.nameSize || lastNameSize > this.lastNameSize) {
+        if (this.recordMode.equals("Fix")) {
+            if (recordSize > this.recordSize) {
                 return false;
             }
         }
-        if (this.recordMode.equals("Fix")) {
-            if (recordSize > this.recordSize) {
+
+        return true;
+    }
+    public boolean isValidFields(int... fieldsSize) {
+        if (fieldsSize.length != 2) {
+            return false;
+        }
+
+        int nameSize = fieldsSize[0];
+        int lastNameSize = fieldsSize[1];
+
+        if (this.stringMode.equals("Fix")) {
+            if (nameSize > this.nameSize || lastNameSize > this.lastNameSize) {
                 return false;
             }
         }

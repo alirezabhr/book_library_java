@@ -54,7 +54,7 @@ public class BookConfig extends BaseConfig{
             throw new Exception("Invalid Book Config");
         }
     }
-    public boolean checkSizes(int... fieldsSize) {
+    public boolean isValidRecord(int... fieldsSize) {
         if (fieldsSize.length != 3) {
             return false;
         }
@@ -66,13 +66,25 @@ public class BookConfig extends BaseConfig{
         int publisherSize = fieldsSize[2];
         int recordSize = sizeofIsbn + sizeofOnLoanId + nameSize + authorSize + publisherSize;
 
-        if (this.stringMode.equals("Fix")) {
-            if (nameSize > this.nameSize || authorSize > this.authorSize || publisherSize > this.publisherSize) {
+        if (this.recordMode.equals("Fix")) {
+            if (recordSize > this.recordSize) {
                 return false;
             }
         }
-        if (this.recordMode.equals("Fix")) {
-            if (recordSize > this.recordSize) {
+
+        return true;
+    }
+    public boolean isValidFields(int... fieldsSize) {
+        if (fieldsSize.length != 3) {
+            return false;
+        }
+
+        int nameSize = fieldsSize[0];
+        int authorSize = fieldsSize[1];
+        int publisherSize = fieldsSize[2];
+
+        if (this.stringMode.equals("Fix")) {
+            if (nameSize > this.nameSize || authorSize > this.authorSize || publisherSize > this.publisherSize) {
                 return false;
             }
         }
