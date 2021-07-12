@@ -18,17 +18,20 @@ public class StudentView extends EntityView {
 
     @Override
     protected HBox getSearchRow() {
-        TextField nameSearchField = new TextField("name...");
+        TextField nameSearchField = new TextField();
+        nameSearchField.setPromptText("name...");
         nameSearchField.setPrefWidth(95);
         nameSearchField.setOnMouseClicked(event->{
             nameSearchField.clear();
         });
-        TextField lastNameSearchField = new TextField("last name...");
+        TextField lastNameSearchField = new TextField();
+        lastNameSearchField.setPromptText("last name...");
         lastNameSearchField.setPrefWidth(95);
         lastNameSearchField.setOnMouseClicked(event->{
             lastNameSearchField.clear();
         });
-        TextField stdIdSearchField = new TextField("student id...");
+        TextField stdIdSearchField = new TextField();
+        stdIdSearchField.setPromptText("student id...");
         stdIdSearchField.setPrefWidth(95);
         stdIdSearchField.setOnMouseClicked(event->{
             stdIdSearchField.clear();

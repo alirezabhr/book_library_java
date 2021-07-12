@@ -18,27 +18,32 @@ public class BookView extends EntityView{
 
     @Override
     protected HBox getSearchRow() {
-        TextField nameSearchField = new TextField("name...");
+        TextField nameSearchField = new TextField();
+        nameSearchField.setPromptText("book name...");
         nameSearchField.setPrefWidth(95);
         nameSearchField.setOnMouseClicked(event->{
             nameSearchField.clear();
         });
-        TextField authorSearchField = new TextField("author...");
+        TextField authorSearchField = new TextField();
+        authorSearchField.setPromptText("author...");
         authorSearchField.setPrefWidth(95);
         authorSearchField.setOnMouseClicked(event->{
             authorSearchField.clear();
         });
-        TextField publisherSearchField = new TextField("publisher...");
+        TextField publisherSearchField = new TextField();
+        publisherSearchField.setPromptText("publisher...");
         publisherSearchField.setPrefWidth(95);
         publisherSearchField.setOnMouseClicked(event->{
             publisherSearchField.clear();
         });
-        TextField isbnSearchField = new TextField("isbn...");
+        TextField isbnSearchField = new TextField();
+        isbnSearchField.setPromptText("isbn...");
         isbnSearchField.setPrefWidth(95);
         isbnSearchField.setOnMouseClicked(event->{
             isbnSearchField.clear();
         });
-        TextField onLoanSearchField = new TextField("onLoan...");
+        TextField onLoanSearchField = new TextField();
+        onLoanSearchField.setPromptText("onLoan...");
         onLoanSearchField.setPrefWidth(95);
         onLoanSearchField.setOnMouseClicked(event->{
             onLoanSearchField.clear();

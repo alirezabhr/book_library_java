@@ -18,22 +18,26 @@ public class RecordView extends EntityView{
 
     @Override
     protected HBox getSearchRow() {
-        TextField studentIdSearchField = new TextField("student id...");
+        TextField studentIdSearchField = new TextField();
+        studentIdSearchField.setPromptText("student id...");
         studentIdSearchField.setPrefWidth(95);
         studentIdSearchField.setOnMouseClicked(event->{
             studentIdSearchField.clear();
         });
-        TextField bookIdSearchField = new TextField("book id...");
+        TextField bookIdSearchField = new TextField();
+        bookIdSearchField.setPromptText("book id...");
         bookIdSearchField.setPrefWidth(95);
         bookIdSearchField.setOnMouseClicked(event->{
             bookIdSearchField.clear();
         });
-        TextField loanDateSearchField = new TextField("loan date...");
+        TextField loanDateSearchField = new TextField();
+        loanDateSearchField.setPromptText("loan date...");
         loanDateSearchField.setPrefWidth(95);
         loanDateSearchField.setOnMouseClicked(event->{
             loanDateSearchField.clear();
         });
-        TextField returnDateSearchField = new TextField("return date...");
+        TextField returnDateSearchField = new TextField();
+        returnDateSearchField.setPromptText("return date...");
         returnDateSearchField.setPrefWidth(95);
         returnDateSearchField.setOnMouseClicked(event->{
             returnDateSearchField.clear();
