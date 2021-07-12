@@ -75,6 +75,12 @@ public class RecordBinder {
         Adaptor adaptor = utils.getAdaptor(config);
         Record record = new Record(adaptor, config, studentId, bookId, loanDate, returnDate);
 
+        try {
+            record.checkValidation();
+        } catch (Exception exception) {
+            return exception.getMessage();
+        }
+
         if (!adaptor.isValidObject(record)) {
             return "Not A Valid Record With This Record Config!";
         }

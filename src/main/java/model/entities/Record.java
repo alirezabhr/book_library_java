@@ -2,6 +2,8 @@ package model.entities;
 
 import constant.MyConst;
 import controller.adaptors.Adaptor;
+import controller.binders.BookBinder;
+import controller.binders.StudentBinder;
 import model.CustomDate;
 import controller.configs.LibraryRecordConfig;
 
@@ -22,7 +24,7 @@ public class Record extends Entity{
         this.fields = this.setAllFields();
         this.fieldsType = this.setFieldsType();
     }
-    public Record(Adaptor adaptor, LibraryRecordConfig config, int studentId, int bookId, CustomDate intLoanedDate, CustomDate intReturnDate) {
+    public Record(Adaptor adaptor, LibraryRecordConfig config, int studentId, int bookId, CustomDate loanedDate, CustomDate returnDate) {
         this.adaptor = adaptor;
         this.baseConfig = config;
         this.entityFilePathAndName = MyConst.constRecordDatabaseFilePathName;
@@ -30,8 +32,8 @@ public class Record extends Entity{
 
         this.studentId = studentId;
         this.bookId = bookId;
-        this.intLoanedDate = intLoanedDate.toInt();
-        this.intReturnDate = intReturnDate.toInt();
+        this.intLoanedDate = loanedDate.toInt();
+        this.intReturnDate = returnDate.toInt();
 
         this.fields = this.setAllFields();
     }
@@ -72,6 +74,35 @@ public class Record extends Entity{
         this.bookId = (Integer) fieldsValue.get(1);
         this.intLoanedDate = (Integer) fieldsValue.get(2);
         this.intReturnDate = (Integer) fieldsValue.get(3);
+    }
+    public void checkValidation() throws Exception {
+        this.checkStudentIdValidation();
+        this.checkBookIdValidation();
+        this.checkDateValidation();
+    }
+    private void checkStudentIdValidation() throws Exception {
+        Student tmpStudent = StudentBinder.createTmpObject();
+        try {
+            tmpStudent.get(this.studentId);
+        } catch (Exception exception) {
+            throw new Exception("Student With This Unique Id Does Not Exist");
+        }
+    }
+    private void checkBookIdValidation() throws Exception {
+        Book tmpBook = BookBinder.createTmpObject();
+        try {
+            tmpBook.get(this.bookId);
+        } catch (Exception e) {
+            throw new Exception("Book With This Unique Id Does Not Exist");
+        }
+        if (tmpBook.getOnLoan() != 0) {
+            throw new Exception("This Book Has Been Loaned");
+        }
+    }
+    private void checkDateValidation() throws Exception {
+        if (this.intReturnDate <= this.intLoanedDate) {
+            throw new Exception("Return Date Is Before Loan Date!");
+        }
     }
 
     @Override

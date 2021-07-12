@@ -16,7 +16,7 @@ public class BookBinder {
     private static BaseConfig getConfig() {
         return new BookConfig(MyConst.constBookConfigFilePathName);
     }
-    private static Book createTmpObject() {
+    public static Book createTmpObject() {
         BookConfig config = new BookConfig(MyConst.constBookConfigFilePathName);
         Adaptor adaptor = utils.getAdaptor(config);
         return new Book(adaptor, config);

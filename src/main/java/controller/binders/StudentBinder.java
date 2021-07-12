@@ -16,7 +16,7 @@ public class StudentBinder {
     private static BaseConfig getConfig() {
         return new StudentConfig(MyConst.constStudentConfigFilePathName);
     }
-    private static Student createTmpObject() {
+    public static Student createTmpObject() {
         StudentConfig config = (StudentConfig) getConfig();
         Adaptor adaptor = utils.getAdaptor(config);
         return new Student(adaptor, config);
