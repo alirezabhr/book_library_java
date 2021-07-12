@@ -39,7 +39,7 @@ public class StudentBinder {
         int stdId;
 
         if (!isIntNumber(stdIdString)) {
-            return "Student Id Must Be Integer";
+            return "Student Id Must Be A Number";
         }
         stdId = Integer.parseInt(stdIdString);
 
