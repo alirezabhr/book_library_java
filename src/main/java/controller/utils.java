@@ -3,6 +3,8 @@ package controller;
 import controller.adaptors.*;
 import controller.configs.BaseConfig;
 
+import javafx.scene.control.TextField;
+
 public class utils {
     public static Adaptor getAdaptor(BaseConfig config) {
         if (config.getRecordMode().equals("Fix")) {
@@ -18,5 +20,15 @@ public class utils {
                 return new DynRecDynStr();
             }
         }
+    }
+
+    public static boolean isAnyEmptyField(TextField... textFields) {
+        for (TextField textField :
+                textFields) {
+            if (textField.getText().equals("")) {
+                return true;
+            }
+        }
+        return false;
     }
 }
