@@ -85,12 +85,12 @@ public class RecordView extends EntityView{
         column2.setCellValueFactory(new PropertyValueFactory<>("bookId"));
         column2.setPrefWidth(100);
 
-        TableColumn<Record, Integer> column3 = new TableColumn<>("Loan Date");
-        column3.setCellValueFactory(new PropertyValueFactory<>("intLoanedDate"));
+        TableColumn<Record, String> column3 = new TableColumn<>("Loan Date");
+        column3.setCellValueFactory(new PropertyValueFactory<>("loanedDateStr"));
         column3.setPrefWidth(100);
 
-        TableColumn<Record, Integer> column4 = new TableColumn<>("Return Date");
-        column4.setCellValueFactory(new PropertyValueFactory<>("intReturnDate"));
+        TableColumn<Record, String> column4 = new TableColumn<>("Return Date");
+        column4.setCellValueFactory(new PropertyValueFactory<>("ReturnDateStr"));
         column4.setPrefWidth(100);
 
         table.getColumns().setAll(column0, column1, column2, column3, column4);

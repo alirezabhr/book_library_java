@@ -1,7 +1,6 @@
 package views.entities_view.forms;
 
 import controller.binders.RecordBinder;
-import controller.binders.StudentBinder;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -12,7 +11,6 @@ import javafx.scene.layout.VBox;
 import model.CustomDate;
 import model.entities.Entity;
 import model.entities.Record;
-import model.entities.Student;
 import views.entities_view.widgets.CustomTextField;
 import views.entities_view.widgets.MessageLabel;
 import views.entities_view.widgets.TitleLabel;

@@ -51,6 +51,12 @@ public class Record extends Entity{
     public Integer getIntReturnDate() {
         return intReturnDate;
     }
+    public String getLoanedDateStr() {
+        return CustomDate.intToDate(intLoanedDate).toString();
+    }
+    public String getReturnDateStr() {
+        return CustomDate.intToDate(intReturnDate).toString();
+    }
 
     // setters
     public void setStudentId(Integer studentId) {
