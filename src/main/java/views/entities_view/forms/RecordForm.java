@@ -82,14 +82,14 @@ public class RecordForm extends BaseForm{
 
     @Override
     protected void createObject(Object... objects) {
-        int stdId = (Integer) objects[0];
-        int bookId = (Integer) objects[1];
-        int ly = (Integer) objects[2];
-        int lm = (Integer) objects[3];
-        int ld = (Integer) objects[4];
-        int ry = (Integer) objects[5];
-        int rm = (Integer) objects[6];
-        int rd = (Integer) objects[7];
+        int stdId = Integer.parseInt((String) objects[0]);
+        int bookId = Integer.parseInt((String) objects[1]);
+        int ly = Integer.parseInt((String) objects[2]);
+        int lm = Integer.parseInt((String) objects[3]);
+        int ld = Integer.parseInt((String) objects[4]);
+        int ry = Integer.parseInt((String) objects[5]);
+        int rm = Integer.parseInt((String) objects[6]);
+        int rd = Integer.parseInt((String) objects[7]);
 
         CustomDate loanDate = new CustomDate(ly, lm, ld);
         CustomDate returnDate = new CustomDate(ry, rm, rd);

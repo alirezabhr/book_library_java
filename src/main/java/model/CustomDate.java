@@ -18,7 +18,7 @@ public class CustomDate {
         int date = intDate;
         int day = date % 100;
         date /= 100;
-        int month = intDate % 100;
+        int month = date % 100;
         date /= 100;
         if (date > maxYear || date < minYear) {
             System.out.println("Bad Int Date!");
