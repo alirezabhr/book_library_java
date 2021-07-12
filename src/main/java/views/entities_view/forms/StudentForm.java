@@ -3,45 +3,28 @@ package views.entities_view.forms;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
-import model.entities.Student;
 
+import model.entities.Student;
 import static controller.binders.StudentBinder.checkStudentValidation;
 import static controller.binders.StudentBinder.getStudent;
 import static controller.utils.isAnyEmptyField;
+import views.entities_view.widgets.CustomTextField;
+import views.entities_view.widgets.MessageLabel;
+import views.entities_view.widgets.TitleLabel;
 
 public class StudentForm extends BaseForm{
     @Override
     public VBox createFormDetail() {
-        Label label = new Label("Create Student");
-        label.setFont(Font.font("Arial", FontWeight.BOLD, 16));
+        TitleLabel label = new TitleLabel("Create Student");
 
-        TextField nameTextField = new TextField();
-        nameTextField.setFocusTraversable(false);
-        TextField lastNameTextField = new TextField();
-        lastNameTextField.setFocusTraversable(false);
-        TextField stdIdTextField = new TextField();
-        stdIdTextField.setFocusTraversable(false);
-
-
-        nameTextField.setPromptText("name");
-        lastNameTextField.setPromptText("last name");
-        stdIdTextField.setPromptText("student id");
-
-        nameTextField.setMaxWidth(150);
-        lastNameTextField.setMaxWidth(150);
+        CustomTextField nameTextField = new CustomTextField("name");
+        CustomTextField lastNameTextField = new CustomTextField("last name");
+        CustomTextField stdIdTextField = new CustomTextField("student id");
         stdIdTextField.setMaxWidth(130);
 
-        Label errorLabel = new Label();
-        errorLabel.setTextFill(Color.valueOf("red"));
-
-        Label successLabel = new Label();
-        successLabel.setTextFill(Color.valueOf("green"));
+        MessageLabel errorLabel = new MessageLabel("", "red");
+        MessageLabel successLabel = new MessageLabel("", "green");
 
         Button button = new Button("Create");
         button.setOnAction(event -> {
