@@ -10,6 +10,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 
 import constant.MyConst;
+import javafx.scene.paint.Color;
 import javafx.util.Duration;
 import views.entities_view.widgets.MessageLabel;
 import views.entities_view.widgets.TitleLabel;
@@ -29,7 +30,7 @@ public abstract class EntityView {
 
     protected abstract void showEditObjectForm();
 
-    protected abstract void showDeleteObjectForm();
+    protected abstract void deleteObjectRow();
 
     // normal methods
     public Tab getTab(String tabName) {
@@ -70,7 +71,7 @@ public abstract class EntityView {
         Button deleteBtn = new Button("Delete");
         deleteBtn.setGraphic(new ImageView(deleteIcon));
         deleteBtn.setCursor(Cursor.HAND);
-        deleteBtn.setOnAction(event -> this.showDeleteObjectForm());
+        deleteBtn.setOnAction(event -> this.deleteObjectRow());
         deleteBtn.setMinWidth(60);
 
         HBox hBox = new HBox(this.msgLabel);
@@ -88,6 +89,18 @@ public abstract class EntityView {
         new Timeline(new KeyFrame(
                 Duration.millis(2500),
                 event -> this.msgLabel.setText("")))
+                .play();
+    }
+
+    protected void showSuccessfulDelete(String msg) {
+        this.msgLabel.setTextFill(Color.valueOf("green"));
+        this.msgLabel.setText(msg);
+        new Timeline(new KeyFrame(
+                Duration.millis(3500),
+                event -> {
+                    this.msgLabel.setText("");
+                    this.msgLabel.setTextFill(Color.valueOf("red"));
+                }))
                 .play();
     }
 }

@@ -121,4 +121,13 @@ public class RecordBinder {
 
         record.edit();
     }
+    public static boolean deleteObject(int uniqueId) {
+        Record record = createTmpObject();
+        try {
+            record.delete(uniqueId);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 }

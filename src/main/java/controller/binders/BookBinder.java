@@ -7,6 +7,7 @@ import controller.utils;
 import model.entities.Entity;
 import model.entities.Book;
 import constant.MyConst;
+import model.entities.Student;
 
 import java.util.ArrayList;
 
@@ -79,5 +80,14 @@ public class BookBinder {
         book.setIsbn(isbn);
 
         book.edit();
+    }
+    public static boolean deleteObject(int uniqueId) {
+        Book book = createTmpObject();
+        try {
+            book.delete(uniqueId);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }

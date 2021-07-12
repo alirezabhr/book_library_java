@@ -114,5 +114,17 @@ public class RecordView extends EntityView{
         }
     }
     @Override
-    protected void showDeleteObjectForm() {}
+    protected void deleteObjectRow() {
+        ObservableList<Record> selectedItems = this.selectionModel.getSelectedItems();
+        if (selectedItems.size() == 0) {
+            this.changeErrorMsg("Please Select A Row");
+        } else {
+            boolean isDeleted = RecordBinder.deleteObject(selectedItems.get(0).getUniqueId());
+            if (isDeleted){
+                this.showSuccessfulDelete("Record Deleted Successfully");
+            } else {
+                this.changeErrorMsg("Can Not Delete Record Right Now!");
+            }
+        }
+    }
 }

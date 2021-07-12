@@ -104,6 +104,18 @@ public class StudentView extends EntityView {
         }
     }
     @Override
-    protected void showDeleteObjectForm() {}
+    protected void deleteObjectRow() {
+        ObservableList<Student> selectedItems = this.selectionModel.getSelectedItems();
+        if (selectedItems.size() == 0) {
+            this.changeErrorMsg("Please Select A Row");
+        } else {
+            boolean isDeleted = StudentBinder.deleteObject(selectedItems.get(0).getUniqueId());
+            if (isDeleted){
+                this.showSuccessfulDelete("Student Deleted Successfully");
+            } else {
+                this.changeErrorMsg("Can Not Delete Student Right Now!");
+            }
+        }
+    }
 }
 

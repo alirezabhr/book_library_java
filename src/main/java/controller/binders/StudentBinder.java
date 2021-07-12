@@ -76,4 +76,13 @@ public class StudentBinder {
 
         student.edit();
     }
+    public static boolean deleteObject(int uniqueId) {
+        Student student = createTmpObject();
+        try {
+            student.delete(uniqueId);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 }

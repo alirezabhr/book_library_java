@@ -125,5 +125,17 @@ public class BookView extends EntityView{
         }
     }
     @Override
-    protected void showDeleteObjectForm() {}
+    protected void deleteObjectRow() {
+        ObservableList<Book> selectedItems = this.selectionModel.getSelectedItems();
+        if (selectedItems.size() == 0) {
+            this.changeErrorMsg("Please Select A Row");
+        } else {
+            boolean isDeleted = BookBinder.deleteObject(selectedItems.get(0).getUniqueId());
+            if (isDeleted){
+                this.showSuccessfulDelete("Book Deleted Successfully");
+            } else {
+                this.changeErrorMsg("Can Not Delete Book Right Now!");
+            }
+        }
+    }
 }
