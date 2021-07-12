@@ -2,6 +2,7 @@ package views.entities_view;
 
 import java.util.ArrayList;
 
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Cursor;
 import javafx.scene.control.*;
@@ -103,7 +104,15 @@ public class RecordView extends EntityView{
         recordForm.showForm("Create Record Form", recordForm.createFormDetail());
     }
     @Override
-    protected void showEditObjectForm() {}
+    protected void showEditObjectForm() {
+        ObservableList<Record> selectedItems = this.selectionModel.getSelectedItems();
+        if (selectedItems.size() == 0) {
+            this.changeErrorMsg("Please Select A Row");
+        } else {
+            RecordForm recordForm = new RecordForm();
+            recordForm.showForm("Edit Record Form", recordForm.editFormDetail(selectedItems.get(0)));
+        }
+    }
     @Override
     protected void showDeleteObjectForm() {}
 }

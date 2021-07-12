@@ -8,6 +8,7 @@ import model.CustomDate;
 import model.entities.Entity;
 import model.entities.Record;
 import constant.MyConst;
+import model.entities.Student;
 
 import java.util.ArrayList;
 
@@ -17,7 +18,7 @@ public class RecordBinder {
     private static BaseConfig getConfig() {
         return new LibraryRecordConfig(MyConst.constRecordConfigFilePathName);
     }
-    private static Record createTmpObject() {
+    public static Record createTmpObject() {
         LibraryRecordConfig config = new LibraryRecordConfig(MyConst.constRecordConfigFilePathName);
         Adaptor adaptor = utils.getAdaptor(config);
         return new Record(adaptor, config);
@@ -96,5 +97,28 @@ public class RecordBinder {
         LibraryRecordConfig config = (LibraryRecordConfig) getConfig();
         Adaptor adaptor = utils.getAdaptor(config);
         return new Record(adaptor, config, studentId, bookId, loanDate, returnDate);
+    }
+    public static void editRecord(int uniqueId, Object... objects) throws Exception {
+        Record record = createTmpObject();
+        record.get(uniqueId);
+
+        int stdId = Integer.parseInt((String) objects[0]);
+        int bookId = Integer.parseInt((String) objects[1]);
+        int ly = Integer.parseInt((String) objects[2]);
+        int lm = Integer.parseInt((String) objects[3]);
+        int ld = Integer.parseInt((String) objects[4]);
+        int ry = Integer.parseInt((String) objects[5]);
+        int rm = Integer.parseInt((String) objects[6]);
+        int rd = Integer.parseInt((String) objects[7]);
+
+        CustomDate loanDate = new CustomDate(ly, lm, ld);
+        CustomDate returnDate = new CustomDate(ry, rm, rd);
+
+        record.setStudentId(stdId);
+        record.setBookId(bookId);
+        record.setIntLoanedDate(loanDate);
+        record.setIntReturnDate(returnDate);
+
+        record.edit();
     }
 }

@@ -1,5 +1,7 @@
 package views.entities_view.forms;
 
+import controller.binders.RecordBinder;
+import controller.binders.StudentBinder;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -8,7 +10,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import model.CustomDate;
+import model.entities.Entity;
 import model.entities.Record;
+import model.entities.Student;
 import views.entities_view.widgets.CustomTextField;
 import views.entities_view.widgets.MessageLabel;
 import views.entities_view.widgets.TitleLabel;
@@ -72,8 +76,62 @@ public class RecordForm extends BaseForm{
         return root;
     }
     @Override
-    public VBox editFormDetail() {
-        return null;
+    public VBox editFormDetail(Entity entity) {
+        Record record = (Record) entity;
+        int uniqueId = record.getUniqueId();
+        CustomDate loanDate = CustomDate.intToDate(record.getIntLoanedDate());
+        CustomDate returnDate = CustomDate.intToDate(record.getIntReturnDate());
+        TitleLabel label = new TitleLabel("Edit Record");
+
+        CustomTextField studentIdTextField = new CustomTextField("student id", record.getStudentId().toString());
+        CustomTextField bookIdTextField = new CustomTextField("book id", record.getBookId().toString());
+
+        Label loanDateLabel = new Label("Loan Date");
+        CustomTextField loanYear = new CustomTextField("Y", loanDate.getYear().toString());
+        loanYear.setMaxWidth(60);
+        CustomTextField loanMonth = new CustomTextField("M", loanDate.getMonth().toString());
+        loanMonth.setMaxWidth(30);
+        CustomTextField loanDay = new CustomTextField("D", loanDate.getDay().toString());
+        loanDay.setMaxWidth(30);
+        Label returnDateLabel = new Label("Return Date");
+        CustomTextField returnYear = new CustomTextField("Y", returnDate.getYear().toString());
+        returnYear.setMaxWidth(60);
+        CustomTextField returnMonth = new CustomTextField("M", returnDate.getMonth().toString());
+        returnMonth.setMaxWidth(30);
+        CustomTextField returnDay = new CustomTextField("D", returnDate.getDay().toString());
+        returnDay.setMaxWidth(30);
+
+        HBox loanDateRow = new HBox(loanDateLabel, loanYear, loanMonth, loanDay);
+        HBox returnDateRow = new HBox(returnDateLabel, returnYear, returnMonth, returnDay);
+        loanDateRow.setSpacing(10);
+        returnDateRow.setSpacing(10);
+
+        MessageLabel errorLabel = new MessageLabel("", "red");
+        MessageLabel successLabel = new MessageLabel("", "green");
+
+        Button button = new Button("Edit");
+        button.setOnAction(event -> {
+            errorLabel.setText("");
+            successLabel.setText("");
+            if (!isAnyEmptyField(studentIdTextField, bookIdTextField, loanYear, loanMonth, loanDay, returnYear, returnMonth, returnDay)) {
+                String validation = checkRecordValidation(studentIdTextField.getText(), bookIdTextField.getText(), loanYear.getText(), loanMonth.getText(), loanDay.getText(), returnYear.getText(), returnMonth.getText(), returnDay.getText());
+                if (validation.equals("valid")) {
+                    this.editObject(uniqueId, studentIdTextField.getText(), bookIdTextField.getText(), loanYear.getText(), loanMonth.getText(), loanDay.getText(), returnYear.getText(), returnMonth.getText(), returnDay.getText());
+                    successLabel.setText("Record Edited Successfully.");
+                } else {
+                    errorLabel.setText(validation);
+                }
+            } else {
+                errorLabel.setText("You Have Empty Fields!");
+            }
+        });
+
+        VBox root = new VBox(label, studentIdTextField, bookIdTextField, loanDateRow, returnDateRow, button, errorLabel, successLabel);
+        root.setSpacing(15);
+        root.setPadding(new Insets(20));
+        root.setAlignment(Pos.TOP_CENTER);
+
+        return root;
     }
     @Override
     public VBox deleteFormDetail() {
@@ -102,7 +160,13 @@ public class RecordForm extends BaseForm{
         }
     }
     @Override
-    protected void editObject(int uniqueId, Object... objects) {}
+    protected void editObject(int uniqueId, Object... objects) {
+        try {
+            RecordBinder.editRecord(uniqueId, objects);
+        } catch (Exception exception) {
+            System.out.println("Can Not Edit A Record!!!");
+        }
+    }
     @Override
     protected void deleteObject(int uniqueId) {}
 }

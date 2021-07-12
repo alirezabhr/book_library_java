@@ -6,12 +6,13 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import constant.MyConst;
+import model.entities.Entity;
 
 public abstract class BaseForm {
 
     // abstract methods
     public abstract VBox createFormDetail();
-    public abstract VBox editFormDetail();
+    public abstract VBox editFormDetail(Entity entity);
     public abstract VBox deleteFormDetail();
     protected abstract void createObject(Object... objects);
     protected abstract void editObject(int uniqueId, Object... objects);

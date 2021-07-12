@@ -8,12 +8,25 @@ public class CustomDate {
     private int month;
     private int day;
 
+    // constructors
     public CustomDate(int year, int month, int day) {
         this.year = year;
         this.month = month;
         this.day = day;
     }
 
+    // getters
+    public Integer getYear() {
+        return year;
+    }
+    public Integer getMonth() {
+        return month;
+    }
+    public Integer getDay() {
+        return day;
+    }
+
+    // static methods
     public static CustomDate intToDate(int intDate) {
         int date = intDate;
         int day = date % 100;
@@ -26,10 +39,10 @@ public class CustomDate {
         return new CustomDate(date, month, day);
     }
 
+    // methods
     public int toInt() {
         return this.year * 10000 + this.month * 100 + this.day;
     }
-
     public boolean isValid() {
         if (this.year < minYear || this.year > maxYear) {
             return false;
