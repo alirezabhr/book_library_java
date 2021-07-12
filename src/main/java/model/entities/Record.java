@@ -52,6 +52,20 @@ public class Record extends Entity{
         return intReturnDate;
     }
 
+    // setters
+    public void setStudentId(Integer studentId) {
+        this.studentId = studentId;
+    }
+    public void setBookId(Integer bookId) {
+        this.bookId = bookId;
+    }
+    public void setIntLoanedDate(CustomDate loanedDate) {
+        this.intLoanedDate = loanedDate.toInt();
+    }
+    public void setIntReturnDate(CustomDate returnDate) {
+        this.intReturnDate = returnDate.toInt();
+    }
+
     // methods
     @Override
     public void create() throws Exception {

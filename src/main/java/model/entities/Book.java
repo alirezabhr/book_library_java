@@ -54,6 +54,20 @@ public class Book extends Entity{
         return publisher;
     }
 
+    // setters
+    public void setIsbn(Long isbn) {
+        this.isbn = isbn;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+    public void setPublisher(String publisher) {
+        this.publisher = publisher;
+    }
+
     // methods
     protected ArrayList<Type> setFieldsType() {
         ArrayList<Type> arr = new ArrayList<>();

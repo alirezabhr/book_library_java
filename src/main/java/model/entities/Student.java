@@ -44,6 +44,17 @@ public class Student extends Entity{
         return lastName;
     }
 
+    // setters
+    public void setStudentId(Integer studentId) {
+        this.studentId = studentId;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
     // methods
     protected ArrayList<Type> setFieldsType() {
         ArrayList<Type> arr = new ArrayList<>();
