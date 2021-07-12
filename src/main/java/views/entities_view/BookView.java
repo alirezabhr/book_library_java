@@ -63,7 +63,6 @@ public class BookView extends EntityView{
 
         return searchRow;
     }
-
     @Override
     protected TableView getTable() {
         TableView table = createEmptyTable();
@@ -75,7 +74,6 @@ public class BookView extends EntityView{
 
         return table;
     }
-
     @Override
     protected TableView createEmptyTable() {
         TableView table = new TableView();
@@ -109,4 +107,17 @@ public class BookView extends EntityView{
         table.setPrefHeight(1000);
         return table;
     }
+    @Override
+    protected void showCreateObjectForm() {}
+    @Override
+    protected void showEditObjectForm() {}
+    @Override
+    protected void showDeleteObjectForm() {}
+
+    @Override
+    protected void createObject() {}
+    @Override
+    protected void editObject() {}
+    @Override
+    protected void deleteObject() {}
 }

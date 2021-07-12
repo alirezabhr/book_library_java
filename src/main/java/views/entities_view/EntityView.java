@@ -18,11 +18,17 @@ public abstract class EntityView {
     protected abstract HBox getSearchRow();
     protected abstract TableView getTable();
     protected abstract TableView createEmptyTable();
+    protected abstract void showCreateObjectForm();
+    protected abstract void showEditObjectForm();
+    protected abstract void showDeleteObjectForm();
+    protected abstract void createObject();
+    protected abstract void editObject();
+    protected abstract void deleteObject();
 
     // normal methods
     public Tab getTab(String tabName) {
-        VBox studentForm = this.getForm(tabName+" Form");
-        return new Tab(tabName, studentForm);
+        VBox basePage = this.getForm(tabName+" Page");
+        return new Tab(tabName, basePage);
     }
     protected VBox getForm(String formName) {
         HBox topRow = this.getTopRow(formName);
@@ -31,7 +37,7 @@ public abstract class EntityView {
 
         return new VBox(topRow, searchRow, table);
     }
-    protected static HBox getTopRow(String formName) {
+    protected HBox getTopRow(String formName) {
         Label formNameLabel = new Label(formName);
 
         Image createIcon = new Image(MyConst.constAddImagePathName);
@@ -41,16 +47,19 @@ public abstract class EntityView {
         Button createBtn = new Button("Create");
         createBtn.setGraphic(new ImageView(createIcon));
         createBtn.setCursor(Cursor.HAND);
+        createBtn.setOnAction(event -> this.showCreateObjectForm());
         createBtn.setMinWidth(60);
 
         Button editBtn = new Button("Edit");
         editBtn.setGraphic(new ImageView(editIcon));
         editBtn.setCursor(Cursor.HAND);
+        editBtn.setOnAction(event -> this.showEditObjectForm());
         editBtn.setMinWidth(60);
 
         Button deleteBtn = new Button("Delete");
         deleteBtn.setGraphic(new ImageView(deleteIcon));
         deleteBtn.setCursor(Cursor.HAND);
+        deleteBtn.setOnAction(event -> this.showDeleteObjectForm());
         deleteBtn.setMinWidth(60);
 
         HBox topRow = new HBox(formNameLabel, createBtn, editBtn, deleteBtn);
