@@ -53,6 +53,13 @@ public class Record extends Entity{
     }
 
     // methods
+    @Override
+    public void create() throws Exception {
+        int studentId = this.studentId;
+        int bookId = this.bookId;
+        adaptor.writeRecord(this);
+        this.changeBookOnLoan(bookId, studentId);
+    }
     protected ArrayList<Type> setFieldsType() {
         ArrayList<Type> arr = new ArrayList<>();
         arr.add(Integer.class);
@@ -103,6 +110,17 @@ public class Record extends Entity{
         if (this.intReturnDate <= this.intLoanedDate) {
             throw new Exception("Return Date Is Before Loan Date!");
         }
+    }
+    private void changeBookOnLoan(int bookId, int studentId) {
+        Book book = BookBinder.createTmpObject();
+
+        try {
+            book.get(bookId);
+        } catch (Exception e) {
+            System.out.println("exception in change book on loan");
+        }
+
+//        book.edit();        // todo edit book should implemented
     }
 
     @Override
