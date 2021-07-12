@@ -31,4 +31,31 @@ public class utils {
         }
         return false;
     }
+
+    public static boolean isIntNumber(String number) {
+        try {
+            Integer.parseInt(number);
+            return true;
+        } catch (Exception exception) {
+            return false;
+        }
+    }
+
+    public static boolean isLongNumber(String number) {
+        try {
+            Long.parseLong(number);
+            return true;
+        } catch (Exception exception) {
+            return false;
+        }
+    }
+
+    public static boolean isDoubleNumber(String number) {
+        try {
+            Double.parseDouble(number);
+            return true;
+        } catch (Exception exception) {
+            return false;
+        }
+    }
 }
