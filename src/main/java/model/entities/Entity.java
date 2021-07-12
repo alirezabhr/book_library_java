@@ -12,7 +12,6 @@ public abstract class Entity {
     protected Adaptor adaptor;
     protected BaseConfig baseConfig;
     protected Integer uniqueId;
-    protected final String constBaseFilePath = "./database/";
     protected String entityFilePathAndName;
     protected ArrayList<String> fieldsName;
     protected ArrayList<Type> fieldsType;

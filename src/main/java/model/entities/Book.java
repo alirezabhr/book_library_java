@@ -1,8 +1,8 @@
 package model.entities;
 
+import constant.MyConst;
 import controller.adaptors.Adaptor;
 import controller.configs.BookConfig;
-import controller.configs.StudentConfig;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -13,20 +13,19 @@ public class Book extends Entity{
     private String name;
     private String author;
     private String publisher;
-    private final String constObjectName = "Book";
 
     // constructors
     public Book(Adaptor adaptor, BookConfig config) {
         this.adaptor = adaptor;
         this.baseConfig = config;
-        this.entityFilePathAndName = this.constBaseFilePath + constObjectName + ".txt";
+        this.entityFilePathAndName = MyConst.constBookDatabaseFilePathName;
         this.fields = this.setAllFields();
         this.fieldsType = this.setFieldsType();
     }
     public Book(Adaptor adaptor, BookConfig config, long isbn, String name, String author, String publisher) {
         this.adaptor = adaptor;
         this.baseConfig = config;
-        this.entityFilePathAndName = this.constBaseFilePath + constObjectName + ".txt";
+        this.entityFilePathAndName = MyConst.constBookDatabaseFilePathName;
         this.fieldsType = this.setFieldsType();
 
         this.isbn = isbn;

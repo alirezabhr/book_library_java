@@ -5,12 +5,13 @@ import controller.configs.StudentConfig;
 import controller.utils;
 import model.entities.Entity;
 import model.entities.Student;
+import constant.MyConst;
 
 import java.util.ArrayList;
 
 public class StudentBinder {
     private static Student createTmpObject() {
-        StudentConfig config = new StudentConfig("./configs/student_config.txt");
+        StudentConfig config = new StudentConfig(MyConst.constStudentConfigFilePathName);
         Adaptor adaptor = utils.getAdaptor(config);
         return new Student(adaptor, config);
     }

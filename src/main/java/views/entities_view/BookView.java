@@ -1,6 +1,7 @@
 package views.entities_view;
 
-import controller.binders.BookBinder;
+import java.util.ArrayList;
+
 import javafx.geometry.Insets;
 import javafx.scene.Cursor;
 import javafx.scene.control.*;
@@ -8,9 +9,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import model.entities.Book;
 
-import java.util.ArrayList;
+import model.entities.Book;
+import controller.binders.BookBinder;
+import constant.MyConst;
 
 public class BookView extends EntityView{
 
@@ -43,7 +45,7 @@ public class BookView extends EntityView{
         });
 
 
-        Image searchIcon = new Image("file:./images/search.png");
+        Image searchIcon = new Image(MyConst.constSearchImagePathName);
         Button searchBtn = new Button("Search", new ImageView(searchIcon));
         searchBtn.setCursor(Cursor.HAND);
         searchBtn.setOnAction(event -> {

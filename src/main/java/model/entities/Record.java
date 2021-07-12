@@ -1,7 +1,7 @@
 package model.entities;
 
+import constant.MyConst;
 import controller.adaptors.Adaptor;
-import controller.configs.BookConfig;
 import model.CustomDate;
 import controller.configs.LibraryRecordConfig;
 
@@ -13,20 +13,19 @@ public class Record extends Entity{
     private Integer bookId;
     private Integer intLoanedDate;
     private Integer intReturnDate;
-    private final String constObjectName = "Record";
 
     // constructors
     public Record(Adaptor adaptor, LibraryRecordConfig config) {
         this.adaptor = adaptor;
         this.baseConfig = config;
-        this.entityFilePathAndName = this.constBaseFilePath + constObjectName + ".txt";
+        this.entityFilePathAndName = MyConst.constRecordDatabaseFilePathName;
         this.fields = this.setAllFields();
         this.fieldsType = this.setFieldsType();
     }
     public Record(Adaptor adaptor, LibraryRecordConfig config, int studentId, int bookId, CustomDate intLoanedDate, CustomDate intReturnDate) {
         this.adaptor = adaptor;
         this.baseConfig = config;
-        this.entityFilePathAndName = this.constBaseFilePath + constObjectName + ".txt";
+        this.entityFilePathAndName = MyConst.constRecordDatabaseFilePathName;
         this.fieldsType = this.setFieldsType();
 
         this.studentId = studentId;

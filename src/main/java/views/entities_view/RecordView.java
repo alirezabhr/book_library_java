@@ -1,6 +1,7 @@
 package views.entities_view;
 
-import controller.binders.RecordBinder;
+import java.util.ArrayList;
+
 import javafx.geometry.Insets;
 import javafx.scene.Cursor;
 import javafx.scene.control.*;
@@ -8,9 +9,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import model.entities.Record;
 
-import java.util.ArrayList;
+import model.entities.Record;
+import controller.binders.RecordBinder;
+import constant.MyConst;
 
 public class RecordView extends EntityView{
 
@@ -37,7 +39,7 @@ public class RecordView extends EntityView{
             returnDateSearchField.clear();
         });
 
-        Image searchIcon = new Image("file:./images/search.png");
+        Image searchIcon = new Image(MyConst.constSearchImagePathName);
         Button searchBtn = new Button("Search", new ImageView(searchIcon));
         searchBtn.setCursor(Cursor.HAND);
         searchBtn.setOnAction(event -> {

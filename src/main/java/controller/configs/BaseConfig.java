@@ -23,7 +23,6 @@ public abstract class BaseConfig {
     }
 
     // abstract methods
-//    public abstract boolean isFixFixValid();  //todo check if we need this method
     public abstract boolean isValidRecord(ArrayList<Object> objects);
     public abstract boolean isValidFields(ArrayList<Object> objects);
     protected abstract void setFields(final String field, final String value) throws Exception;

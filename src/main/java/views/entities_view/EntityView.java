@@ -10,6 +10,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 
+import constant.MyConst;
+
 public abstract class EntityView {
 
     // abstract methods
@@ -32,9 +34,9 @@ public abstract class EntityView {
     protected static HBox getTopRow(String formName) {
         Label formNameLabel = new Label(formName);
 
-        Image createIcon = new Image("file:./images/add.png");
-        Image editIcon = new Image("file:./images/edit.png");
-        Image deleteIcon = new Image("file:./images/delete.png");
+        Image createIcon = new Image(MyConst.constAddImagePathName);
+        Image editIcon = new Image(MyConst.constEditImagePathName);
+        Image deleteIcon = new Image(MyConst.constDeleteImagePathName);
 
         Button createBtn = new Button("Create");
         createBtn.setGraphic(new ImageView(createIcon));

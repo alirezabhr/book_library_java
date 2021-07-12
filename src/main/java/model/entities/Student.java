@@ -1,13 +1,9 @@
 package model.entities;
 
+import constant.MyConst;
 import controller.adaptors.Adaptor;
-import controller.file_stream.AppendableObjectInputStream;
-import controller.file_stream.AppendableObjectOutputStream;
 import controller.configs.StudentConfig;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
@@ -15,20 +11,19 @@ public class Student extends Entity{
     private Integer studentId;
     private String name;
     private String lastName;
-    private final String constObjectName = "Student";
 
     // constructors
     public Student(Adaptor adaptor, StudentConfig config) {
         this.adaptor = adaptor;
         this.baseConfig = config;
-        this.entityFilePathAndName = this.constBaseFilePath + constObjectName + ".txt";
+        this.entityFilePathAndName = MyConst.constStudentDatabaseFilePathName;
         this.fields = this.setAllFields();
         this.fieldsType = this.setFieldsType();
     }
     public Student(Adaptor adaptor, StudentConfig config, int studentId, String name, String lastName) {
         this.adaptor = adaptor;
         this.baseConfig = config;
-        this.entityFilePathAndName = this.constBaseFilePath + constObjectName + ".txt";
+        this.entityFilePathAndName = MyConst.constStudentDatabaseFilePathName;
         this.fieldsType = this.setFieldsType();
 
         this.studentId = studentId;
