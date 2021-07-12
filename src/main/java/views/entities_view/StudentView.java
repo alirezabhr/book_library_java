@@ -79,10 +79,7 @@ public class StudentView extends EntityView {
         column3.setCellValueFactory(new PropertyValueFactory<>("studentId"));
         column3.setPrefWidth(100);
 
-        table.getColumns().add(column0);
-        table.getColumns().add(column1);
-        table.getColumns().add(column2);
-        table.getColumns().add(column3);
+        table.getColumns().setAll(column0, column1, column2, column3);
 
         table.setPrefHeight(1000);
         return table;

@@ -84,14 +84,10 @@ public class RecordView extends EntityView{
         column3.setPrefWidth(100);
 
         TableColumn<Record, Integer> column4 = new TableColumn<>("Return Date");
-        column3.setCellValueFactory(new PropertyValueFactory<>("intReturnDate"));
-        column3.setPrefWidth(100);
+        column4.setCellValueFactory(new PropertyValueFactory<>("intReturnDate"));
+        column4.setPrefWidth(100);
 
-        table.getColumns().add(column0);
-        table.getColumns().add(column1);
-        table.getColumns().add(column2);
-        table.getColumns().add(column3);
-        table.getColumns().add(column4);
+        table.getColumns().setAll(column0, column1, column2, column3, column4);
 
         table.setPrefHeight(1000);
         return table;

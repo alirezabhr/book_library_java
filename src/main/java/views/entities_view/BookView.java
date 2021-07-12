@@ -85,24 +85,19 @@ public class BookView extends EntityView{
         column2.setCellValueFactory(new PropertyValueFactory<>("author"));
         column2.setPrefWidth(100);
 
-        TableColumn<Book, Integer> column3 = new TableColumn<>("Publisher");
+        TableColumn<Book, String> column3 = new TableColumn<>("Publisher");
         column3.setCellValueFactory(new PropertyValueFactory<>("publisher"));
         column3.setPrefWidth(100);
 
         TableColumn<Book, Long> column4 = new TableColumn<>("ISBN");
-        column0.setCellValueFactory(new PropertyValueFactory<>("isbn"));
-        column0.setPrefWidth(100);
+        column4.setCellValueFactory(new PropertyValueFactory<>("isbn"));
+        column4.setPrefWidth(100);
 
         TableColumn<Book, Integer> column5 = new TableColumn<>("On Loan");
-        column0.setCellValueFactory(new PropertyValueFactory<>("onLoan"));
-        column0.setPrefWidth(100);
+        column5.setCellValueFactory(new PropertyValueFactory<>("onLoan"));
+        column5.setPrefWidth(100);
 
-        table.getColumns().add(column0);
-        table.getColumns().add(column1);
-        table.getColumns().add(column2);
-        table.getColumns().add(column3);
-        table.getColumns().add(column4);
-        table.getColumns().add(column5);
+        table.getColumns().setAll(column0, column1, column2, column3, column4, column5);
 
         table.setPrefHeight(1000);
         return table;
