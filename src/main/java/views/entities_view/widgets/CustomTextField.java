@@ -9,4 +9,11 @@ public class CustomTextField extends TextField {
         this.setFocusTraversable(false);
         this.setMaxWidth(150);
     }
+
+    public CustomTextField(String hint, String defaultValue) {
+        super(defaultValue);
+        this.setPromptText(hint);
+        this.setFocusTraversable(false);
+        this.setMaxWidth(150);
+    }
 }

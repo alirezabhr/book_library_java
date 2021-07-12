@@ -62,4 +62,18 @@ public class StudentBinder {
         Adaptor adaptor = utils.getAdaptor(config);
         return new Student(adaptor, config, stdIdString, name, lastName);
     }
+    public static void editStudent(int uniqueId, Object... objects) throws Exception {
+        Student student = createTmpObject();
+        student.get(uniqueId);
+
+        String name = (String) objects[0];
+        String lastName = (String) objects[1];
+        Integer stdId = (Integer) objects[2];
+
+        student.setName(name);
+        student.setLastName(lastName);
+        student.setStudentId(stdId);
+
+        student.edit();
+    }
 }
