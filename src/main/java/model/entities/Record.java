@@ -9,10 +9,10 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class Record extends Entity{
-    private int studentId;
-    private int bookId;
-    private int intLoanedDate;
-    private int intReturnDate;
+    private Integer studentId;
+    private Integer bookId;
+    private Integer intLoanedDate;
+    private Integer intReturnDate;
     private final String constObjectName = "Record";
 
     // constructors
@@ -38,16 +38,16 @@ public class Record extends Entity{
     }
 
     // getters
-    public int getStudentId() {
+    public Integer getStudentId() {
         return studentId;
     }
-    public int getBookId() {
+    public Integer getBookId() {
         return bookId;
     }
-    public int getIntLoanedDate() {
+    public Integer getIntLoanedDate() {
         return intLoanedDate;
     }
-    public int getIntReturnDate() {
+    public Integer getIntReturnDate() {
         return intReturnDate;
     }
 

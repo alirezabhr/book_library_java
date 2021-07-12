@@ -12,7 +12,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class Student extends Entity{
-    private int studentId;
+    private Integer studentId;
     private String name;
     private String lastName;
     private final String constObjectName = "Student";
@@ -39,7 +39,7 @@ public class Student extends Entity{
     }
 
     // getters
-    public int getStudentId() {
+    public Integer getStudentId() {
         return studentId;
     }
     public String getName() {

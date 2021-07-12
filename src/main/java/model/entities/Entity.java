@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public abstract class Entity {
     protected Adaptor adaptor;
     protected BaseConfig baseConfig;
-    protected int uniqueId;
+    protected Integer uniqueId;
     protected final String constBaseFilePath = "./database/";
     protected String entityFilePathAndName;
     protected ArrayList<String> fieldsName;
@@ -22,7 +22,7 @@ public abstract class Entity {
     public String getEntityFilePathAndName() {
         return entityFilePathAndName;
     }
-    public int getUniqueId() {
+    public Integer getUniqueId() {
         return uniqueId;
     }
     public ArrayList<String> getFieldsName() {

@@ -8,8 +8,8 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class Book extends Entity{
-    private long isbn;
-    private int onLoan;     // 0 if nobody loan this book, or student id if someone loan it
+    private Long isbn;
+    private Integer onLoan;     // 0 if nobody loan this book, or student id if someone loan it
     private String name;
     private String author;
     private String publisher;
@@ -39,10 +39,10 @@ public class Book extends Entity{
     }
 
     // getters
-    public long getIsbn() {
+    public Long getIsbn() {
         return isbn;
     }
-    public int getOnLoan() {
+    public Integer getOnLoan() {
         return onLoan;
     }
     public String getName() {
