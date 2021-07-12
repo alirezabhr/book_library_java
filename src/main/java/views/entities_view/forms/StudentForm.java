@@ -11,9 +11,9 @@ import model.entities.Student;
 import static controller.binders.StudentBinder.checkStudentValidation;
 import static controller.binders.StudentBinder.getStudent;
 import static controller.utils.isAnyEmptyField;
-import views.entities_view.widgets.CustomTextField;
-import views.entities_view.widgets.MessageLabel;
-import views.entities_view.widgets.TitleLabel;
+import views.widgets.CustomTextField;
+import views.widgets.MessageLabel;
+import views.widgets.TitleLabel;
 
 public class StudentForm extends BaseForm{
     @Override

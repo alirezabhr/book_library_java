@@ -7,9 +7,9 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import model.entities.Book;
 import model.entities.Entity;
-import views.entities_view.widgets.CustomTextField;
-import views.entities_view.widgets.MessageLabel;
-import views.entities_view.widgets.TitleLabel;
+import views.widgets.CustomTextField;
+import views.widgets.MessageLabel;
+import views.widgets.TitleLabel;
 
 import static controller.binders.BookBinder.checkBookValidation;
 import static controller.binders.BookBinder.getBook;

@@ -1,4 +1,4 @@
-package views.entities_view.widgets;
+package views.widgets;
 
 import javafx.scene.control.TextField;
 

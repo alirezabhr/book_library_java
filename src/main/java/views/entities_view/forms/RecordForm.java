@@ -11,9 +11,9 @@ import javafx.scene.layout.VBox;
 import model.CustomDate;
 import model.entities.Entity;
 import model.entities.Record;
-import views.entities_view.widgets.CustomTextField;
-import views.entities_view.widgets.MessageLabel;
-import views.entities_view.widgets.TitleLabel;
+import views.widgets.CustomTextField;
+import views.widgets.MessageLabel;
+import views.widgets.TitleLabel;
 
 import static controller.binders.RecordBinder.checkRecordValidation;
 import static controller.binders.RecordBinder.getRecord;

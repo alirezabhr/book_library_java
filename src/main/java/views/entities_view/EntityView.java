@@ -12,8 +12,8 @@ import javafx.scene.layout.*;
 import constant.MyConst;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
-import views.entities_view.widgets.MessageLabel;
-import views.entities_view.widgets.TitleLabel;
+import views.widgets.MessageLabel;
+import views.widgets.TitleLabel;
 
 public abstract class EntityView {
     protected TableView.TableViewSelectionModel selectionModel;
