@@ -13,6 +13,7 @@ import javafx.scene.layout.HBox;
 import model.entities.Book;
 import controller.binders.BookBinder;
 import constant.MyConst;
+import views.entities_view.forms.BookForm;
 
 public class BookView extends EntityView{
 
@@ -108,7 +109,10 @@ public class BookView extends EntityView{
         return table;
     }
     @Override
-    protected void showCreateObjectForm() {}
+    protected void showCreateObjectForm() {
+        BookForm bookForm = new BookForm();
+        bookForm.showForm("Create Book Form", bookForm.createFormDetail());
+    }
     @Override
     protected void showEditObjectForm() {}
     @Override

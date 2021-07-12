@@ -89,6 +89,8 @@ public class StudentView extends EntityView {
     }
     @Override
     protected void showCreateObjectForm() {
+        StudentForm studentForm = new StudentForm();
+        studentForm.showForm("Create Student Form", studentForm.createFormDetail());
     }
     @Override
     protected void showEditObjectForm() {}

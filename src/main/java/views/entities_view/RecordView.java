@@ -13,6 +13,7 @@ import javafx.scene.layout.HBox;
 import model.entities.Record;
 import controller.binders.RecordBinder;
 import constant.MyConst;
+import views.entities_view.forms.RecordForm;
 
 public class RecordView extends EntityView{
 
@@ -59,7 +60,7 @@ public class RecordView extends EntityView{
     @Override
     protected TableView getTable() {
         TableView table = createEmptyTable();
-        ArrayList<Record> records = RecordBinder.getAllStudents();
+        ArrayList<Record> records = RecordBinder.getAllRecords();
 
         for (Record record:records) {
             table.getItems().add(record);
@@ -97,7 +98,10 @@ public class RecordView extends EntityView{
         return table;
     }
     @Override
-    protected void showCreateObjectForm() {}
+    protected void showCreateObjectForm() {
+        RecordForm recordForm = new RecordForm();
+        recordForm.showForm("Create Record Form", recordForm.createFormDetail());
+    }
     @Override
     protected void showEditObjectForm() {}
     @Override
