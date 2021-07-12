@@ -4,6 +4,7 @@ import controller.file_stream.AppendableObjectInputStream;
 import controller.file_stream.AppendableObjectOutputStream;
 import model.entities.Entity;
 
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -24,13 +25,30 @@ public abstract class Adaptor {
         AppendableObjectOutputStream oos = new AppendableObjectOutputStream(fos);
         oos.close();
     }
+    public int objectCount(Entity entity) {
+        int count = 0;
+        try {
+            FileInputStream fis = new FileInputStream(entity.getEntityFilePathAndName());
+            AppendableObjectInputStream ois = new AppendableObjectInputStream(fis);
+
+            while (true){
+                this.readRecord(entity, ois);
+                count++;
+            }
+//            ois.close();
+        } catch (Exception e) {
+            return count;
+        }
+    }
     public void writeRecord(Entity entity) throws Exception {
         if (!this.isValidObject(entity)) {
             throw new Exception("Exception in write Record.\nNot A Valid Object");
         }
+        int lastObjectId = this.objectCount(entity);
+
         FileOutputStream fos = new FileOutputStream(entity.getEntityFilePathAndName(), true);
         AppendableObjectOutputStream oos = new AppendableObjectOutputStream(fos);
-        this.writeIntField(oos, 2);     //todo write last id+1
+        this.writeIntField(oos, lastObjectId+1);
         int counter = 0;
         ArrayList<Object> fieldObjects = entity.getAllFields();
 
