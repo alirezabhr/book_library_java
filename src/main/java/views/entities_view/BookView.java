@@ -113,11 +113,4 @@ public class BookView extends EntityView{
     protected void showEditObjectForm() {}
     @Override
     protected void showDeleteObjectForm() {}
-
-    @Override
-    protected void createObject() {}
-    @Override
-    protected void editObject() {}
-    @Override
-    protected void deleteObject() {}
 }

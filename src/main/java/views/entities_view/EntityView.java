@@ -21,9 +21,6 @@ public abstract class EntityView {
     protected abstract void showCreateObjectForm();
     protected abstract void showEditObjectForm();
     protected abstract void showDeleteObjectForm();
-    protected abstract void createObject();
-    protected abstract void editObject();
-    protected abstract void deleteObject();
 
     // normal methods
     public Tab getTab(String tabName) {

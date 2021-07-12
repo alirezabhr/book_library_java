@@ -4,18 +4,16 @@ import java.util.ArrayList;
 
 import javafx.geometry.Insets;
 import javafx.scene.Cursor;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 import model.entities.Student;
 import controller.binders.StudentBinder;
 import constant.MyConst;
+import views.entities_view.forms.StudentForm;
 
 public class StudentView extends EntityView {
 
@@ -91,24 +89,10 @@ public class StudentView extends EntityView {
     }
     @Override
     protected void showCreateObjectForm() {
-        Scene scene = new Scene(new VBox(new Label("student creation form")));
-        Stage formStage = new Stage();
-        formStage.setScene(scene);
-        formStage.setTitle("Student Form");
-        formStage.setHeight(450);
-        formStage.setWidth(320);
-        formStage.show();
     }
     @Override
     protected void showEditObjectForm() {}
     @Override
     protected void showDeleteObjectForm() {}
-
-    @Override
-    protected void createObject() {}
-    @Override
-    protected void editObject() {}
-    @Override
-    protected void deleteObject() {}
 }
 
