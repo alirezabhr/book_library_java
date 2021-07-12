@@ -8,8 +8,7 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TableView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 
 public abstract class EntityView {
 
@@ -20,18 +19,18 @@ public abstract class EntityView {
 
     // normal methods
     public Tab getTab(String tabName) {
-        VBox studentForm = this.getForm();
+        VBox studentForm = this.getForm(tabName+" Form");
         return new Tab(tabName, studentForm);
     }
-    protected VBox getForm() {
-        HBox topRow = this.getTopRow();
+    protected VBox getForm(String formName) {
+        HBox topRow = this.getTopRow(formName);
         HBox searchRow = this.getSearchRow();
         TableView table = this.getTable();
 
         return new VBox(topRow, searchRow, table);
     }
-    protected static HBox getTopRow() {
-        Label formNameLabel = new Label("Student Form");
+    protected static HBox getTopRow(String formName) {
+        Label formNameLabel = new Label(formName);
 
         Image createIcon = new Image("file:./images/add.png");
         Image editIcon = new Image("file:./images/edit.png");
