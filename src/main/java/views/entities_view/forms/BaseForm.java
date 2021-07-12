@@ -14,8 +14,8 @@ public abstract class BaseForm {
     public abstract VBox editFormDetail();
     public abstract VBox deleteFormDetail();
     protected abstract void createObject(Object... objects);
-    protected abstract void editObject();
-    protected abstract void deleteObject();
+    protected abstract void editObject(int uniqueId, Object... objects);
+    protected abstract void deleteObject(int uniqueId);
 
     // methods
     public void showForm(String formTitle, VBox root) {

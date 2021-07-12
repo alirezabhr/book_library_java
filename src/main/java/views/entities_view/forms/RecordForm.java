@@ -102,7 +102,7 @@ public class RecordForm extends BaseForm{
         }
     }
     @Override
-    protected void editObject() {}
+    protected void editObject(int uniqueId, Object... objects) {}
     @Override
-    protected void deleteObject() {}
+    protected void deleteObject(int uniqueId) {}
 }
