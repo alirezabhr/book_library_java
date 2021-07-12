@@ -40,7 +40,7 @@ public abstract class Entity {
     // setters
     public void setUniqueId(int uniqueId) {
         this.uniqueId = uniqueId;
-    }
+    }       // todo check if can remove it
 
     // abstract methods
     public abstract Object clone();
@@ -61,7 +61,7 @@ public abstract class Entity {
             FileInputStream fis = new FileInputStream(this.getEntityFilePathAndName());
             AppendableObjectInputStream ois = new AppendableObjectInputStream(fis);
 
-            int objectCount = this.objectCount();
+            int objectCount = this.adaptor.objectCount(this);
 
             for (int i = 0; i < objectCount; i++) {
                 Entity entity = this.adaptor.readRecord(this, ois);
@@ -74,27 +74,12 @@ public abstract class Entity {
 
         return arr;
     }
-    int objectCount() {
-        int count = 0;
-        try {
-            FileInputStream fis = new FileInputStream(this.getEntityFilePathAndName());
-            AppendableObjectInputStream ois = new AppendableObjectInputStream(fis);
-
-            while (true){
-                this.adaptor.readRecord(this, ois);
-                count++;
-            }
-//            ois.close();
-        } catch (Exception e) {
-            return count;
-        }
-    }
     public void create() throws Exception {
         adaptor.writeRecord(this);
     }
     public ArrayList<Integer> find(final int option) {return new ArrayList<>();}
     public void get(final int index) throws Exception {
-        int objectsCount = this.objectCount();
+        int objectsCount = this.adaptor.objectCount(this);
         if (index > objectsCount || index <= 0) {
             throw new Exception("Exception Get Method In Entity:Index Out Of Range");
         }
@@ -113,9 +98,39 @@ public abstract class Entity {
             System.out.println("Exception in get object");
         }
     }
-    public void edit(final int option, final int index) {}
+    public void edit() throws Exception {
+        Entity thisItem = (Entity) this.clone();
+        int index = thisItem.uniqueId;
+
+        int objCount = this.adaptor.objectCount(this);
+        if (index > objCount || index <= 0) {
+            throw new Exception("Exception Delete Method In Entity:Index Out Of Range");
+        }
+
+        ArrayList<Entity> arr1 = new ArrayList<>();
+        ArrayList<Entity> arr2 = new ArrayList<>();
+
+        for (int i = 1; i < index; i++) {
+            this.get(i);
+            arr1.add((Entity) this.clone());
+        }
+        for (int i = index+1; i <= objCount; i++) {
+            this.get(i);
+            arr2.add((Entity) this.clone());
+        }
+
+        adaptor.createEmptyFile(this.entityFilePathAndName);
+
+        for (Entity entity : arr1) {
+            entity.create();
+        }
+        thisItem.create();
+        for (Entity entity : arr2) {
+            entity.create();
+        }
+    }
     public void delete(final int index) throws Exception {
-        int objCount = this.objectCount();
+        int objCount = this.adaptor.objectCount(this);
         if (index > objCount || index <= 0) {
             throw new Exception("Exception Delete Method In Entity:Index Out Of Range");
         }
