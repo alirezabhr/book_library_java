@@ -107,17 +107,8 @@ public abstract class Entity {
             throw new Exception("Exception Delete Method In Entity:Index Out Of Range");
         }
 
-        ArrayList<Entity> arr1 = new ArrayList<>();
-        ArrayList<Entity> arr2 = new ArrayList<>();
-
-        for (int i = 1; i < index; i++) {
-            this.get(i);
-            arr1.add((Entity) this.clone());
-        }
-        for (int i = index+1; i <= objCount; i++) {
-            this.get(i);
-            arr2.add((Entity) this.clone());
-        }
+        ArrayList<Entity> arr1 = this.getEntitiesList(1, index-1);
+        ArrayList<Entity> arr2 = this.getEntitiesList(index+1, objCount);
 
         adaptor.createEmptyFile(this.entityFilePathAndName);
 
@@ -135,17 +126,8 @@ public abstract class Entity {
             throw new Exception("Exception Delete Method In Entity:Index Out Of Range");
         }
 
-        ArrayList<Entity> arr1 = new ArrayList<>();
-        ArrayList<Entity> arr2 = new ArrayList<>();
-
-        for (int i = 1; i < index; i++) {
-            this.get(i);
-            arr1.add((Entity) this.clone());
-        }
-        for (int i = index+1; i <= objCount; i++) {
-            this.get(i);
-            arr2.add((Entity) this.clone());
-        }
+        ArrayList<Entity> arr1 = this.getEntitiesList(1, index-1);
+        ArrayList<Entity> arr2 = this.getEntitiesList(index+1, objCount);
 
         adaptor.createEmptyFile(this.entityFilePathAndName);
 
@@ -155,5 +137,13 @@ public abstract class Entity {
         for (Entity entity : arr2) {
             entity.create();
         }
+    }
+    protected ArrayList<Entity> getEntitiesList(int from, int to) throws Exception {
+        ArrayList<Entity> arr = new ArrayList<>();
+        for (int i = from; i <= to; i++) {
+            this.get(i);
+            arr.add((Entity) this.clone());
+        }
+        return arr;
     }
 }
