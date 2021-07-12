@@ -41,16 +41,17 @@ public abstract class Adaptor {
         }
     }
     public void writeRecord(Entity entity) throws Exception {
+        Entity entityCopy = (Entity) entity.clone();
         if (!this.isValidObject(entity)) {
             throw new Exception("Exception in write Record.\nNot A Valid Object");
         }
-        int lastObjectId = this.objectCount(entity);
+        int lastObjectId = this.objectCount(entityCopy);
 
         FileOutputStream fos = new FileOutputStream(entity.getEntityFilePathAndName(), true);
         AppendableObjectOutputStream oos = new AppendableObjectOutputStream(fos);
         this.writeIntField(oos, lastObjectId+1);
         int counter = 0;
-        ArrayList<Object> fieldObjects = entity.getAllFields();
+        ArrayList<Object> fieldObjects = entity.setAllFields();
 
         for (Type type : entity.getFieldsType()) {
             if (type.equals(Integer.class)) {

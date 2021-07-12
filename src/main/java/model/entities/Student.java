@@ -63,7 +63,7 @@ public class Student extends Entity{
         arr.add(String.class);
         return arr;
     }
-    protected ArrayList<Object> setAllFields() {
+    public ArrayList<Object> setAllFields() {
         ArrayList<Object> arr = new ArrayList<>();
         arr.add(studentId);
         arr.add(name);

@@ -88,7 +88,7 @@ public class Record extends Entity{
         arr.add(Integer.class);
         return arr;
     }
-    protected ArrayList<Object> setAllFields() {
+    public ArrayList<Object> setAllFields() {
         ArrayList<Object> arr = new ArrayList<>();
         arr.add(studentId);
         arr.add(bookId);
@@ -140,7 +140,12 @@ public class Record extends Entity{
             System.out.println("exception in change book on loan");
         }
 
-//        book.edit();        // todo edit book should implemented
+        book.setOnLoan(studentId);
+        try {
+            book.edit();
+        } catch (Exception e) {
+            System.out.println("exception in change book on loan");
+        }
     }
 
     @Override

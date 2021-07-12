@@ -40,12 +40,12 @@ public abstract class Entity {
     // setters
     public void setUniqueId(int uniqueId) {
         this.uniqueId = uniqueId;
-    }       // todo check if can remove it
+    }
 
     // abstract methods
     public abstract Object clone();
     public abstract void setEntityFieldsValue(ArrayList<Object> fieldsValue);
-    protected abstract ArrayList<Object> setAllFields();
+    public abstract ArrayList<Object> setAllFields();
     protected abstract ArrayList<Type> setFieldsType();
 
     // methods

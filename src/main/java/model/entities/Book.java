@@ -67,6 +67,9 @@ public class Book extends Entity{
     public void setPublisher(String publisher) {
         this.publisher = publisher;
     }
+    public void setOnLoan(Integer studentId) {
+        this.onLoan = studentId;
+    }
 
     // methods
     protected ArrayList<Type> setFieldsType() {
@@ -78,7 +81,7 @@ public class Book extends Entity{
         arr.add(String.class);
         return arr;
     }
-    protected ArrayList<Object> setAllFields() {
+    public ArrayList<Object> setAllFields() {
         ArrayList<Object> arr = new ArrayList<>();
         arr.add(isbn);
         arr.add(onLoan);
