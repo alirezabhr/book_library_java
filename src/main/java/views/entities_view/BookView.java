@@ -2,6 +2,7 @@ package views.entities_view;
 
 import java.util.ArrayList;
 
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Cursor;
 import javafx.scene.control.*;
@@ -114,7 +115,15 @@ public class BookView extends EntityView{
         bookForm.showForm("Create Book Form", bookForm.createFormDetail());
     }
     @Override
-    protected void showEditObjectForm() {}
+    protected void showEditObjectForm() {
+        ObservableList<Book> selectedItems = this.selectionModel.getSelectedItems();
+        if (selectedItems.size() == 0) {
+            this.changeErrorMsg("Please Select A Row");
+        } else {
+            BookForm bookForm = new BookForm();
+            bookForm.showForm("Edit Book Form", bookForm.editFormDetail(selectedItems.get(0)));
+        }
+    }
     @Override
     protected void showDeleteObjectForm() {}
 }

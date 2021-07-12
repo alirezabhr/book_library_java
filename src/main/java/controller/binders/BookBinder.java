@@ -64,4 +64,20 @@ public class BookBinder {
         Adaptor adaptor = utils.getAdaptor(config);
         return new Book(adaptor, config, isbn, name, author, publisher);
     }
+    public static void editBook(int uniqueId, Object... objects) throws Exception {
+        Book book = createTmpObject();
+        book.get(uniqueId);
+
+        String name = (String) objects[0];
+        String author = (String) objects[1];
+        String publisher = (String) objects[2];
+        Long isbn = (Long) objects[3];
+
+        book.setName(name);
+        book.setAuthor(author);
+        book.setPublisher(publisher);
+        book.setIsbn(isbn);
+
+        book.edit();
+    }
 }
