@@ -15,41 +15,22 @@ import model.entities.Record;
 import controller.binders.RecordBinder;
 import constant.MyConst;
 import views.entities_view.forms.RecordForm;
+import views.widgets.SearchTextField;
 
 public class RecordView extends EntityView{
 
     @Override
     protected HBox getSearchRow() {
-        TextField studentIdSearchField = new TextField();
-        studentIdSearchField.setPromptText("student id...");
-        studentIdSearchField.setPrefWidth(95);
-        studentIdSearchField.setOnMouseClicked(event->{
-            studentIdSearchField.clear();
-        });
-        TextField bookIdSearchField = new TextField();
-        bookIdSearchField.setPromptText("book id...");
-        bookIdSearchField.setPrefWidth(95);
-        bookIdSearchField.setOnMouseClicked(event->{
-            bookIdSearchField.clear();
-        });
-        TextField loanDateSearchField = new TextField();
-        loanDateSearchField.setPromptText("loan date...");
-        loanDateSearchField.setPrefWidth(95);
-        loanDateSearchField.setOnMouseClicked(event->{
-            loanDateSearchField.clear();
-        });
-        TextField returnDateSearchField = new TextField();
-        returnDateSearchField.setPromptText("return date...");
-        returnDateSearchField.setPrefWidth(95);
-        returnDateSearchField.setOnMouseClicked(event->{
-            returnDateSearchField.clear();
-        });
+        SearchTextField studentIdSearchField = new SearchTextField("student id...");
+        SearchTextField bookIdSearchField = new SearchTextField("book id...");
+        SearchTextField loanDateSearchField = new SearchTextField("loan date...");
+        SearchTextField returnDateSearchField = new SearchTextField("return date...");
 
         Image searchIcon = new Image(MyConst.constSearchImagePathName);
         Button searchBtn = new Button("Search", new ImageView(searchIcon));
         searchBtn.setCursor(Cursor.HAND);
         searchBtn.setOnAction(event -> {
-            System.out.println("Button Clicked!!");
+            this.filterTable();
         });
 
         HBox searchRow = new HBox(studentIdSearchField, bookIdSearchField, loanDateSearchField, returnDateSearchField, searchBtn);
@@ -127,4 +108,6 @@ public class RecordView extends EntityView{
             }
         }
     }
+
+    protected void filterTable() {}
 }

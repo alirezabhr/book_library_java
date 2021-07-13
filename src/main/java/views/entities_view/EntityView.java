@@ -32,6 +32,8 @@ public abstract class EntityView {
 
     protected abstract void deleteObjectRow();
 
+    protected abstract void filterTable();
+
     // normal methods
     public Tab getTab(String tabName) {
         VBox basePage = this.getForm(tabName + " Page");

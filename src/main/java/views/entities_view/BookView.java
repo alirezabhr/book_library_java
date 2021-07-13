@@ -15,48 +15,24 @@ import model.entities.Book;
 import controller.binders.BookBinder;
 import constant.MyConst;
 import views.entities_view.forms.BookForm;
+import views.widgets.SearchTextField;
 
 public class BookView extends EntityView{
 
     @Override
     protected HBox getSearchRow() {
-        TextField nameSearchField = new TextField();
-        nameSearchField.setPromptText("book name...");
-        nameSearchField.setPrefWidth(95);
-        nameSearchField.setOnMouseClicked(event->{
-            nameSearchField.clear();
-        });
-        TextField authorSearchField = new TextField();
-        authorSearchField.setPromptText("author...");
-        authorSearchField.setPrefWidth(95);
-        authorSearchField.setOnMouseClicked(event->{
-            authorSearchField.clear();
-        });
-        TextField publisherSearchField = new TextField();
-        publisherSearchField.setPromptText("publisher...");
-        publisherSearchField.setPrefWidth(95);
-        publisherSearchField.setOnMouseClicked(event->{
-            publisherSearchField.clear();
-        });
-        TextField isbnSearchField = new TextField();
-        isbnSearchField.setPromptText("isbn...");
-        isbnSearchField.setPrefWidth(95);
-        isbnSearchField.setOnMouseClicked(event->{
-            isbnSearchField.clear();
-        });
-        TextField onLoanSearchField = new TextField();
-        onLoanSearchField.setPromptText("onLoan...");
-        onLoanSearchField.setPrefWidth(95);
-        onLoanSearchField.setOnMouseClicked(event->{
-            onLoanSearchField.clear();
-        });
+        SearchTextField nameSearchField = new SearchTextField("book name...");
+        SearchTextField authorSearchField = new SearchTextField("author...");
+        SearchTextField publisherSearchField = new SearchTextField("publisher...");
+        SearchTextField isbnSearchField = new SearchTextField("isbn...");
+        SearchTextField onLoanSearchField = new SearchTextField("onLoan...");
 
 
         Image searchIcon = new Image(MyConst.constSearchImagePathName);
         Button searchBtn = new Button("Search", new ImageView(searchIcon));
         searchBtn.setCursor(Cursor.HAND);
         searchBtn.setOnAction(event -> {
-            System.out.println("Button Clicked!!");
+            this.filterTable();
         });
 
         HBox searchRow = new HBox(nameSearchField, authorSearchField, publisherSearchField, isbnSearchField, onLoanSearchField, searchBtn);
@@ -138,4 +114,6 @@ public class BookView extends EntityView{
             }
         }
     }
+
+    protected void filterTable() {}
 }

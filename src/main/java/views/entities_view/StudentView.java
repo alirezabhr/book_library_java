@@ -15,35 +15,21 @@ import model.entities.Student;
 import controller.binders.StudentBinder;
 import constant.MyConst;
 import views.entities_view.forms.StudentForm;
+import views.widgets.SearchTextField;
 
 public class StudentView extends EntityView {
 
     @Override
     protected HBox getSearchRow() {
-        TextField nameSearchField = new TextField();
-        nameSearchField.setPromptText("name...");
-        nameSearchField.setPrefWidth(95);
-        nameSearchField.setOnMouseClicked(event->{
-            nameSearchField.clear();
-        });
-        TextField lastNameSearchField = new TextField();
-        lastNameSearchField.setPromptText("last name...");
-        lastNameSearchField.setPrefWidth(95);
-        lastNameSearchField.setOnMouseClicked(event->{
-            lastNameSearchField.clear();
-        });
-        TextField stdIdSearchField = new TextField();
-        stdIdSearchField.setPromptText("student id...");
-        stdIdSearchField.setPrefWidth(95);
-        stdIdSearchField.setOnMouseClicked(event->{
-            stdIdSearchField.clear();
-        });
+        SearchTextField nameSearchField = new SearchTextField("name...");
+        SearchTextField lastNameSearchField = new SearchTextField("last name...");
+        SearchTextField stdIdSearchField = new SearchTextField("student id...");
 
         Image searchIcon = new Image(MyConst.constSearchImagePathName);
         Button searchBtn = new Button("Search", new ImageView(searchIcon));
         searchBtn.setCursor(Cursor.HAND);
         searchBtn.setOnAction(event -> {
-            System.out.println("Button Clicked!!");
+            this.filterTable();
         });
 
         HBox searchRow = new HBox(nameSearchField, lastNameSearchField, stdIdSearchField, searchBtn);
@@ -117,5 +103,7 @@ public class StudentView extends EntityView {
             }
         }
     }
+
+    protected void filterTable() {}
 }
 
