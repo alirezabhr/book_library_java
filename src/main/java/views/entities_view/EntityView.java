@@ -49,18 +49,15 @@ public abstract class EntityView {
 
         ImageButton createBtn = ButtonCreator.getCreateButton();
         createBtn.setOnAction(event -> this.showCreateObjectForm());
-        createBtn.setMinWidth(60);
 
         ImageButton editBtn = ButtonCreator.getEditButton();
         editBtn.setOnAction(event -> this.showEditObjectForm());
-        editBtn.setMinWidth(60);
 
         ImageButton deleteBtn = ButtonCreator.getDeleteButton();
         deleteBtn.setOnAction(event -> this.deleteObjectRow());
-        deleteBtn.setMinWidth(60);
 
         ImageButton refreshBtn = ButtonCreator.getRefreshButton();
-        deleteBtn.setOnAction(event -> this.deleteObjectRow());
+        refreshBtn.setOnAction(event -> this.refreshTable());
 
         HBox hBox = new HBox(this.msgLabel);
         hBox.setPadding(new Insets(0, 0, 0, 250));
