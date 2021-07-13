@@ -108,28 +108,26 @@ public class StudentBinder {
         if (!name.equals("")) {
             arr = students.stream().filter(ev -> (ev).getName().equals(name)).toArray();
         }
-        students = new ArrayList<>();
-        for (Object obj : arr) {
-            students.add((Student) obj);
-        }
+        students = getNewObjectList(arr);
 
         if (!lastName.equals("")) {
             arr = students.stream().filter(ev -> (ev).getLastName().equals(lastName)).toArray();
         }
-        students = new ArrayList<>();
-        for (Object obj : arr) {
-            students.add((Student) obj);
-        }
+        students = getNewObjectList(arr);
 
         if (!filterParams[2].equals("")) {
             int finalStdId = stdId;
             arr = students.stream().filter(ev -> (ev).getStudentId().equals(finalStdId)).toArray();
         }
-        students = new ArrayList<>();
-        for (Object obj : arr) {
+        students = getNewObjectList(arr);
+
+        return students;
+    }
+    private static ArrayList<Student> getNewObjectList(Object[] objects) {
+        ArrayList<Student> students = new ArrayList<>();
+        for (Object obj : objects) {
             students.add((Student) obj);
         }
-
         return students;
     }
 }

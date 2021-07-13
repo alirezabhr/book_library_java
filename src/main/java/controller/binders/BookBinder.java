@@ -7,7 +7,6 @@ import controller.utils;
 import model.entities.Entity;
 import model.entities.Book;
 import constant.MyConst;
-import model.entities.Student;
 
 import java.util.ArrayList;
 
@@ -122,45 +121,38 @@ public class BookBinder {
         if (!name.equals("")) {
             arr = books.stream().filter(ev -> (ev).getName().equals(name)).toArray();
         }
-        books = new ArrayList<>();
-        for (Object obj : arr) {
-            books.add((Book) obj);
-        }
+        books = getNewObjectList(arr);
 
         if (!author.equals("")) {
             arr = books.stream().filter(ev -> (ev).getAuthor().equals(author)).toArray();
         }
-        books = new ArrayList<>();
-        for (Object obj : arr) {
-            books.add((Book) obj);
-        }
+        books = getNewObjectList(arr);
 
         if (!publisher.equals("")) {
             arr = books.stream().filter(ev -> (ev).getPublisher().equals(publisher)).toArray();
         }
-        books = new ArrayList<>();
-        for (Object obj : arr) {
-            books.add((Book) obj);
-        }
+        books = getNewObjectList(arr);
 
         if (!filterParams[3].equals("")) {
             long finalIsbn = isbn;
             arr = books.stream().filter(ev -> (ev).getIsbn().equals(finalIsbn)).toArray();
         }
-        books = new ArrayList<>();
-        for (Object obj : arr) {
-            books.add((Book) obj);
-        }
+        books = getNewObjectList(arr);
 
         if (!filterParams[3].equals("")) {
             int finalOnLoan = onLoan;
             arr = books.stream().filter(ev -> (ev).getOnLoan().equals(finalOnLoan)).toArray();
         }
-        books = new ArrayList<>();
-        for (Object obj : arr) {
+        books = getNewObjectList(arr);
+
+        return books;
+    }
+
+    private static ArrayList<Book> getNewObjectList(Object[] objects) {
+        ArrayList<Book> books = new ArrayList<>();
+        for (Object obj : objects) {
             books.add((Book) obj);
         }
-
         return books;
     }
 }
