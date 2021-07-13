@@ -1,8 +1,11 @@
 package views.entities_view;
 
-import java.util.ArrayList;
+import java.util.*;
 
+import javafx.beans.InvalidationListener;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableListBase;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -25,7 +28,7 @@ public class StudentView extends EntityView {
 
         ImageButton searchBtn = ButtonCreator.getSearchButton();
         searchBtn.setOnAction(event -> {
-            this.filterTable();
+            this.filterTable(nameSearchField.getText(), lastNameSearchField.getText(), stdIdSearchField.getText());
         });
 
         HBox searchRow = new HBox(nameSearchField, lastNameSearchField, stdIdSearchField, searchBtn);
@@ -79,7 +82,7 @@ public class StudentView extends EntityView {
     protected void showEditObjectForm() {
         ObservableList<Student> selectedItems = this.selectionModel.getSelectedItems();
         if (selectedItems.size() == 0) {
-            this.changeErrorMsg("Please Select A Row");
+            this.showErrorMsg("Please Select A Row");
         } else {
             StudentForm studentForm = new StudentForm();
             studentForm.showForm("Edit Student Form", studentForm.editFormDetail(selectedItems.get(0)));
@@ -89,17 +92,27 @@ public class StudentView extends EntityView {
     protected void deleteObjectRow() {
         ObservableList<Student> selectedItems = this.selectionModel.getSelectedItems();
         if (selectedItems.size() == 0) {
-            this.changeErrorMsg("Please Select A Row");
+            this.showErrorMsg("Please Select A Row");
         } else {
             boolean isDeleted = StudentBinder.deleteObject(selectedItems.get(0).getUniqueId());
             if (isDeleted){
-                this.showSuccessfulDelete("Student Deleted Successfully");
+                this.showSuccessMsg("Student Deleted Successfully");
             } else {
-                this.changeErrorMsg("Can Not Delete Student Right Now!");
+                this.showErrorMsg("Can Not Delete Student Right Now!");
             }
         }
     }
 
-    protected void filterTable() {}
+    protected void filterTable(String... filterParams) {
+        try {
+            ArrayList<Student> filteredData = StudentBinder.getFilteredData(filterParams);
+            this.clearTable();
+            for (Student student: filteredData) {
+                this.table.getItems().add(student);
+            }
+        } catch (Exception exception) {
+            this.showErrorMsg(exception.getMessage());
+        }
+    }
 }
 

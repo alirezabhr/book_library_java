@@ -85,4 +85,62 @@ public class StudentBinder {
             return false;
         }
     }
+    public static ArrayList<Student> getFilteredData(String... filterParams) throws Exception {
+        String name = filterParams[0];
+        String lastName = filterParams[1];
+        int stdId = 0;
+        if (!filterParams[2].equals("")) {
+            try {
+                stdId  = Integer.parseInt(filterParams[2]);
+            } catch (Exception exception) {
+                throw new Exception("Student Id Should Be A Number");
+            }
+        }
+
+        Student student = createTmpObject();
+        ArrayList<Entity> tmpStudentList = student.getAllObjects();
+        ArrayList<Student> students = new ArrayList<>();
+        for (Entity entity : tmpStudentList) {
+            students.add((Student) entity);
+        }
+        Object[] arr = students.toArray();
+        if (!name.equals("")) {
+            arr = students.stream().filter(ev -> {
+                if ((ev).getName().equals(name)) {
+                    return true;
+                }
+                return false;
+            }).toArray();
+        }
+        students = new ArrayList<>();
+        for (Object obj : arr) {
+            students.add((Student) obj);
+        }
+        if (!lastName.equals("")) {
+            arr = students.stream().filter(ev -> {
+                if ((ev).getLastName().equals(lastName)) {
+                    return true;
+                }
+                return false;
+            }).toArray();
+        }
+        students = new ArrayList<>();
+        for (Object obj : arr) {
+            students.add((Student) obj);
+        }
+        if (!filterParams[2].equals("")) {
+            int finalStdId = stdId;
+            arr = students.stream().filter(ev -> {
+                if ((ev).getStudentId().equals(finalStdId)) {
+                    return true;
+                }
+                return false;
+            }).toArray();
+        }
+        students = new ArrayList<>();
+        for (Object obj : arr) {
+            students.add((Student) obj);
+        }
+        return students;
+    }
 }

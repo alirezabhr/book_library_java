@@ -16,6 +16,7 @@ import views.widgets.MessageLabel;
 import views.widgets.TitleLabel;
 
 public abstract class EntityView {
+    protected TableView table;
     protected TableView.TableViewSelectionModel selectionModel;
     protected MessageLabel msgLabel = new MessageLabel("", "red");
 
@@ -32,7 +33,7 @@ public abstract class EntityView {
 
     protected abstract void deleteObjectRow();
 
-    protected abstract void filterTable();
+    protected abstract void filterTable(String... filterParams);
 
     // normal methods
     public Tab getTab(String tabName) {
@@ -43,12 +44,11 @@ public abstract class EntityView {
     protected VBox getForm(String formName) {
         HBox topRow = this.getTopRow(formName);
         HBox searchRow = this.getSearchRow();
-        TableView table = this.getTable();
-        TableView.TableViewSelectionModel selectionModel = table.getSelectionModel();
-        selectionModel.setSelectionMode(SelectionMode.SINGLE);
-        this.selectionModel = selectionModel;
+        this.table = this.getTable();
+        this.selectionModel = this.table.getSelectionModel();
+        this.selectionModel.setSelectionMode(SelectionMode.SINGLE);
 
-        return new VBox(topRow, searchRow, table);
+        return new VBox(topRow, searchRow, this.table);
     }
 
     protected HBox getTopRow(String formName) {
@@ -86,7 +86,7 @@ public abstract class EntityView {
         return topRow;
     }
 
-    protected void changeErrorMsg(String error) {
+    protected void showErrorMsg(String error) {
         this.msgLabel.setText(error);
         new Timeline(new KeyFrame(
                 Duration.millis(2500),
@@ -94,7 +94,7 @@ public abstract class EntityView {
                 .play();
     }
 
-    protected void showSuccessfulDelete(String msg) {
+    protected void showSuccessMsg(String msg) {
         this.msgLabel.setTextFill(Color.valueOf("green"));
         this.msgLabel.setText(msg);
         new Timeline(new KeyFrame(
@@ -104,5 +104,11 @@ public abstract class EntityView {
                     this.msgLabel.setTextFill(Color.valueOf("red"));
                 }))
                 .play();
+    }
+
+    protected void clearTable() {
+        if (this.table.getItems().size() > 0) {
+            this.table.getItems().subList(0, this.table.getItems().size()).clear();
+        }
     }
 }
