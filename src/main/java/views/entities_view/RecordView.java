@@ -1,20 +1,15 @@
 package views.entities_view;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
-import javafx.scene.Cursor;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
 import model.entities.Record;
 import controller.binders.RecordBinder;
-import constant.MyConst;
 import views.entities_view.forms.RecordForm;
 import views.widgets.ButtonCreator;
 import views.widgets.ImageButton;
@@ -102,6 +97,7 @@ public class RecordView extends EntityView{
             boolean isDeleted = RecordBinder.deleteObject(selectedItems.get(0).getUniqueId());
             if (isDeleted){
                 this.showSuccessMsg("Record Deleted Successfully");
+                this.refreshTable();
             } else {
                 this.showErrorMsg("Can Not Delete Record Right Now!");
             }
@@ -117,6 +113,14 @@ public class RecordView extends EntityView{
             }
         } catch (Exception exception) {
             this.showErrorMsg(exception.getMessage());
+        }
+    }
+
+    protected void refreshTable() {
+        ArrayList<Record> records = RecordBinder.getAllRecords();
+        this.clearTable();
+        for (Record record : records) {
+            this.table.getItems().add(record);
         }
     }
 }

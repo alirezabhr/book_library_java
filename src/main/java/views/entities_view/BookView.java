@@ -2,6 +2,7 @@ package views.entities_view;
 
 import java.util.ArrayList;
 
+import controller.binders.StudentBinder;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
@@ -10,6 +11,7 @@ import javafx.scene.layout.HBox;
 
 import model.entities.Book;
 import controller.binders.BookBinder;
+import model.entities.Student;
 import views.entities_view.forms.BookForm;
 import views.widgets.ButtonCreator;
 import views.widgets.ImageButton;
@@ -102,6 +104,7 @@ public class BookView extends EntityView{
             boolean isDeleted = BookBinder.deleteObject(selectedItems.get(0).getUniqueId());
             if (isDeleted){
                 this.showSuccessMsg("Book Deleted Successfully");
+                this.refreshTable();
             } else {
                 this.showErrorMsg("Can Not Delete Book Right Now!");
             }
@@ -117,6 +120,14 @@ public class BookView extends EntityView{
             }
         } catch (Exception exception) {
             this.showErrorMsg(exception.getMessage());
+        }
+    }
+
+    protected void refreshTable() {
+        ArrayList<Book> filteredData = BookBinder.getAllBooks();
+        this.clearTable();
+        for (Book book: filteredData) {
+            this.table.getItems().add(book);
         }
     }
 }

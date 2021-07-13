@@ -92,6 +92,7 @@ public class StudentView extends EntityView {
             boolean isDeleted = StudentBinder.deleteObject(selectedItems.get(0).getUniqueId());
             if (isDeleted){
                 this.showSuccessMsg("Student Deleted Successfully");
+                refreshTable();
             } else {
                 this.showErrorMsg("Can Not Delete Student Right Now!");
             }
@@ -107,6 +108,14 @@ public class StudentView extends EntityView {
             }
         } catch (Exception exception) {
             this.showErrorMsg(exception.getMessage());
+        }
+    }
+
+    protected void refreshTable() {
+        ArrayList<Student> filteredData = StudentBinder.getAllStudents();
+        this.clearTable();
+        for (Student student: filteredData) {
+            this.table.getItems().add(student);
         }
     }
 }
