@@ -130,4 +130,70 @@ public class RecordBinder {
             return false;
         }
     }
+    public static ArrayList<Record> getFilteredData(String... filterParams) throws Exception {
+        int studentId = 0;
+        int bookId = 0;
+        String loanDateStr = filterParams[2];
+        String returnDateStr = filterParams[3];
+        int loanDate;
+        int returnDate;
+
+        if (!filterParams[0].equals("")) {
+            try {
+                studentId  = Integer.parseInt(filterParams[0]);
+            } catch (Exception exception) {
+                throw new Exception("Student Id Should Be A Number");
+            }
+        }
+        if (!filterParams[1].equals("")) {
+            try {
+                bookId  = Integer.parseInt(filterParams[1]);
+            } catch (Exception exception) {
+                throw new Exception("Book Id Should Be A Number");
+            }
+        }
+
+        loanDate = CustomDate.dateStringToInt(loanDateStr);
+        returnDate = CustomDate.dateStringToInt(returnDateStr);
+
+        Record record = RecordBinder.createTmpObject();
+        ArrayList<Entity> tmpRecordList = record.getAllObjects();
+        ArrayList<Record> records = new ArrayList<>();
+        for (Entity entity : tmpRecordList) {
+            records.add((Record) entity);
+        }
+        Object[] arr = records.toArray();
+
+        if (!filterParams[0].equals("")) {
+            int finalStdId = studentId;
+            arr = records.stream().filter(ev -> (ev).getStudentId().equals(finalStdId)).toArray();
+        }
+        records = getNewObjectList(arr);
+
+        if (!filterParams[1].equals("")) {
+            int finalBookId = bookId;
+            arr = records.stream().filter(ev -> (ev).getBookId().equals(finalBookId)).toArray();
+        }
+        records = getNewObjectList(arr);
+
+        if (!filterParams[2].equals("")) {
+            arr = records.stream().filter(ev -> (ev).getIntLoanedDate().equals(loanDate)).toArray();
+        }
+        records = getNewObjectList(arr);
+
+        if (!filterParams[3].equals("")) {
+            arr = records.stream().filter(ev -> (ev).getIntReturnDate().equals(returnDate)).toArray();
+        }
+        records = getNewObjectList(arr);
+
+        return records;
+
+    }
+    private static ArrayList<Record> getNewObjectList(Object[] objects) {
+        ArrayList<Record> records = new ArrayList<>();
+        for (Object obj : objects) {
+            records.add((Record) obj);
+        }
+        return records;
+    }
 }

@@ -29,9 +29,7 @@ public class RecordView extends EntityView{
         SearchTextField returnDateSearchField = new SearchTextField("return date...");
 
         ImageButton searchBtn = ButtonCreator.getSearchButton();
-        searchBtn.setOnAction(event -> {
-            this.filterTable();
-        });
+        searchBtn.setOnAction(event -> this.filterTable(studentIdSearchField.getText(), bookIdSearchField.getText(), loanDateSearchField.getText(), returnDateSearchField.getText()));
 
         HBox searchRow = new HBox(studentIdSearchField, bookIdSearchField, loanDateSearchField, returnDateSearchField, searchBtn);
         searchRow.setPadding(new Insets(10,20,10,32));
@@ -88,7 +86,7 @@ public class RecordView extends EntityView{
     protected void showEditObjectForm() {
         ObservableList<Record> selectedItems = this.selectionModel.getSelectedItems();
         if (selectedItems.size() == 0) {
-            this.changeErrorMsg("Please Select A Row");
+            this.showErrorMsg("Please Select A Row");
         } else {
             RecordForm recordForm = new RecordForm();
             recordForm.showForm("Edit Record Form", recordForm.editFormDetail(selectedItems.get(0)));
@@ -98,16 +96,26 @@ public class RecordView extends EntityView{
     protected void deleteObjectRow() {
         ObservableList<Record> selectedItems = this.selectionModel.getSelectedItems();
         if (selectedItems.size() == 0) {
-            this.changeErrorMsg("Please Select A Row");
+            this.showErrorMsg("Please Select A Row");
         } else {
             boolean isDeleted = RecordBinder.deleteObject(selectedItems.get(0).getUniqueId());
             if (isDeleted){
-                this.showSuccessfulDelete("Record Deleted Successfully");
+                this.showSuccessMsg("Record Deleted Successfully");
             } else {
-                this.changeErrorMsg("Can Not Delete Record Right Now!");
+                this.showErrorMsg("Can Not Delete Record Right Now!");
             }
         }
     }
 
-    protected void filterTable() {}
+    protected void filterTable(String... filterParams) {
+        try {
+            ArrayList<Record> records = RecordBinder.getFilteredData(filterParams);
+            this.clearTable();
+            for (Record record : records) {
+                this.table.getItems().add(record);
+            }
+        } catch (Exception exception) {
+            this.showErrorMsg(exception.getMessage());
+        }
+    }
 }

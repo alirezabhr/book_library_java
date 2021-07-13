@@ -97,7 +97,7 @@ public class StudentBinder {
             }
         }
 
-        Student student = createTmpObject();
+        Student student = StudentBinder.createTmpObject();
         ArrayList<Entity> tmpStudentList = student.getAllObjects();
         ArrayList<Student> students = new ArrayList<>();
         for (Entity entity : tmpStudentList) {
