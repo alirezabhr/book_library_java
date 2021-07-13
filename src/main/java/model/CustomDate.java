@@ -1,5 +1,7 @@
 package model;
 
+import views.MainPage;
+
 public class CustomDate {
     private static final int minYear = 1300;
     private static final int maxYear = 1500;
@@ -37,6 +39,45 @@ public class CustomDate {
             System.out.println("Bad Int Date!");
         }
         return new CustomDate(date, month, day);
+    }
+    public static Integer dateStringToInt(String date) throws Exception {
+        int c = 0;
+        String yearStr = "";
+        String monthStr = "";
+        String dayStr = "";
+        int year;
+        int month;
+        int day;
+
+        while (date.charAt(c) != '/') {
+            yearStr += c;
+            c++;
+        }
+        c++;
+        while (date.charAt(c) != '/') {
+            monthStr += c;
+            c++;
+        }
+        c++;
+        while (date.charAt(c) != '/') {
+            dayStr += c;
+            c++;
+        }
+
+        try {
+            year = Integer.parseInt(yearStr);
+            month = Integer.parseInt(monthStr);
+            day = Integer.parseInt(dayStr);
+        } catch (Exception exception) {
+            throw new Exception("Date Is Not Valid!");
+        }
+
+        CustomDate customDate = new CustomDate(year, month, day);
+        if (!customDate.isValid()) {
+            throw new Exception("Enter A Valid Date");
+        }
+
+        return customDate.toInt();
     }
 
     // methods
