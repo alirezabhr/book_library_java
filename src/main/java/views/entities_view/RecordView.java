@@ -103,7 +103,7 @@ public class RecordView extends EntityView{
             }
         }
     }
-
+    @Override
     protected void filterTable(String... filterParams) {
         try {
             ArrayList<Record> records = RecordBinder.getFilteredData(filterParams);
@@ -115,7 +115,7 @@ public class RecordView extends EntityView{
             this.showErrorMsg(exception.getMessage());
         }
     }
-
+    @Override
     protected void refreshTable() {
         ArrayList<Record> records = RecordBinder.getAllRecords();
         this.clearTable();

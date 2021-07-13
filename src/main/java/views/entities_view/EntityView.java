@@ -1,5 +1,6 @@
 package views.entities_view;
 
+import controller.binders.RecordBinder;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.geometry.Insets;
@@ -12,8 +13,11 @@ import javafx.scene.layout.*;
 import constant.MyConst;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
+import model.entities.Record;
 import views.widgets.MessageLabel;
 import views.widgets.TitleLabel;
+
+import java.util.ArrayList;
 
 public abstract class EntityView {
     protected TableView table;
@@ -22,18 +26,13 @@ public abstract class EntityView {
 
     // abstract methods
     protected abstract HBox getSearchRow();
-
     protected abstract TableView getTable();
-
     protected abstract TableView createEmptyTable();
-
     protected abstract void showCreateObjectForm();
-
     protected abstract void showEditObjectForm();
-
     protected abstract void deleteObjectRow();
-
     protected abstract void filterTable(String... filterParams);
+    protected abstract void refreshTable();
 
     // normal methods
     public Tab getTab(String tabName) {

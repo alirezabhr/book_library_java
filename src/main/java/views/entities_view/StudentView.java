@@ -98,7 +98,7 @@ public class StudentView extends EntityView {
             }
         }
     }
-
+    @Override
     protected void filterTable(String... filterParams) {
         try {
             ArrayList<Student> filteredData = StudentBinder.getFilteredData(filterParams);
@@ -110,7 +110,7 @@ public class StudentView extends EntityView {
             this.showErrorMsg(exception.getMessage());
         }
     }
-
+    @Override
     protected void refreshTable() {
         ArrayList<Student> filteredData = StudentBinder.getAllStudents();
         this.clearTable();

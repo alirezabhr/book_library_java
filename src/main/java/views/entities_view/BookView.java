@@ -110,7 +110,7 @@ public class BookView extends EntityView{
             }
         }
     }
-
+    @Override
     protected void filterTable(String... filterParams) {
         try {
             ArrayList<Book> filteredData = BookBinder.getFilteredData(filterParams);
@@ -122,7 +122,7 @@ public class BookView extends EntityView{
             this.showErrorMsg(exception.getMessage());
         }
     }
-
+    @Override
     protected void refreshTable() {
         ArrayList<Book> filteredData = BookBinder.getAllBooks();
         this.clearTable();
