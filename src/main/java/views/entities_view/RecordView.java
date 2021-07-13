@@ -15,6 +15,8 @@ import model.entities.Record;
 import controller.binders.RecordBinder;
 import constant.MyConst;
 import views.entities_view.forms.RecordForm;
+import views.widgets.ButtonCreator;
+import views.widgets.ImageButton;
 import views.widgets.SearchTextField;
 
 public class RecordView extends EntityView{
@@ -26,9 +28,7 @@ public class RecordView extends EntityView{
         SearchTextField loanDateSearchField = new SearchTextField("loan date...");
         SearchTextField returnDateSearchField = new SearchTextField("return date...");
 
-        Image searchIcon = new Image(MyConst.constSearchImagePathName);
-        Button searchBtn = new Button("Search", new ImageView(searchIcon));
-        searchBtn.setCursor(Cursor.HAND);
+        ImageButton searchBtn = ButtonCreator.getSearchButton();
         searchBtn.setOnAction(event -> {
             this.filterTable();
         });

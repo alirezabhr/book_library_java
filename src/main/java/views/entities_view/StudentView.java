@@ -4,17 +4,15 @@ import java.util.ArrayList;
 
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
-import javafx.scene.Cursor;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
 import model.entities.Student;
 import controller.binders.StudentBinder;
-import constant.MyConst;
 import views.entities_view.forms.StudentForm;
+import views.widgets.ButtonCreator;
+import views.widgets.ImageButton;
 import views.widgets.SearchTextField;
 
 public class StudentView extends EntityView {
@@ -25,9 +23,7 @@ public class StudentView extends EntityView {
         SearchTextField lastNameSearchField = new SearchTextField("last name...");
         SearchTextField stdIdSearchField = new SearchTextField("student id...");
 
-        Image searchIcon = new Image(MyConst.constSearchImagePathName);
-        Button searchBtn = new Button("Search", new ImageView(searchIcon));
-        searchBtn.setCursor(Cursor.HAND);
+        ImageButton searchBtn = ButtonCreator.getSearchButton();
         searchBtn.setOnAction(event -> {
             this.filterTable();
         });

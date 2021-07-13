@@ -15,6 +15,8 @@ import model.entities.Book;
 import controller.binders.BookBinder;
 import constant.MyConst;
 import views.entities_view.forms.BookForm;
+import views.widgets.ButtonCreator;
+import views.widgets.ImageButton;
 import views.widgets.SearchTextField;
 
 public class BookView extends EntityView{
@@ -27,10 +29,7 @@ public class BookView extends EntityView{
         SearchTextField isbnSearchField = new SearchTextField("isbn...");
         SearchTextField onLoanSearchField = new SearchTextField("onLoan...");
 
-
-        Image searchIcon = new Image(MyConst.constSearchImagePathName);
-        Button searchBtn = new Button("Search", new ImageView(searchIcon));
-        searchBtn.setCursor(Cursor.HAND);
+        ImageButton searchBtn = ButtonCreator.getSearchButton();
         searchBtn.setOnAction(event -> {
             this.filterTable();
         });
