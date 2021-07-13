@@ -2,10 +2,7 @@ package views.entities_view;
 
 import java.util.*;
 
-import javafx.beans.InvalidationListener;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
-import javafx.collections.ObservableListBase;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -27,9 +24,7 @@ public class StudentView extends EntityView {
         SearchTextField stdIdSearchField = new SearchTextField("student id...");
 
         ImageButton searchBtn = ButtonCreator.getSearchButton();
-        searchBtn.setOnAction(event -> {
-            this.filterTable(nameSearchField.getText(), lastNameSearchField.getText(), stdIdSearchField.getText());
-        });
+        searchBtn.setOnAction(event -> this.filterTable(nameSearchField.getText(), lastNameSearchField.getText(), stdIdSearchField.getText()));
 
         HBox searchRow = new HBox(nameSearchField, lastNameSearchField, stdIdSearchField, searchBtn);
         searchRow.setPadding(new Insets(10,20,10,32));

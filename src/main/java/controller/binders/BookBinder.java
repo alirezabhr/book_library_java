@@ -90,4 +90,77 @@ public class BookBinder {
             return false;
         }
     }
+    public static ArrayList<Book> getFilteredData(String... filterParams) throws Exception {
+        String name = filterParams[0];
+        String author = filterParams[1];
+        String publisher = filterParams[2];
+        long isbn = 0;
+        int onLoan = 0;
+        if (!filterParams[3].equals("")) {
+            try {
+                isbn  = Long.parseLong(filterParams[3]);
+            } catch (Exception exception) {
+                throw new Exception("ISBN Should Be A Number");
+            }
+        }
+        if (!filterParams[4].equals("")) {
+            try {
+                onLoan  = Integer.parseInt(filterParams[4]);
+            } catch (Exception exception) {
+                throw new Exception("Loan Should Be A Number");
+            }
+        }
+
+        Book book = createTmpObject();
+        ArrayList<Entity> tmpBookList = book.getAllObjects();
+        ArrayList<Book> books = new ArrayList<>();
+        for (Entity entity : tmpBookList) {
+            books.add((Book) entity);
+        }
+
+        Object[] arr = books.toArray();
+        if (!name.equals("")) {
+            arr = books.stream().filter(ev -> (ev).getName().equals(name)).toArray();
+        }
+        books = new ArrayList<>();
+        for (Object obj : arr) {
+            books.add((Book) obj);
+        }
+
+        if (!author.equals("")) {
+            arr = books.stream().filter(ev -> (ev).getAuthor().equals(author)).toArray();
+        }
+        books = new ArrayList<>();
+        for (Object obj : arr) {
+            books.add((Book) obj);
+        }
+
+        if (!publisher.equals("")) {
+            arr = books.stream().filter(ev -> (ev).getPublisher().equals(publisher)).toArray();
+        }
+        books = new ArrayList<>();
+        for (Object obj : arr) {
+            books.add((Book) obj);
+        }
+
+        if (!filterParams[3].equals("")) {
+            long finalIsbn = isbn;
+            arr = books.stream().filter(ev -> (ev).getIsbn().equals(finalIsbn)).toArray();
+        }
+        books = new ArrayList<>();
+        for (Object obj : arr) {
+            books.add((Book) obj);
+        }
+
+        if (!filterParams[3].equals("")) {
+            int finalOnLoan = onLoan;
+            arr = books.stream().filter(ev -> (ev).getOnLoan().equals(finalOnLoan)).toArray();
+        }
+        books = new ArrayList<>();
+        for (Object obj : arr) {
+            books.add((Book) obj);
+        }
+
+        return books;
+    }
 }

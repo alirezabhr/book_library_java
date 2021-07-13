@@ -4,16 +4,12 @@ import java.util.ArrayList;
 
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
-import javafx.scene.Cursor;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
 import model.entities.Book;
 import controller.binders.BookBinder;
-import constant.MyConst;
 import views.entities_view.forms.BookForm;
 import views.widgets.ButtonCreator;
 import views.widgets.ImageButton;
@@ -30,9 +26,7 @@ public class BookView extends EntityView{
         SearchTextField onLoanSearchField = new SearchTextField("onLoan...");
 
         ImageButton searchBtn = ButtonCreator.getSearchButton();
-        searchBtn.setOnAction(event -> {
-            this.filterTable();
-        });
+        searchBtn.setOnAction(event -> this.filterTable(nameSearchField.getText(), authorSearchField.getText(), publisherSearchField.getText(), isbnSearchField.getText(), onLoanSearchField.getText()));
 
         HBox searchRow = new HBox(nameSearchField, authorSearchField, publisherSearchField, isbnSearchField, onLoanSearchField, searchBtn);
         searchRow.setPadding(new Insets(10,20,10,32));
@@ -93,7 +87,7 @@ public class BookView extends EntityView{
     protected void showEditObjectForm() {
         ObservableList<Book> selectedItems = this.selectionModel.getSelectedItems();
         if (selectedItems.size() == 0) {
-            this.changeErrorMsg("Please Select A Row");
+            this.showErrorMsg("Please Select A Row");
         } else {
             BookForm bookForm = new BookForm();
             bookForm.showForm("Edit Book Form", bookForm.editFormDetail(selectedItems.get(0)));
@@ -103,16 +97,26 @@ public class BookView extends EntityView{
     protected void deleteObjectRow() {
         ObservableList<Book> selectedItems = this.selectionModel.getSelectedItems();
         if (selectedItems.size() == 0) {
-            this.changeErrorMsg("Please Select A Row");
+            this.showErrorMsg("Please Select A Row");
         } else {
             boolean isDeleted = BookBinder.deleteObject(selectedItems.get(0).getUniqueId());
             if (isDeleted){
-                this.showSuccessfulDelete("Book Deleted Successfully");
+                this.showSuccessMsg("Book Deleted Successfully");
             } else {
-                this.changeErrorMsg("Can Not Delete Book Right Now!");
+                this.showErrorMsg("Can Not Delete Book Right Now!");
             }
         }
     }
 
-    protected void filterTable() {}
+    protected void filterTable(String... filterParams) {
+        try {
+            ArrayList<Book> filteredData = BookBinder.getFilteredData(filterParams);
+            this.clearTable();
+            for (Book book: filteredData) {
+                this.table.getItems().add(book);
+            }
+        } catch (Exception exception) {
+            this.showErrorMsg(exception.getMessage());
+        }
+    }
 }
