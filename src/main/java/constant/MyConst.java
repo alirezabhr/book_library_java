@@ -19,4 +19,5 @@ public class MyConst {
     public static final String constEditImagePathName = "file:" + constImagesPath + "edit.png";
     public static final String constSearchImagePathName = "file:" + constImagesPath + "search.png";
     public static final String constDeleteImagePathName = "file:" + constImagesPath + "delete.png";
+    public static final String constRefreshImagePathName = "file:" + constImagesPath + "refresh.png";
 }

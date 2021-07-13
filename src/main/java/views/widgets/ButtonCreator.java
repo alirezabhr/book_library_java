@@ -20,4 +20,8 @@ public class ButtonCreator {
         Image deleteIcon = new Image(MyConst.constDeleteImagePathName);
         return new ImageButton("Delete", deleteIcon);
     }
+    public static ImageButton getRefreshButton() {
+        Image refreshIcon = new Image(MyConst.constRefreshImagePathName);
+        return new ImageButton("Refresh", refreshIcon);
+    }
 }

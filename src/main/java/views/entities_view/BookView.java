@@ -2,7 +2,6 @@ package views.entities_view;
 
 import java.util.ArrayList;
 
-import controller.binders.StudentBinder;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
@@ -11,7 +10,6 @@ import javafx.scene.layout.HBox;
 
 import model.entities.Book;
 import controller.binders.BookBinder;
-import model.entities.Student;
 import views.entities_view.forms.BookForm;
 import views.widgets.ButtonCreator;
 import views.widgets.ImageButton;

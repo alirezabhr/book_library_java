@@ -1,23 +1,17 @@
 package views.entities_view;
 
-import controller.binders.RecordBinder;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.geometry.Insets;
-import javafx.scene.Cursor;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 
-import constant.MyConst;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
-import model.entities.Record;
+import views.widgets.ButtonCreator;
+import views.widgets.ImageButton;
 import views.widgets.MessageLabel;
 import views.widgets.TitleLabel;
-
-import java.util.ArrayList;
 
 public abstract class EntityView {
     protected TableView table;
@@ -53,32 +47,25 @@ public abstract class EntityView {
     protected HBox getTopRow(String formName) {
         TitleLabel formNameLabel = new TitleLabel(formName);
 
-        Image createIcon = new Image(MyConst.constAddImagePathName);
-        Image editIcon = new Image(MyConst.constEditImagePathName);
-        Image deleteIcon = new Image(MyConst.constDeleteImagePathName);
-
-        Button createBtn = new Button("Create");
-        createBtn.setGraphic(new ImageView(createIcon));
-        createBtn.setCursor(Cursor.HAND);
+        ImageButton createBtn = ButtonCreator.getCreateButton();
         createBtn.setOnAction(event -> this.showCreateObjectForm());
         createBtn.setMinWidth(60);
 
-        Button editBtn = new Button("Edit");
-        editBtn.setGraphic(new ImageView(editIcon));
-        editBtn.setCursor(Cursor.HAND);
+        ImageButton editBtn = ButtonCreator.getEditButton();
         editBtn.setOnAction(event -> this.showEditObjectForm());
         editBtn.setMinWidth(60);
 
-        Button deleteBtn = new Button("Delete");
-        deleteBtn.setGraphic(new ImageView(deleteIcon));
-        deleteBtn.setCursor(Cursor.HAND);
+        ImageButton deleteBtn = ButtonCreator.getDeleteButton();
         deleteBtn.setOnAction(event -> this.deleteObjectRow());
         deleteBtn.setMinWidth(60);
 
-        HBox hBox = new HBox(this.msgLabel);
-        hBox.setPadding(new Insets(0, 0, 0, 300));
+        ImageButton refreshBtn = ButtonCreator.getRefreshButton();
+        deleteBtn.setOnAction(event -> this.deleteObjectRow());
 
-        HBox topRow = new HBox(formNameLabel, createBtn, editBtn, deleteBtn, hBox);
+        HBox hBox = new HBox(this.msgLabel);
+        hBox.setPadding(new Insets(0, 0, 0, 250));
+
+        HBox topRow = new HBox(formNameLabel, createBtn, editBtn, deleteBtn, refreshBtn, hBox);
         topRow.setPadding(new Insets(10));
         topRow.setSpacing(20);
 
