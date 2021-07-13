@@ -11,6 +11,7 @@ import constant.MyConst;
 import model.entities.Student;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import static controller.utils.isIntNumber;
 
@@ -131,12 +132,13 @@ public class RecordBinder {
         }
     }
     public static ArrayList<Record> getFilteredData(String... filterParams) throws Exception {
+        System.out.println(Arrays.toString(filterParams));
         int studentId = 0;
         int bookId = 0;
         String loanDateStr = filterParams[2];
         String returnDateStr = filterParams[3];
-        int loanDate;
-        int returnDate;
+        int loanDate = 0;
+        int returnDate = 0;
 
         if (!filterParams[0].equals("")) {
             try {
@@ -152,9 +154,13 @@ public class RecordBinder {
                 throw new Exception("Book Id Should Be A Number");
             }
         }
+        if (!filterParams[2].equals("")) {
+            loanDate = CustomDate.dateStringToInt(loanDateStr);
+        }
+        if (!filterParams[3].equals("")) {
+            returnDate = CustomDate.dateStringToInt(returnDateStr);
+        }
 
-        loanDate = CustomDate.dateStringToInt(loanDateStr);
-        returnDate = CustomDate.dateStringToInt(returnDateStr);
 
         Record record = RecordBinder.createTmpObject();
         ArrayList<Entity> tmpRecordList = record.getAllObjects();
@@ -177,12 +183,14 @@ public class RecordBinder {
         records = getNewObjectList(arr);
 
         if (!filterParams[2].equals("")) {
-            arr = records.stream().filter(ev -> (ev).getIntLoanedDate().equals(loanDate)).toArray();
+            int finalLoanDate = loanDate;
+            arr = records.stream().filter(ev -> (ev).getIntLoanedDate().equals(finalLoanDate)).toArray();
         }
         records = getNewObjectList(arr);
 
         if (!filterParams[3].equals("")) {
-            arr = records.stream().filter(ev -> (ev).getIntReturnDate().equals(returnDate)).toArray();
+            int finalReturnDate = returnDate;
+            arr = records.stream().filter(ev -> (ev).getIntReturnDate().equals(finalReturnDate)).toArray();
         }
         records = getNewObjectList(arr);
 

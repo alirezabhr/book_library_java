@@ -1,6 +1,7 @@
 package views.entities_view;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;

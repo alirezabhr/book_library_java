@@ -50,17 +50,17 @@ public class CustomDate {
         int day;
 
         while (date.charAt(c) != '/') {
-            yearStr += c;
+            yearStr += date.charAt(c);
             c++;
         }
         c++;
         while (date.charAt(c) != '/') {
-            monthStr += c;
+            monthStr += date.charAt(c);
             c++;
         }
         c++;
-        while (date.charAt(c) != '/') {
-            dayStr += c;
+        while (c != date.length()) {
+            dayStr += date.charAt(c);
             c++;
         }
 
