@@ -9,6 +9,7 @@ import model.entities.Book;
 import constant.MyConst;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import static controller.utils.isLongNumber;
 
@@ -139,7 +140,7 @@ public class BookBinder {
         }
         books = getNewObjectList(arr);
 
-        if (!filterParams[3].equals("")) {
+        if (!filterParams[4].equals("")) {
             int finalOnLoan = onLoan;
             arr = books.stream().filter(ev -> (ev).getOnLoan().equals(finalOnLoan)).toArray();
         }
