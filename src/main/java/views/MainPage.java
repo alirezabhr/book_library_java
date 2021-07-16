@@ -18,6 +18,9 @@ public class MainPage {
         tabPane.getTabs().add(studentTab);
         tabPane.getTabs().add(bookTab);
         tabPane.getTabs().add(recordTab);
+        studentTab.setClosable(false);
+        bookTab.setClosable(false);
+        recordTab.setClosable(false);
 
         VBox vBox = new VBox(tabPane);
 
