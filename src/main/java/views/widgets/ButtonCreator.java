@@ -24,4 +24,8 @@ public class ButtonCreator {
         Image refreshIcon = new Image(MyConst.constRefreshImagePathName);
         return new ImageButton("Refresh", refreshIcon);
     }
+    public static ImageButton getSaveButton() {
+        Image saveIcon = new Image(MyConst.constSaveImagePathName);
+        return new ImageButton("Save", saveIcon);
+    }
 }
