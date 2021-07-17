@@ -23,10 +23,10 @@ public class StudentConfig extends BaseConfig{
     }
 
     // getters
-    public int getNameSize() {
+    public Integer getNameSize() {
         return nameSize;
     }
-    public int getLastNameSize() {
+    public Integer getLastNameSize() {
         return lastNameSize;
     }
 

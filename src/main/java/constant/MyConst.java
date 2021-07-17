@@ -21,4 +21,5 @@ public class MyConst {
     public static final String constDeleteImagePathName = "file:" + constImagesPath + "delete.png";
     public static final String constRefreshImagePathName = "file:" + constImagesPath + "refresh.png";
     public static final String constSaveImagePathName = "file:" + constImagesPath + "save.png";
+    public static final String constSettingsImagePathName = "file:" + constImagesPath + "settings.png";
 }

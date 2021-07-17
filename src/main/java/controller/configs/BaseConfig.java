@@ -19,7 +19,7 @@ public abstract class BaseConfig {
     public String getStringMode() {
         return stringMode;
     }
-    public int getRecordSize() {
+    public Integer getRecordSize() {
         return recordSize;
     }
 

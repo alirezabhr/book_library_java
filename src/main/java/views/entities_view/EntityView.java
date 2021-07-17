@@ -27,6 +27,7 @@ public abstract class EntityView {
     protected abstract void deleteObjectRow();
     protected abstract void filterTable(String... filterParams);
     protected abstract void refreshTable();
+    protected abstract void showSettingsForm();
 
     // normal methods
     public Tab getTab(String tabName) {
@@ -59,10 +60,13 @@ public abstract class EntityView {
         ImageButton refreshBtn = ButtonCreator.getRefreshButton();
         refreshBtn.setOnAction(event -> this.refreshTable());
 
+        ImageButton settingBtn = ButtonCreator.getSettingsButton();
+        settingBtn.setOnAction(event -> this.showSettingsForm());
+
         HBox hBox = new HBox(this.msgLabel);
         hBox.setPadding(new Insets(0, 0, 0, 250));
 
-        HBox topRow = new HBox(formNameLabel, createBtn, editBtn, deleteBtn, refreshBtn, hBox);
+        HBox topRow = new HBox(formNameLabel, createBtn, editBtn, deleteBtn, refreshBtn, settingBtn, hBox);
         topRow.setPadding(new Insets(10));
         topRow.setSpacing(20);
 

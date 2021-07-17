@@ -28,4 +28,8 @@ public class ButtonCreator {
         Image saveIcon = new Image(MyConst.constSaveImagePathName);
         return new ImageButton("Save", saveIcon);
     }
+    public static ImageButton getSettingsButton() {
+        Image settingIcon = new Image(MyConst.constSettingsImagePathName);
+        return new ImageButton("Settings", settingIcon);
+    }
 }

@@ -24,6 +24,6 @@ public class MainPage {
 
         VBox vBox = new VBox(tabPane);
 
-        return new Scene(vBox, 900, 550);
+        return new Scene(vBox, 1000, 600);
     }
 }

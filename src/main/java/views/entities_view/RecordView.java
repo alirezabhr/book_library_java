@@ -11,6 +11,7 @@ import javafx.scene.layout.HBox;
 import model.entities.Record;
 import controller.binders.RecordBinder;
 import views.entities_view.forms.RecordForm;
+import views.settings_view.RecordSettingForm;
 import views.widgets.ButtonCreator;
 import views.widgets.ImageButton;
 import views.widgets.SearchTextField;
@@ -122,5 +123,10 @@ public class RecordView extends EntityView{
         for (Record record : records) {
             this.table.getItems().add(record);
         }
+    }
+    @Override
+    protected void showSettingsForm() {
+        RecordSettingForm form = new RecordSettingForm();
+        form.show();
     }
 }

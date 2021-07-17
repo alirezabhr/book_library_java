@@ -11,6 +11,7 @@ import javafx.scene.layout.HBox;
 import model.entities.Student;
 import controller.binders.StudentBinder;
 import views.entities_view.forms.StudentForm;
+import views.settings_view.StudentSettingForm;
 import views.widgets.ButtonCreator;
 import views.widgets.ImageButton;
 import views.widgets.SearchTextField;
@@ -117,6 +118,11 @@ public class StudentView extends EntityView {
         for (Student student: filteredData) {
             this.table.getItems().add(student);
         }
+    }
+    @Override
+    protected void showSettingsForm() {
+        StudentSettingForm form = new StudentSettingForm();
+        form.show();
     }
 }
 

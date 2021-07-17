@@ -11,6 +11,7 @@ import javafx.scene.layout.HBox;
 import model.entities.Book;
 import controller.binders.BookBinder;
 import views.entities_view.forms.BookForm;
+import views.settings_view.BookSettingForm;
 import views.widgets.ButtonCreator;
 import views.widgets.ImageButton;
 import views.widgets.SearchTextField;
@@ -127,5 +128,10 @@ public class BookView extends EntityView{
         for (Book book: filteredData) {
             this.table.getItems().add(book);
         }
+    }
+    @Override
+    protected void showSettingsForm() {
+        BookSettingForm form = new BookSettingForm();
+        form.show();
     }
 }

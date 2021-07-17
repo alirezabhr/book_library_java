@@ -83,19 +83,16 @@ public class utils {
 
         File studentConfig = new File(MyConst.constStudentConfigFilePathName);
         if (!studentConfig.exists()) {
-            studentConfig.createNewFile();
             throw new Exception("Student Config Is Empty");
         }
 
         File bookConfig = new File(MyConst.constBookConfigFilePathName);
         if (!bookConfig.exists()) {
-            bookConfig.createNewFile();
             throw new Exception("Book Config Is Empty");
         }
 
         File recordConfig = new File(MyConst.constRecordConfigFilePathName);
         if (!recordConfig.exists()) {
-            recordConfig.createNewFile();
             throw new Exception("Record Config Is Empty");
         }
     }
