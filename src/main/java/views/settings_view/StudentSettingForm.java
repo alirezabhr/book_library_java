@@ -1,7 +1,9 @@
 package views.settings_view;
 
+import controller.utils;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -41,5 +43,18 @@ public class StudentSettingForm extends BaseSettingForm {
         VBox lastNameCol = new VBox(lastNameLabel, this.lastNameSizeField);
         lastNameCol.setSpacing(5);
         return lastNameCol;
+    }
+    protected void checkMainRowValidation() throws Exception {
+        RadioButton selectedStrMode = (RadioButton) this.stringModeGroup.getSelectedToggle();
+        if (selectedStrMode.getText().equals("Fix")) {
+            boolean isIntNameSize = utils.isIntNumber(this.nameSizeField.getText());
+            if (!isIntNameSize) {
+                throw new Exception("name size should be an integer number");
+            }
+            boolean isIntLastNameSize = utils.isIntNumber(this.lastNameSizeField.getText());
+            if (!isIntLastNameSize) {
+                throw new Exception("last name size should be an integer number");
+            }
+        }
     }
 }

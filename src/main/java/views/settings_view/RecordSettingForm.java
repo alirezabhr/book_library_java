@@ -13,4 +13,5 @@ public class RecordSettingForm extends BaseSettingForm {
     protected HBox getMainRow() {
         return new HBox();
     }
+    protected void checkMainRowValidation() {}
 }

@@ -1,7 +1,9 @@
 package views.settings_view;
 
+import controller.utils;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import views.widgets.CustomTextField;
@@ -50,5 +52,22 @@ public class BookSettingForm extends BaseSettingForm {
         VBox publisherCol = new VBox(publisherLabel, this.publisherSizeField);
         publisherCol.setSpacing(5);
         return publisherCol;
+    }
+    protected void checkMainRowValidation() throws Exception {
+        RadioButton selectedStrMode = (RadioButton) this.stringModeGroup.getSelectedToggle();
+        if (selectedStrMode.getText().equals("Fix")) {
+            boolean isIntNameSize = utils.isIntNumber(this.nameSizeField.getText());
+            if (!isIntNameSize) {
+                throw new Exception("name size should be an integer number");
+            }
+            boolean isIntAuthorSize = utils.isIntNumber(this.authorSizeField.getText());
+            if (!isIntAuthorSize) {
+                throw new Exception("author size should be an integer number");
+            }
+            boolean isIntPublisherSize = utils.isIntNumber(this.publisherSizeField.getText());
+            if (!isIntPublisherSize) {
+                throw new Exception("publisher size should be an integer number");
+            }
+        }
     }
 }

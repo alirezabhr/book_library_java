@@ -26,7 +26,7 @@ public abstract class BaseSettingForm{
 
     // abstract methods
     protected abstract HBox getMainRow();
-    protected abstract void isValidSettings() throws Exception;
+    protected abstract void checkMainRowValidation() throws Exception;
 
     // methods
     public void show() {
@@ -59,6 +59,7 @@ public abstract class BaseSettingForm{
             String msg = this.save();
             if (msg.equals("saved")) {
                 msgLabel.setText("Settings Saved Successfully.");
+                msgLabel.setTextFill(Color.valueOf("green"));
             } else {
                 msgLabel.setText(msg);
                 msgLabel.setTextFill(Color.valueOf("red"));
@@ -127,11 +128,15 @@ public abstract class BaseSettingForm{
             return exception.getMessage();
         }
     }
+    protected void isValidSettings() throws Exception {
+        this.checkTopRowValidation();
+        this.checkMainRowValidation();
+    }
     protected void checkTopRowValidation() throws Exception {
-        if (this.recordModeGroup.selectedToggleProperty()==null) {
+        if (this.recordModeGroup.getSelectedToggle()==null) {
             throw new Exception("please select a record mode!");
         }
-        if (this.stringModeGroup.selectedToggleProperty()==null) {
+        if (this.stringModeGroup.getSelectedToggle()==null) {
             throw new Exception("please select a string mode!");
         }
         RadioButton selectedRecMode = (RadioButton) this.recordModeGroup.getSelectedToggle();
