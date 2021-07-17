@@ -1,5 +1,6 @@
 package views.settings_view;
 
+import controller.utils;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
@@ -11,13 +12,11 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import constant.MyConst;
-import views.widgets.ButtonCreator;
-import views.widgets.CustomTextField;
-import views.widgets.ImageButton;
-import views.widgets.TitleLabel;
+import views.widgets.*;
 
 public abstract class BaseSettingForm{
     protected String formTitle;
@@ -27,6 +26,7 @@ public abstract class BaseSettingForm{
 
     // abstract methods
     protected abstract HBox getMainRow();
+    protected abstract void isValidSettings() throws Exception;
 
     // methods
     public void show() {
@@ -54,11 +54,24 @@ public abstract class BaseSettingForm{
         Separator separator2 = new Separator(Orientation.HORIZONTAL);
 
         ImageButton saveButton = ButtonCreator.getSaveButton();
-        HBox saveRow = new HBox(saveButton);
-        saveRow.setPadding(new Insets(25));
-        saveRow.setAlignment(Pos.BASELINE_CENTER);
+        MessageLabel msgLabel = new MessageLabel("", "green");
+        saveButton.setOnAction(event -> {
+            String msg = this.save();
+            if (msg.equals("saved")) {
+                msgLabel.setText("Settings Saved Successfully.");
+            } else {
+                msgLabel.setText(msg);
+                msgLabel.setTextFill(Color.valueOf("red"));
+            }
+        });
 
-        VBox form = new VBox(titleLabel, topRow, separator1, mainRow, separator2, saveRow);
+
+        VBox saveCol = new VBox(saveButton, msgLabel);
+        saveCol.setPadding(new Insets(20));
+        saveCol.setSpacing(10);
+        saveCol.setAlignment(Pos.BASELINE_CENTER);
+
+        VBox form = new VBox(titleLabel, topRow, separator1, mainRow, separator2, saveCol);
         form.setAlignment(Pos.TOP_CENTER);
         return form;
     }
@@ -105,5 +118,28 @@ public abstract class BaseSettingForm{
         this.recordSizeField = new CustomTextField("record size...");
 
         return new VBox(recordSizeLabel, this.recordSizeField);
+    }
+    protected String save() {
+        try {
+            this.isValidSettings();
+            return "saved";
+        } catch (Exception exception) {
+            return exception.getMessage();
+        }
+    }
+    protected void checkTopRowValidation() throws Exception {
+        if (this.recordModeGroup.selectedToggleProperty()==null) {
+            throw new Exception("please select a record mode!");
+        }
+        if (this.stringModeGroup.selectedToggleProperty()==null) {
+            throw new Exception("please select a string mode!");
+        }
+        RadioButton selectedRecMode = (RadioButton) this.recordModeGroup.getSelectedToggle();
+        if (selectedRecMode.getText().equals("Fix")) {
+            boolean isIntRecSize = utils.isIntNumber(this.recordSizeField.getText());
+            if (!isIntRecSize) {
+                throw new Exception("record size should be an integer number");
+            }
+        }
     }
 }
