@@ -1,5 +1,9 @@
 package controller.configs;
 
+import constant.MyConst;
+
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class StudentConfig extends BaseConfig{
@@ -7,6 +11,7 @@ public class StudentConfig extends BaseConfig{
     private int lastNameSize = 0;
 
     // constructor
+    public StudentConfig() {}
     public StudentConfig(String fileName) {
         this.configFileName = fileName;
         try {
@@ -23,6 +28,14 @@ public class StudentConfig extends BaseConfig{
     }
     public int getLastNameSize() {
         return lastNameSize;
+    }
+
+    // setters
+    public void setNameSize(int nameSize) {
+        this.nameSize = nameSize;
+    }
+    public void setLastNameSize(int lastNameSize) {
+        this.lastNameSize = lastNameSize;
     }
 
     // methods
@@ -79,5 +92,13 @@ public class StudentConfig extends BaseConfig{
         }
 
         return true;
+    }
+    public void write() throws IOException {
+        FileWriter myWriter = new FileWriter(MyConst.constStudentConfigFilePathName);
+        myWriter.write("\nRECORD_MODE = " + this.recordMode);
+        myWriter.write("\nSTRING_MODE = " + this.stringMode);
+        myWriter.write("\nSTUDENT_NAME_SIZE = " + this.nameSize);
+        myWriter.write("\nSTUDENT_LAST_NAME_SIZE = " + this.lastNameSize);
+        myWriter.close();
     }
 }

@@ -1,5 +1,9 @@
 package controller.configs;
 
+import constant.MyConst;
+
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class BookConfig extends BaseConfig{
@@ -8,6 +12,7 @@ public class BookConfig extends BaseConfig{
     private int publisherSize = 0;
 
     // constructor
+    public BookConfig() {}
     public BookConfig(String fileName) {
         this.configFileName = fileName;
         try {
@@ -27,6 +32,17 @@ public class BookConfig extends BaseConfig{
     }
     public int getPublisherSize() {
         return publisherSize;
+    }
+
+    // setters
+    public void setNameSize(int nameSize) {
+        this.nameSize = nameSize;
+    }
+    public void setAuthorSize(int authorSize) {
+        this.authorSize = authorSize;
+    }
+    public void setPublisherSize(int publisherSize) {
+        this.publisherSize = publisherSize;
     }
 
     // methods
@@ -92,5 +108,14 @@ public class BookConfig extends BaseConfig{
         }
 
         return true;
+    }
+    public void write() throws IOException {
+        FileWriter myWriter = new FileWriter(MyConst.constBookConfigFilePathName);
+        myWriter.write("\nRECORD_MODE = " + this.recordMode);
+        myWriter.write("\nSTRING_MODE = " + this.stringMode);
+        myWriter.write("\nBOOK_NAME_SIZE = " + this.nameSize);
+        myWriter.write("\nBOOK_AUTHOR_SIZE = " + this.authorSize);
+        myWriter.write("\nBOOK_PUBLISHER_SIZE = " + this.publisherSize);
+        myWriter.close();
     }
 }

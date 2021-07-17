@@ -1,10 +1,15 @@
 package controller.configs;
 
+import constant.MyConst;
+
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class LibraryRecordConfig extends BaseConfig{
 
     // constructor
+    public LibraryRecordConfig() {}
     public LibraryRecordConfig(String fileName) {
         this.configFileName = fileName;
         try {
@@ -46,5 +51,11 @@ public class LibraryRecordConfig extends BaseConfig{
         }
 
         return true;
+    }
+    public void write() throws IOException {
+        FileWriter myWriter = new FileWriter(MyConst.constRecordConfigFilePathName);
+        myWriter.write("\nRECORD_MODE = " + this.recordMode);
+        myWriter.write("\nSTRING_MODE = " + this.stringMode);
+        myWriter.close();
     }
 }

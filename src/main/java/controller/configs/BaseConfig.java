@@ -2,6 +2,7 @@ package controller.configs;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -22,10 +23,22 @@ public abstract class BaseConfig {
         return recordSize;
     }
 
+    // setters
+    public void setRecordMode(String recordMode) {
+        this.recordMode = recordMode;
+    }
+    public void setStringMode(String stringMode) {
+        this.stringMode = stringMode;
+    }
+    public void setRecordSize(int recordSize) {
+        this.recordSize = recordSize;
+    }
+
     // abstract methods
     public abstract boolean isValidRecord(ArrayList<Object> objects);
     public abstract boolean isValidFields(ArrayList<Object> objects);
     protected abstract void setFields(final String field, final String value) throws Exception;
+    public abstract void write() throws IOException;
 
     // normal methods
     protected void createConfig() throws Exception {
