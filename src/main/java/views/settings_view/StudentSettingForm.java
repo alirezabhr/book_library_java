@@ -1,5 +1,6 @@
 package views.settings_view;
 
+import controller.configs.ConfigCreator;
 import controller.utils;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
@@ -56,5 +57,15 @@ public class StudentSettingForm extends BaseSettingForm {
                 throw new Exception("last name size should be an integer number");
             }
         }
+    }
+    protected void setConfigs(String recMode, String strMode, String recSize) throws Exception {
+        this.createNewConfig(recMode, strMode, recSize, nameSizeField.getText(), lastNameSizeField.getText());
+    }
+    protected void createNewConfig(String recordMode, String stringMode, String... fields) throws Exception {
+        Integer recordSize = Integer.parseInt(fields[0]);
+        Integer nameSize = Integer.parseInt(fields[1]);
+        Integer lastNameSize = Integer.parseInt(fields[2]);
+
+        ConfigCreator.setStudentConfigFile(recordMode, stringMode, recordSize, nameSize, lastNameSize);
     }
 }

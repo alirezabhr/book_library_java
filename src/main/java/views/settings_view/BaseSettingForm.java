@@ -27,6 +27,8 @@ public abstract class BaseSettingForm{
     // abstract methods
     protected abstract HBox getMainRow();
     protected abstract void checkMainRowValidation() throws Exception;
+    protected abstract void setConfigs(String recMode, String strMode, String recSize) throws Exception;
+    protected abstract void createNewConfig(String recordMode, String stringMode, String... fields) throws Exception;
 
     // methods
     public void show() {
@@ -123,10 +125,22 @@ public abstract class BaseSettingForm{
     protected String save() {
         try {
             this.isValidSettings();
-            return "saved";
         } catch (Exception exception) {
             return exception.getMessage();
         }
+
+        try {
+            RadioButton recModeRadioButton = (RadioButton) this.recordModeGroup.getSelectedToggle();
+            RadioButton strModeRadioButton = (RadioButton) this.stringModeGroup.getSelectedToggle();
+            String recordMode = recModeRadioButton.getText();
+            String stringMode = strModeRadioButton.getText();
+            String recordSizeStr = this.recordSizeField.getText();
+            this.setConfigs(recordMode, stringMode, recordSizeStr);
+        } catch (Exception exception) {
+            System.out.println("ajibe");
+        }
+
+        return "saved";
     }
     protected void isValidSettings() throws Exception {
         this.checkTopRowValidation();

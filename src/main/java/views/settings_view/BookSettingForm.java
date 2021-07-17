@@ -1,5 +1,6 @@
 package views.settings_view;
 
+import controller.configs.ConfigCreator;
 import controller.utils;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
@@ -69,5 +70,16 @@ public class BookSettingForm extends BaseSettingForm {
                 throw new Exception("publisher size should be an integer number");
             }
         }
+    }
+    protected void setConfigs(String recMode, String strMode, String recSize) throws Exception {
+        this.createNewConfig(recMode, strMode, recSize, nameSizeField.getText(), authorSizeField.getText(), publisherSizeField.getText());
+    }
+    protected void createNewConfig(String recordMode, String stringMode, String... fields) throws Exception {
+        Integer recordSize = Integer.parseInt(fields[0]);
+        Integer nameSize = Integer.parseInt(fields[1]);
+        Integer authorSize = Integer.parseInt(fields[2]);
+        Integer publisherSize = Integer.parseInt(fields[3]);
+
+        ConfigCreator.setBookConfigFile(recordMode, stringMode, recordSize, nameSize, authorSize, publisherSize);
     }
 }
