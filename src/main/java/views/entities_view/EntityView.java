@@ -36,7 +36,7 @@ public abstract class EntityView {
     }
 
     protected VBox getForm(String formName) {
-        HBox topRow = this.getTopRow(formName);
+        VBox topRow = this.getTopRow(formName);
         HBox searchRow = this.getSearchRow();
         this.table = this.getTable();
         this.selectionModel = this.table.getSelectionModel();
@@ -45,7 +45,7 @@ public abstract class EntityView {
         return new VBox(topRow, searchRow, this.table);
     }
 
-    protected HBox getTopRow(String formName) {
+    protected VBox getTopRow(String formName) {
         TitleLabel formNameLabel = new TitleLabel(formName);
 
         ImageButton createBtn = ButtonCreator.getCreateButton();
@@ -64,13 +64,17 @@ public abstract class EntityView {
         settingBtn.setOnAction(event -> this.showSettingsForm());
 
         HBox hBox = new HBox(this.msgLabel);
-        hBox.setPadding(new Insets(0, 0, 0, 250));
+        hBox.setPadding(new Insets(0, 0, 0, 300));
 
-        HBox topRow = new HBox(formNameLabel, createBtn, editBtn, deleteBtn, refreshBtn, settingBtn, hBox);
-        topRow.setPadding(new Insets(10));
-        topRow.setSpacing(20);
 
-        return topRow;
+        HBox row1 = new HBox(formNameLabel, settingBtn);
+        HBox row2 = new HBox(createBtn, editBtn, deleteBtn, refreshBtn, hBox);
+        row1.setPadding(new Insets(10));
+        row1.setSpacing(20);
+        row2.setPadding(new Insets(10));
+        row2.setSpacing(20);
+
+        return new VBox(row1, row2);
     }
 
     protected void showErrorMsg(String error) {

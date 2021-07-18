@@ -16,8 +16,8 @@ public class Main extends Application {
         scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("stylesheet.css")).toExternalForm());
 
         primaryStage.setScene(scene);
-        primaryStage.setMinHeight(400);
-        primaryStage.setMinWidth(650);
+        primaryStage.setMinHeight(550);
+        primaryStage.setMinWidth(950);
         primaryStage.setTitle("Library Program");
         primaryStage.getIcons().add(new Image(MyConst.constAppIconPathName));
 
