@@ -2,18 +2,24 @@ package views.entities_view;
 
 import java.util.ArrayList;
 
+import constant.MyConst;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
+import javafx.scene.layout.VBox;
 import model.entities.Record;
 import controller.binders.RecordBinder;
 import views.entities_view.forms.RecordForm;
 import views.settings_view.RecordSettingForm;
 import views.widgets.ButtonCreator;
 import views.widgets.ImageButton;
+import views.widgets.MessageLabel;
 import views.widgets.SearchTextField;
 
 public class RecordView extends EntityView{
@@ -37,6 +43,11 @@ public class RecordView extends EntityView{
     @Override
     protected TableView getTable() {
         TableView table = createEmptyTable();
+        Image emptyStateImage = new Image(MyConst.constEmptyStateImagePathName);
+        VBox tablePlaceHolder = new VBox(new ImageView(emptyStateImage), new MessageLabel("No Record Found", "black"));
+        tablePlaceHolder.setSpacing(20);
+        tablePlaceHolder.setAlignment(Pos.CENTER);
+        table.setPlaceholder(tablePlaceHolder);
         ArrayList<Record> records = RecordBinder.getAllRecords();
 
         for (Record record:records) {

@@ -22,4 +22,5 @@ public class MyConst {
     public static final String constRefreshImagePathName = "file:" + constImagesPath + "refresh.png";
     public static final String constSaveImagePathName = "file:" + constImagesPath + "save.png";
     public static final String constSettingsImagePathName = "file:" + constImagesPath + "settings.png";
+    public static final String constEmptyStateImagePathName = "file:" + constImagesPath + "empty_state.png";
 }
